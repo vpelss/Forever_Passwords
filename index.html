@@ -1,14 +1,15 @@
 
 <form>
-    <input id='Alias' placeholder="Alias eg: mysite.com" onkeyup="nospaces(this)"></input>
+    <input id='Alias' placeholder="Alias eg: mysite.com" size='50' onkeyup="nospaces(this);GeneratePW();"></input>
     <br><br>
-    <input id='Secret' type='password' placeholder="Secret"></input>
+    <input id='Secret' type='password' placeholder="Secret" size='50' onkeyup="GeneratePW();"></input>
     <br><br>
-    <input type="submit" value="Submit">
+    <input type="button" value="Generate Password">
 </form>
 
 <form>
-    <input  id='Password' type='text' placeholder="Password" readonly value=''></input>  
+    <input  id='Password' type='text' size='50' placeholder="Password" readonly onclick="clipboard(this)"></input> 
+    <input type="button" value="Copy Password" onclick="clipboard(document.getElementById('Password'))"></input> 
 </form>
 
 <div id='ans1'>a1</div>
@@ -26,6 +27,12 @@ function nospaces(t)
         t.value=t.value.replace(/\s/g,'');
         }
     }
+    
+ function clipboard(t) {
+  t.select();
+  document.execCommand("copy"); /* Copy the text inside the text field */
+  alert("Copied the text: " + t.value);
+}
 </script>
 
 <script>
@@ -199,13 +206,24 @@ function hex2bin(hex)
     return String.fromCharCode.apply(this , bytes);    
 }
 
+
+function GeneratePW()
+{
+    var total = document.getElementById('Secret').value + document.getElementById('Alias').value;
+    var v1 = Sha1.hash( total , '');
+    var v2 = hex2bin( v1 );
+    var PW =  btoa( v2 ) ;
+    document.getElementById('Password').value = PW;
+    
+}
+
 var v1 = Sha1.hash('abc','');
 var v2 = hex2bin( v1 );
 var v3 =  btoa( v2 ) ;
 
 document.getElementById('ans1').innerHTML = 'sha1: ' + v1;
 document.getElementById("ans2").innerHTML = 'Binary: ' + v2;
-document.getElementById("ans3").innerHTML = v3;
+document.getElementById("ans3").innerHTML = 'Password: ' + v3;
 
 //sha1 160 bit, 20 byte, 40 hex
 //xxd or hex2bin - to binary stream
