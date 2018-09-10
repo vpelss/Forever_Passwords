@@ -1,9 +1,29 @@
+
+<form>
+    <input id='Alias' placeholder="Alias eg: mysite.com" onkeyup="nospaces(this)"></input>
+    <br><br>
+    <input type='password' id='Secret' placeholder="Secret"></input>
+    <br><br>
+    <input type="submit" value="Submit">
+</form>
+
 <div id='ans1'>a1</div>
-    <div id='ans2'>a2</div>
-    <div id='ans3'>a3</div>
-    <div id='ans4'>a3</div>
-    <div id='ans5'>a3</div>
+<div id='ans2'>a2</div>
+<div id='ans3'>a3</div>
+<div id='ans4'>a3</div>
+<div id='ans5'>a3</div>
     
+<script>
+function nospaces(t)
+    {
+    if(t.value.match(/\s/g))
+        {
+        alert('Sorry, you are not allowed to enter any spaces');
+        t.value=t.value.replace(/\s/g,'');
+        }
+    }
+</script>
+
 <script>
 
 
