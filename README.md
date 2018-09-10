@@ -18,8 +18,11 @@ Why create Forever_Passwords?
 The Chrome extension is limited to use on Chrome only, so I wanted to port it to JS to make it accesible to all platforms and to allow the possiblity to store locally for stand alone systems. Thus the single index.html file design.
 
 Use:
+
 1 Select an Alias
+
 2. Select a Secret
+
 3. Password is generated.
 
 Note: Strength lies is having a unique, but easy to remember pattern for site Alias. If it is difficult to guess, your Secret can be simpler. However having both a complex Alias and Secret is the best.
