@@ -19,7 +19,7 @@ The Chrome extension is limited to use on Chrome only, so I wanted to port it to
 
 Use:
 
-1 Select an Alias
+1. Select an Alias
 
 2. Select a Secret
 
