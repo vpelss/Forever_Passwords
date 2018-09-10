@@ -3,10 +3,15 @@
 Based on : https://chrome.google.com/webstore/detail/sha1-password-calculator/gfdaokhcoidlgljipinbbcafapmmdanb
 
 You can do the same:
+
 On MAC
+
 echo -n "mysecretgmail.com" | shasum | xxd -r -p | base64
+
 or
+
 On Linux
+
 echo -n "mysecretgmail.com" | sha1sum | xxd -r -p | base64
 
 Why create Forever_Passwords?
