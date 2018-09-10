@@ -2,9 +2,13 @@
 <form>
     <input id='Alias' placeholder="Alias eg: mysite.com" onkeyup="nospaces(this)"></input>
     <br><br>
-    <input type='password' id='Secret' placeholder="Secret"></input>
+    <input id='Secret' type='password' placeholder="Secret"></input>
     <br><br>
     <input type="submit" value="Submit">
+</form>
+
+<form>
+    <input  id='Password' type='text' placeholder="Password" readonly value=''></input>  
 </form>
 
 <div id='ans1'>a1</div>
@@ -25,8 +29,6 @@ function nospaces(t)
 </script>
 
 <script>
-
-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 /* SHA-1 (FIPS 180-4) implementation in JavaScript                    (c) Chris Veness 2002-2017  */
 /*                                                                                   MIT Licence  */
@@ -180,7 +182,6 @@ class Sha1 {
     }
 
 }
-
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
