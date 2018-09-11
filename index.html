@@ -1,16 +1,14 @@
 <body>
 
 <form>
-    <input id='Alias' placeholder="Alias eg: mysite.com" size='50' onkeyup="nospaces(this);GeneratePW();"></input>
+    <input id='Alias' placeholder="Alias eg: mysite.com" size='50' onkeyup="nospaces(this);GeneratePW();">
     <br><br>
-    <input id='Secret' type='password' placeholder="Secret" size='50' onkeyup="GeneratePW();"></input>
-    <br><br>
-    <input type="button" value="Generate Password">
+    <input id='Secret' type='password' placeholder="Secret" size='50' onkeyup="GeneratePW();">
 </form>
 
 <form>
-    <input  id='Password' type='text' size='50' placeholder="Password" readonly onclick="clipboard(this)"></input> 
-    <input type="button" value="Copy Password" onclick="clipboard(document.getElementById('Password'));"></input> 
+    <input  id='Password' type='text' size='50' placeholder="Password" readonly onclick="clipboard(this)">
+    <input type="button" value="Copy Password" onclick="clipboard(document.getElementById('Password'));">
 </form>
 
 <div id='ans1'>sha1</div>
