@@ -3,7 +3,7 @@
 <h2>Forever Passwords</h2>
 
 <form>
-    <input id='Alias' placeholder="Alias eg: mysite.com" size='50' onkeyup="GeneratePW();" JT8szkF00cV5lSUH3YPxAxvpD4w=>
+    <input id='Alias' placeholder="Alias eg: mysite.com" size='50' onkeyup="GeneratePW();" 
     <br><br>
     <input id='Secret' type='password' placeholder="Secret" size='50' onkeyup="GeneratePW();" ">
 </form>
@@ -11,7 +11,7 @@
 <form>
     <input  id='Password' type='text' size='50' placeholder="Password" >
     <input type="button" value="Copy Password" onclick="clipboard('Password')">
-    <select id="resize" onclick="resize1( document.getElementById('Password') , this.options[this.selectedIndex].value )">
+    <select id="resize" onclick=" GeneratePW(); ">
         <option value="8">8</option>
         <option value="16">16</option>
         <option value="24">24</option>
@@ -25,17 +25,6 @@
 <div id='ans4'>Size</div>
   
 <script>
-function resize1(t , size)
-{
-document.getElementById('ans4').innerHTML = size;
-t.setAttribute("maxlength", size); 
-//clipboard();
-  t.select();
-  document.execCommand("copy");
-  t.select();
-  document.execCommand("paste");
-}
-
 function nospaces(id)
     {
     t = document.getElementById(id);
@@ -241,11 +230,16 @@ function GeneratePW()
     var v1 = Sha1.hash( total , '');
     var v2 = hex2bin( v1 );
     var PW =  btoa( v2 ) ;
-    document.getElementById('Password').value = PW;
+  
+    var size = document.getElementById('resize').options[document.getElementById('resize').selectedIndex].value;
+    var PWslice = PW.slice(0, size);
+  
+    document.getElementById('Password').value = PWslice;
     
     document.getElementById('ans1').innerHTML = 'sha1: ' + v1;
     document.getElementById("ans2").innerHTML = 'Binary: ' + v2;
     document.getElementById("ans3").innerHTML = 'Password: ' + PW;
+    document.getElementById('ans4').innerHTML = size;
     
 }
 
