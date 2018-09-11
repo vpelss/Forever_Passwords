@@ -1,3 +1,4 @@
+<body>
 
 <form>
     <input id='Alias' placeholder="Alias eg: mysite.com" size='50' onkeyup="nospaces(this);GeneratePW();"></input>
@@ -9,14 +10,12 @@
 
 <form>
     <input  id='Password' type='text' size='50' placeholder="Password" readonly onclick="clipboard(this)"></input> 
-    <input type="button" value="Copy Password" onclick="clipboard(document.getElementById('Password'))"></input> 
+    <input type="button" value="Copy Password" onclick="clipboard(document.getElementById('Password'));"></input> 
 </form>
 
-<div id='ans1'>a1</div>
-<div id='ans2'>a2</div>
-<div id='ans3'>a3</div>
-<div id='ans4'>a3</div>
-<div id='ans5'>a3</div>
+<div id='ans1'>sha1</div>
+<div id='ans2'>Binary</div>
+<div id='ans3'>PW</div>
     
 <script>
 function nospaces(t)
@@ -43,7 +42,6 @@ function nospaces(t)
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
 'use strict';
-
 
 /**
  * SHA-1 hash function reference implementation.
@@ -161,7 +159,7 @@ class Sha1 {
 
         function hexBytesToString(hexStr) { // convert string of hex numbers to a string of chars (eg '616263' -> 'abc').
             const str = hexStr.replace(' ', ''); // allow space-separated groups
-            return str=='' ? '' : str.match(/.{2}/g).map(byte => String.fromCharCode(parseInt(byte, 16))).join('');
+            return str == '' ? '' : str.match(/.{2}/g).map(byte => String.fromCharCode(parseInt(byte, 16))).join('');
         }
     }
 
@@ -209,11 +207,23 @@ function hex2bin(hex)
 
 function GeneratePW()
 {
-    var total = document.getElementById('Secret').value + document.getElementById('Alias').value;
+        var Secret = document.getElementById('Secret').value;
+        var Alias = document.getElementById('Alias').value;
+        var total = document.getElementById('Secret').value + document.getElementById('Alias').value;
+    if ( ( Secret == '') || ( Alias == '') )
+        {
+        document.getElementById('Password').value = '';    
+        return;    
+        }
+    
     var v1 = Sha1.hash( total , '');
     var v2 = hex2bin( v1 );
     var PW =  btoa( v2 ) ;
     document.getElementById('Password').value = PW;
+    
+    document.getElementById('ans1').innerHTML = 'sha1: ' + v1;
+    document.getElementById("ans2").innerHTML = 'Binary: ' + v2;
+    document.getElementById("ans3").innerHTML = 'Password: ' + PW;
     
 }
 
@@ -221,12 +231,12 @@ var v1 = Sha1.hash('abc','');
 var v2 = hex2bin( v1 );
 var v3 =  btoa( v2 ) ;
 
-document.getElementById('ans1').innerHTML = 'sha1: ' + v1;
-document.getElementById("ans2").innerHTML = 'Binary: ' + v2;
-document.getElementById("ans3").innerHTML = 'Password: ' + v3;
+
 
 //sha1 160 bit, 20 byte, 40 hex
 //xxd or hex2bin - to binary stream
 //BASE64 - binary to ascii base64 
 
 </script>
+
+</body>
