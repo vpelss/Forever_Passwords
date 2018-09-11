@@ -1,23 +1,44 @@
 <body>
 
+<h2>Forever Passwords</h2>
+
 <form>
-    <input id='Alias' placeholder="Alias eg: mysite.com" size='50' onkeyup="nospaces(this);GeneratePW();">
+    <input id='Alias' placeholder="Alias eg: mysite.com" size='50' onkeyup="GeneratePW();" JT8szkF00cV5lSUH3YPxAxvpD4w=>
     <br><br>
-    <input id='Secret' type='password' placeholder="Secret" size='50' onkeyup="GeneratePW();">
+    <input id='Secret' type='password' placeholder="Secret" size='50' onkeyup="GeneratePW();" ">
 </form>
 
 <form>
-    <input  id='Password' type='text' size='50' placeholder="Password" readonly onclick="clipboard(this)">
-    <input type="button" value="Copy Password" onclick="clipboard(document.getElementById('Password'));">
+    <input  id='Password' type='text' size='50' placeholder="Password" >
+    <input type="button" value="Copy Password" onclick="clipboard('Password')">
+    <select id="resize" onclick="resize1( document.getElementById('Password') , this.options[this.selectedIndex].value )">
+        <option value="8">8</option>
+        <option value="16">16</option>
+        <option value="24">24</option>
+        <option value="28" selected>28</option>
+    </select>
 </form>
 
 <div id='ans1'>sha1</div>
 <div id='ans2'>Binary</div>
 <div id='ans3'>PW</div>
-    
+<div id='ans4'>Size</div>
+  
 <script>
-function nospaces(t)
+function resize1(t , size)
+{
+document.getElementById('ans4').innerHTML = size;
+t.setAttribute("maxlength", size); 
+//clipboard();
+  t.select();
+  document.execCommand("copy");
+  t.select();
+  document.execCommand("paste");
+}
+
+function nospaces(id)
     {
+    t = document.getElementById(id);
     if(t.value.match(/\s/g))
         {
         alert('Sorry, you are not allowed to enter any spaces');
@@ -25,11 +46,12 @@ function nospaces(t)
         }
     }
     
- function clipboard(t) {
+function clipboard(id) {
+   t = document.getElementById(id);
   t.select();
   document.execCommand("copy"); /* Copy the text inside the text field */
-  alert("Copied the text: " + t.value);
-}
+  //alert("Copied the text: " + t.value);
+  }
 </script>
 
 <script>
@@ -205,9 +227,11 @@ function hex2bin(hex)
 
 function GeneratePW()
 {
-        var Secret = document.getElementById('Secret').value;
-        var Alias = document.getElementById('Alias').value;
-        var total = document.getElementById('Secret').value + document.getElementById('Alias').value;
+    nospaces('Alias');
+  
+    var Secret = document.getElementById('Secret').value;
+    var Alias = document.getElementById('Alias').value;
+    var total = document.getElementById('Secret').value + document.getElementById('Alias').value;
     if ( ( Secret == '') || ( Alias == '') )
         {
         document.getElementById('Password').value = '';    
@@ -228,8 +252,6 @@ function GeneratePW()
 var v1 = Sha1.hash('abc','');
 var v2 = hex2bin( v1 );
 var v3 =  btoa( v2 ) ;
-
-
 
 //sha1 160 bit, 20 byte, 40 hex
 //xxd or hex2bin - to binary stream
