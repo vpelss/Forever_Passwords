@@ -1,47 +1,8 @@
+<head>
+<title>Forever Passwords</title>
+</head>
+
 <body>
-
-<h2>Forever Passwords</h2>
-
-<form>
-    <input id='Alias' placeholder="Alias eg: mysite.com" size='50' onkeyup="GeneratePW();" 
-    <br><br>
-    <input id='Secret' type='password' placeholder="Secret" size='50' onkeyup="GeneratePW();" ">
-</form>
-
-<form>
-    <input  id='Password' type='text' size='50' placeholder="Password" >
-    <input type="button" value="Copy Password" onclick="clipboard('Password')">
-    <select id="resize" onclick=" GeneratePW(); ">
-        <option value="8">8</option>
-        <option value="16">16</option>
-        <option value="24">24</option>
-        <option value="28" selected>28</option>
-    </select>
-</form>
-
-<div id='ans1'>sha1</div>
-<div id='ans2'>Binary</div>
-<div id='ans3'>PW</div>
-<div id='ans4'>Size</div>
-  
-<script>
-function nospaces(id)
-    {
-    t = document.getElementById(id);
-    if(t.value.match(/\s/g))
-        {
-        alert('Sorry, you are not allowed to enter any spaces');
-        t.value=t.value.replace(/\s/g,'');
-        }
-    }
-    
-function clipboard(id) {
-   t = document.getElementById(id);
-  t.select();
-  document.execCommand("copy"); /* Copy the text inside the text field */
-  //alert("Copied the text: " + t.value);
-  }
-</script>
 
 <script>
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
@@ -78,7 +39,8 @@ class Sha1 {
      *   hex bytes; 'hex-w' for grouping hex bytes into groups of (4 byte / 8 character) words.
      * @returns {string} Hash of msg as hex character string.
      */
-    static hash(msg, options) {
+    static hash(msg, options)
+       {
         const defaults = { msgFormat: 'string', outFormat: 'hex' };
         const opt = Object.assign(defaults, options);
 
@@ -95,7 +57,6 @@ class Sha1 {
         const H = [ 0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476, 0xc3d2e1f0 ];
 
         // PREPROCESSING [§6.1.1]
-
         msg += String.fromCharCode(0x80);  // add trailing '1' bit (+ 0's padding) to string [§5.1.1]
 
         // convert string msg into 512-bit/16-integer blocks arrays of ints [§5.2.1]
@@ -117,7 +78,6 @@ class Sha1 {
         M[N-1][15] = ((msg.length-1)*8) & 0xffffffff;
 
         // HASH COMPUTATION [§6.1.2]
-
         for (let i=0; i<N; i++) {
             const W = new Array(80);
 
@@ -172,7 +132,6 @@ class Sha1 {
         }
     }
 
-
     /**
      * Function 'f' [§4.1.1].
      * @private
@@ -185,7 +144,6 @@ class Sha1 {
             case 3: return  x ^ y  ^  z;                // Parity()
         }
     }
-
 
     /**
      * Rotates left (circular left shift) value x by n positions [§3.2.5].
@@ -201,7 +159,46 @@ class Sha1 {
 
 if (typeof module != 'undefined' && module.exports) module.exports = Sha1; // ≡ export default Sha1
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* end Sha1 */
+
+var Cookie   = new Object();
+Cookie.day   = 86400000;
+Cookie.week  = Cookie.day * 7;
+Cookie.month = Cookie.day * 31;
+Cookie.year  = Cookie.day * 365;
+
+function getCookie(name) 
+{
+  var cookies = document.cookie;
+  var start = cookies.indexOf(name + '=');
+  if (start == -1) return null;
+  var len = start + name.length + 1;
+  var end = cookies.indexOf(';',len);
+  if (end == -1) end = cookies.length;
+  return unescape(cookies.substring(len,end));
+}
+
+function setCookie(name, value, expires, path, domain, secure) 
+{
+  value = escape(value);
+  expires = (expires) ? ';expires=' + expires.toGMTString() :'';
+  path    = (path)    ? ';path='    + path                  :'';
+  domain  = (domain)  ? ';domain='  + domain                :'';
+  secure  = (secure)  ? ';secure'                           :'';
+
+  document.cookie =
+    name + '=' + value + expires + path + domain + secure;
+}
+
+function deleteCookie(name, path, domain) 
+{
+  var expires = ';expires=Thu, 01-Jan-70 00:00:01 GMT';
+  (path)    ? ';path='    + path                  : '';
+  (domain)  ? ';domain='  + domain                : '';
+
+  if (getCookie(name))
+    document.cookie = name + '=' + expires + path + domain;
+}
 
 function hex2bin(hex)
 {
@@ -210,10 +207,27 @@ function hex2bin(hex)
     for(var i=0; i< hex.length-1; i+=2)
         bytes.push( parseInt( hex.substr(i, 2), 16) );
 
-    return String.fromCharCode.apply(this , bytes);    
+    return String.fromCharCode.apply(String , bytes);    
 }
 
-
+function nospaces(id)
+    {
+    var t = document.getElementById(id);
+    if(t.value.match(/\s/g))
+        {
+        alert('Sorry, you are not allowed to enter any spaces');
+        t.value=t.value.replace(/\s/g,'');
+        }
+    }
+    
+function clipboard(id)
+{
+  var t = document.getElementById(id);
+  t.select();
+  document.execCommand("copy"); /* Copy the text inside the text field */
+  //alert("Copied the text: " + t.value);
+ }
+  
 function GeneratePW()
 {
     nospaces('Alias');
@@ -226,10 +240,10 @@ function GeneratePW()
         document.getElementById('Password').value = '';    
         return;    
         }
-    
-    var v1 = Sha1.hash( total , '');
-    var v2 = hex2bin( v1 );
-    var PW =  btoa( v2 ) ;
+
+    var v1 = Sha1.hash( total , ''); //sha1 160 bit, 20 byte, 40 hex
+    var v2 = hex2bin( v1 ); //xxd or hex2bin - to binary stream
+    var PW =  btoa( v2 ) ; //BASE64 - binary to ascii base64 
   
     var size = document.getElementById('resize').options[document.getElementById('resize').selectedIndex].value;
     var PWslice = PW.slice(0, size);
@@ -240,17 +254,40 @@ function GeneratePW()
     document.getElementById("ans2").innerHTML = 'Binary: ' + v2;
     document.getElementById("ans3").innerHTML = 'Password: ' + PW;
     document.getElementById('ans4').innerHTML = size;
-    
 }
 
-var v1 = Sha1.hash('abc','');
-var v2 = hex2bin( v1 );
-var v3 =  btoa( v2 ) ;
-
-//sha1 160 bit, 20 byte, 40 hex
-//xxd or hex2bin - to binary stream
-//BASE64 - binary to ascii base64 
-
 </script>
+
+<h6 align='center'>based on PWCalc</h6>
+<h2 align='center'>Forever Passwords</h2>
+
+<form align='center' autocomplete="off">
+    <input id='Alias' placeholder="Alias eg: mysite.com" size='50' onkeyup="GeneratePW();"> 
+    <br><br>
+    <input id='Secret' type='password' placeholder="Secret" size='50' onkeyup="GeneratePW();">
+</form>
+
+<form align='center'>
+    <input id='Password' type='text' size='50' placeholder="Password" readonly onclick="clipboard('Password')">
+   <br> <br>
+    <input type="button" value="Copy Password" onclick="clipboard('Password')">
+    <select id="resize" onclick=" GeneratePW(); ">
+        <option value="8">8</option>
+        <option value="16">16</option>
+        <option value="24">24</option>
+        <option value="28" selected>28</option>
+    </select>
+<br> <br>
+<select id="localAliases" onclick="  ">
+        <option value="" selected>Saved Local Aliases</option>
+</select>
+</form>
+ 
+<div align='center'>
+ <div id='ans1'>sha1</div>
+ <div id='ans2'>Binary</div>
+ <div id='ans3'>PW</div>
+ <div id='ans4'>Size</div>
+</div>
 
 </body>
