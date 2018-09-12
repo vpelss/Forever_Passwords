@@ -219,7 +219,7 @@ function nospaces(id)
         t.value=t.value.replace(/\s/g,'');
         }
     }
-    
+   
 function clipboard(id)
 {
   var t = document.getElementById(id);
@@ -256,8 +256,30 @@ function GeneratePW()
     document.getElementById('ans4').innerHTML = size;
 }
 
-</script>
+function SaveAlias()
+{
+var AliasCookie = getCookie( 'AliasList' ) || '{"1":"12" , "2":"2" , "3":"1" }' ; 
+var AliasList = JSON.parse(AliasCookie); 
+var AliasListKeys = Object.keys(AliasList) ;
 
+var aaa=
+{
+"name":"John",
+"age":30,
+"cars":"Ford" 
+}
+
+var forever=new Date('October 17, 2050 03:24:00');
+var Alias = document.getElementById('Alias').value;
+
+AliasListArray.push(Alias);
+setCookie('AliasList' , AliasListArray , forever , '', '', '');
+
+//use JSON associative array to squash duplicates
+}
+
+</script>
+ddd
 <h6 align='center'>based on PWCalc</h6>
 <h2 align='center'>Forever Passwords</h2>
 
@@ -270,7 +292,7 @@ function GeneratePW()
 <form align='center'>
     <input id='Password' type='text' size='50' placeholder="Password" readonly onclick="clipboard('Password')">
    <br> <br>
-    <input type="button" value="Copy Password" onclick="clipboard('Password')">
+    <input type="button" value="Copy Password" onclick=" clipboard('Password'); SaveAlias(); ">
     <select id="resize" onclick=" GeneratePW(); ">
         <option value="8">8</option>
         <option value="16">16</option>
