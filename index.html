@@ -2,7 +2,7 @@
 <title>Forever Passwords</title>
 </head>
 
-<body>
+<body onload='BuildAliasSelect();'>
 
 <script>
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
@@ -161,6 +161,7 @@ if (typeof module != 'undefined' && module.exports) module.exports = Sha1; // â‰
 
 /* end Sha1 */
 
+var forever=new Date('October 17, 2050 03:24:00');  
 var Cookie   = new Object();
 Cookie.day   = 86400000;
 Cookie.week  = Cookie.day * 7;
@@ -258,28 +259,74 @@ function GeneratePW()
 
 function SaveAlias()
 {
+//current: save new alias to cookie then update selected from cookies
+//maybe add to selected, then save cookie?
+  
+//use JSON associative array to squash duplicates
+var forever=new Date('October 17, 2050 03:24:00');
+
 var AliasCookie = getCookie( 'AliasList' ) || '{"1":"12" , "2":"2" , "3":"1" }' ; 
 var AliasList = JSON.parse(AliasCookie); 
 var AliasListKeys = Object.keys(AliasList) ;
 
-var aaa=
-{
-"name":"John",
-"age":30,
-"cars":"Ford" 
-}
-
-var forever=new Date('October 17, 2050 03:24:00');
 var Alias = document.getElementById('Alias').value;
+AliasList[Alias] = Alias;
 
-AliasListArray.push(Alias);
-setCookie('AliasList' , AliasListArray , forever , '', '', '');
-
-//use JSON associative array to squash duplicates
+var AliasListString = JSON.stringify(AliasList);
+setCookie('AliasList' , AliasListString , forever , '', '', '');
+  
+//BuildAliasSelect();  
+var x = document.getElementById("localAliases");
+var option = document.createElement("option");
+option.text = Alias; 
+x.add(option); 
 }
+  
+function BuildAliasSelect()
+{
+//required on startup
+  
+//use JSON associative array to squash duplicates
 
+var AliasCookie = getCookie( 'AliasList' ) || '{"1":"12" , "2":"2" , "3":"1" }' ; 
+var AliasList = JSON.parse(AliasCookie); 
+var AliasListKeys = Object.keys(AliasList) ;
+  
+// take cookie and add to <select>
+for(var index in AliasList) 
+  {
+  var x = document.getElementById("localAliases");
+  var option = document.createElement("option");
+  option.text = AliasList[index]; 
+  x.add(option);    
+  }    
+}
+  
+function DeleteAlias()
+{
+// var size = document.getElementById('resize').options[document.getElementById('resize').selectedIndex].value;
+//document.getElementById('localAliases').options[document.getElementById('localAliases').selectedIndex].value; 
+var AliasList = {};
+  
+var x = document.getElementById("localAliases");
+x.remove(x.selectedIndex);
+  
+//update associative array from selected
+var txt = "";
+var i;
+for (i = 0; i < x.length; i++) 
+    {
+    txt = x.options[i].text;
+    AliasList[txt] = txt;
+    }  
+  
+//save to cookie
+var AliasListString = JSON.stringify(AliasList);
+setCookie('AliasList' , AliasListString , forever , '', '', '');   
+}
+  
 </script>
-ddd
+ccc
 <h6 align='center'>based on PWCalc</h6>
 <h2 align='center'>Forever Passwords</h2>
 
@@ -303,6 +350,7 @@ ddd
 <select id="localAliases" onclick="  ">
         <option value="" selected>Saved Local Aliases</option>
 </select>
+<input type='button' value='X' onclick="DeleteAlias();">
 </form>
  
 <div align='center'>
