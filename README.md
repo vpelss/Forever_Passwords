@@ -1,6 +1,6 @@
 # Forever_Passwords
 
-Based on : https://chrome.google.com/webstore/detail/sha1-password-calculator/gfdaokhcoidlgljipinbbcafapmmdanb
+Based on PWCalc : https://chrome.google.com/webstore/detail/sha1-password-calculator/gfdaokhcoidlgljipinbbcafapmmdanb
 
 You can do the same:
 
