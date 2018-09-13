@@ -8,28 +8,26 @@ https://extensions.gnome.org/extension/825/password-calculator/
 
 https://bixense.com/pwcalculator/
 
-The programs above are limited to where they can be used. So I wrote Forever_Passwords in HTML/Javascript to making it accesible to all platforms and browsers. You can also store the code locally for stand alone systems. This is why it is a single index.html file design.
+The programs above are limited to where they can be used. So I wrote Forever_Passwords in HTML/Javascript to making it accesible to all platforms and browsers. It is a single 'index.html' file design to easily store the code locally for stand alone systems.
+
+Why is Forever Passords and PWCalc for you?
+
+Typical Password problems:
+- Multiple passwords are hard to remember
+- Reuse of passwords is a bad practice. If one site get's hacked, your password is compromised on other sites.
+- Passwords should not be written down or stored in any location
+- Password Storage solutions can potentialy be hacked. If that happens, all your passwords are compromised 
+
+Solution / Benefits of Forever_Passwords:
+All passwords for each website is unique. The passwords are not stored. The passwords are incredibly complex. The passwords are easy to generate.
 
 Use:
-
 - run index.html off the website (https://www.emogic.com/Forever_Passwords/) or your locally stored version
 - Select an Alias - usually based on url
 - Select a Secret - a word. phrase, or password
 - Password is generated 
 
 Note: Strength lies is having a unique, but easy to remember pattern for site Alias. If it is difficult to guess, your Secret can be simpler. However having both a complex Alias and Secret is the best.
-
-Why is Forever Passords and PWCalc for you?
-
-Password problems:
-- Multiple passwords are hard to remember
-- You should not reuse passwords. If one site get's hacked, your password is compromised on other sites.
-- Passwords should not be written down or stored in any location
-- Password Storage solutions can be hacked (not easy), and if it is, all your passwords are compromised 
-
-Solution / Benefits:
-Forever_Passwords: Password is not stored anywhere. Password is incredibly complex. Easy to remember how to generate it.
-
 Recommendations:
 - 'salt' your Alias. example: mysite.com!!!Jan2018 (eg: if password it to be changed monthly your salt might be !!!Jan2018. Make your salt unique and don't share your salt pattern. Use complex, easy to remember salt.
 - Change passwords on regular basis.
