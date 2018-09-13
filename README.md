@@ -8,8 +8,7 @@ https://extensions.gnome.org/extension/825/password-calculator/
 
 https://bixense.com/pwcalculator/
 
-Why create Forever_Passwords?
-The Chrome extension and programs above are limited to where they can be used. So I wanted to port it to JS to make it accesible to all platforms and browsers (Android, Linux, etc). You can also store the code locally for stand alone systems. This is why it is a single index.html file design.
+The programs above are limited to where they can be used. So I wrote Forever_Passwords in HTML/Javascript to making it accesible to all platforms and browsers. You can also store the code locally for stand alone systems. This is why it is a single index.html file design.
 
 Use:
 
