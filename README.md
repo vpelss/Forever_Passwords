@@ -8,30 +8,31 @@ https://extensions.gnome.org/extension/825/password-calculator/
 
 https://bixense.com/pwcalculator/
 
-The programs above are limited to where they can be used. So I wrote Forever_Passwords in HTML/Javascript to making it accesible to all platforms and browsers. It is a single 'index.html' file design to easily store the code locally for stand alone systems.
+The programs above, while execlent, are limited to where they can be used. So I wrote Forever_Passwords in HTML/Javascript to make it accesible to all platforms and browsers. It's single file design allows you to easily store the code localy for stand alone systems.
 
-Why is Forever Passords and PWCalc for you?
+Why is the Forever Passords and PWCalc method of generating passwords for you?
 
 Typical Password problems:
-- Multiple passwords are hard to remember
 - Reuse of passwords is a bad practice. If one site get's hacked, your password is compromised on other sites.
 - Passwords should not be written down or stored in any location
 - Password Storage solutions can potentialy be hacked. If that happens, all your passwords are compromised 
+- Multiple passwords are hard to remember
 
-Solution / Benefits of Forever_Passwords:
+Solution and benefits of Forever_Passwords:
 All passwords for each website is unique. The passwords are not stored. The passwords are incredibly complex. The passwords are easy to generate.
 
-Use:
+How to use Forever_Passwords:
 - run index.html off the website (https://www.emogic.com/Forever_Passwords/) or your locally stored version
-- Select an Alias - usually based on url
-- Select a Secret - a word. phrase, or password
-- Password is generated 
+- Select an Alias : usually based on url
+- Select a Secret : a word, phrase, or password
+- Password is generated : copy and use 
 
-Note: Strength lies is having a unique, but easy to remember pattern for site Alias. If it is difficult to guess, your Secret can be simpler. However having both a complex Alias and Secret is the best.
+Note: For security reasons, use a unique, but easy to remember, pattern for the Alias. If it is difficult to guess, your Secret can be simpler. However having both a complex Alias and Secret is the best.
+
 Recommendations:
-- 'salt' your Alias. example: mysite.com!!!Jan2018 (eg: if password it to be changed monthly your salt might be !!!Jan2018. Make your salt unique and don't share your salt pattern. Use complex, easy to remember salt.
-- Change passwords on regular basis.
-- Do not store important passwords in a browser cache!
+- 'salt' your Alias. example: mysite.com!!!Jan2018 (eg: if password it to be changed monthly your salt might be !!!Jan2018. Make your salt unique and don't share your salt pattern. Use complex, but easy to remember, salt.
+- Change passwords on regular basis
+- Do not store important passwords in a browser cache
 
 Possible issues:
 - Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias
