@@ -217,16 +217,16 @@ function hex2bin(hex)
 }
 
 function nospaces(id)
-    {
+{
     var t = document.getElementById(id);
     if(t.value.match(/\s/g))
         {
         alert('Sorry, you are not allowed to enter any spaces');
         t.value=t.value.replace(/\s/g,'');
         }
-    }
+}
    
-function clipboard(id)
+function copytoclipboard(id)
 {
   var t = document.getElementById(id);
   t.select();
@@ -268,7 +268,6 @@ function SaveAlias()
 //maybe add to selected, then save cookie?
   
 //use JSON associative array to squash duplicates
-var forever=new Date('October 17, 2050 03:24:00');
 
 var AliasCookie = getCookie( 'AliasList' ) || '{ }' ; 
 var AliasList = JSON.parse(AliasCookie); 
@@ -280,16 +279,16 @@ AliasList[Alias] = Alias;
 var AliasListString = JSON.stringify(AliasList);
 setCookie('AliasList' , AliasListString , forever , '', '', '');
   
-//BuildAliasSelect();  
-var x = document.getElementById("localAliases");
-var option = document.createElement("option");
-option.text = Alias; 
-x.add(option); 
+BuildAliasSelect();  
+//var x = document.getElementById("localAliases");
+//var option = document.createElement("option");
+//option.text = Alias; 
+//x.add(option); 
 }
   
 function BuildAliasSelect()
 {
-//required on startup
+//run on startup
   
 //use JSON associative array to squash duplicates
 
@@ -297,26 +296,31 @@ var AliasCookie = getCookie( 'AliasList' ) || '{}' ;
 var AliasList = JSON.parse(AliasCookie); 
 var AliasListKeys = Object.keys(AliasList) ;
   
-// take cookie and add to <select>
+document.getElementById("localAliases").innerHTML = ''; //erase current list
+//1st line should be 'Saved Local Aliases'
+var x = document.getElementById("localAliases");
+var option = document.createElement("option");
+option.text = 'Saved Local Aliases'; 
+x.add(option);   
+  
+// take AliasList and add to <select>
 for(var index in AliasList) 
   {
-  var x = document.getElementById("localAliases");
-  var option = document.createElement("option");
+  x = document.getElementById("localAliases");
+  option = document.createElement("option");
   option.text = AliasList[index]; 
-  x.add(option);    
+  x.add(option); 
   }    
 }
   
 function DeleteAlias()
 {
-// var size = document.getElementById('resize').options[document.getElementById('resize').selectedIndex].value;
-//document.getElementById('localAliases').options[document.getElementById('localAliases').selectedIndex].value; 
 var AliasList = {};
   
 var x = document.getElementById("localAliases");
 x.remove(x.selectedIndex);
   
-//update associative array from selected
+//update associative array from <selected>
 var txt = "";
 var i;
 for (i = 0; i < x.length; i++) 
@@ -338,7 +342,7 @@ GeneratePW();
 }
   
 </script>
-
+aabbcc
 <h6 align='center'>based on PWCalc</h6>
 <h2 align='center'>Forever Passwords</h2>
 
@@ -353,7 +357,7 @@ GeneratePW();
 <form>
     <input id='Password' type='text' size='50' placeholder="Password" readonly onclick="clipboard('Password')">
    <br> <br>
-    <input type="button" value="Copy" onclick=" clipboard('Password'); SaveAlias(); ">
+    <input type="button" value="Copy" onclick=" copytoclipboard('Password'); SaveAlias(); ">
     <select id="resize" onclick=" GeneratePW(); ">
         <option value="8">8</option>
         <option value="12">12</option>
@@ -362,10 +366,13 @@ GeneratePW();
         <option value="24">24</option>
         <option value="28" selected>28</option>
     </select>
-<br> <br>
-<select id="localAliases" onclick=" SetAlias(this) ">
-        <option value="" selected>Saved Local Aliases</option>
-</select>
+
+   <br> <br>
+  
+  <select id="localAliases" onclick=" SetAlias(this) " >
+     <option value="" selected>Saved Local Aliases</option>   
+  </select>
+  
 <input type='button' value='X' onclick="DeleteAlias();">
 </form>
 
