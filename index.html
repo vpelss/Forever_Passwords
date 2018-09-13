@@ -1,5 +1,10 @@
 <head>
 <title>Forever Passwords</title>
+<style>
+  body { background-color: gray; }
+  form { text-align: center; }
+  .tocenter { text-align: center; }
+</style>
 </head>
 
 <body onload='BuildAliasSelect();'>
@@ -251,10 +256,10 @@ function GeneratePW()
   
     document.getElementById('Password').value = PWslice;
     
-    document.getElementById('ans1').innerHTML = 'sha1: ' + v1;
-    document.getElementById("ans2").innerHTML = 'Binary: ' + v2;
-    document.getElementById("ans3").innerHTML = 'Password: ' + PW;
-    document.getElementById('ans4').innerHTML = size;
+    //document.getElementById('ans1').innerHTML = 'sha1: ' + v1;
+    //document.getElementById("ans2").innerHTML = 'Binary: ' + v2;
+    //document.getElementById("ans3").innerHTML = 'Password: ' + PW;
+    //document.getElementById('ans4').innerHTML = size;
 }
 
 function SaveAlias()
@@ -325,39 +330,53 @@ var AliasListString = JSON.stringify(AliasList);
 setCookie('AliasList' , AliasListString , forever , '', '', '');   
 }
   
+function SetAlias(t)
+{
+var txt = t.value; 
+document.getElementById("Alias").value = txt;    
+GeneratePW();
+}
+  
 </script>
-ffff
+
 <h6 align='center'>based on PWCalc</h6>
 <h2 align='center'>Forever Passwords</h2>
 
-<form align='center' autocomplete="off">
+  <div class='tocenter'>
+<form autocomplete="off">
     <input id='Alias' placeholder="Alias eg: mysite.com" size='50' onkeyup="GeneratePW();"> 
     <br><br>
     <input id='Secret' type='password' placeholder="Secret" size='50' onkeyup="GeneratePW();">
 </form>
+    </div>
 
-<form align='center'>
+<form>
     <input id='Password' type='text' size='50' placeholder="Password" readonly onclick="clipboard('Password')">
    <br> <br>
     <input type="button" value="Copy" onclick=" clipboard('Password'); SaveAlias(); ">
     <select id="resize" onclick=" GeneratePW(); ">
         <option value="8">8</option>
+        <option value="12">12</option>
         <option value="16">16</option>
+        <option value="20">20</option>
         <option value="24">24</option>
         <option value="28" selected>28</option>
     </select>
 <br> <br>
-<select id="localAliases" onclick="  ">
+<select id="localAliases" onclick=" SetAlias(this) ">
         <option value="" selected>Saved Local Aliases</option>
 </select>
 <input type='button' value='X' onclick="DeleteAlias();">
 </form>
- 
-<div align='center'>
- <div id='ans1'>sha1</div>
- <div id='ans2'>Binary</div>
- <div id='ans3'>PW</div>
- <div id='ans4'>Size</div>
+
+<p class='tocenter'><a href='https://raw.githubusercontent.com/vpelss/Forever_Passwords/master/README.md' target='_blank'>Read Me</p>
+<p class='tocenter'><a href='https://github.com/vpelss/Forever_Passwords' target='_blank'>Github</p>
+  
+<div class='tocenter'>
+ <div id='ans1'></div>
+ <div id='ans2'></div>
+ <div id='ans3'></div>
+ <div id='ans4'></div>
 </div>
 
 </body>
