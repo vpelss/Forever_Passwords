@@ -42,8 +42,7 @@ Possible issues:
 
 Notes: Spaces are not allowed in the Alias field. The reason is that trailing spaces are not visible, but may be present, and this will create a different password.
 
-This link is a good password policy resource:
-
+The following link is a good password policy resource. See how secure your password is.
 https://www.grc.com/haystack.htm
 
 FYI, You can do the same password generation:
