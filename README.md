@@ -45,7 +45,9 @@ Notes: Spaces are not allowed in the Alias field. The reason is that trailing sp
 The following link is a good password policy resource. See how secure your password is.
 https://www.grc.com/haystack.htm
 
-FYI, You can do the same password generation:
+---------------------
+
+You can do the same password generation:
 
 On MAC using
 
@@ -56,4 +58,3 @@ or
 On Linux using
 
 echo -n "mysecretgmail.com" | sha1sum | xxd -r -p | base64
-
