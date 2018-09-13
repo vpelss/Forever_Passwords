@@ -1,6 +1,7 @@
 # Forever_Passwords
 
-Based on PWCalc : 
+Based on PWCalc: 
+
 https://chrome.google.com/webstore/detail/sha1-password-calculator/gfdaokhcoidlgljipinbbcafapmmdanb
 
 https://extensions.gnome.org/extension/825/password-calculator/
