@@ -30,7 +30,7 @@ How to use Forever_Passwords:
 Note: For security reasons, use a unique, but easy to remember, pattern for the Alias. If it is difficult to guess, your Secret can be simpler. However having both a complex Alias and Secret is the best.
 
 Recommendations:
-- 'salt' your Alias. example: mysite.com!!!Jan2018 (eg: if password it to be changed monthly your salt might be !!!Jan2018. Make your salt unique and don't share your salt pattern. Use complex, but easy to remember, salt.
+- 'salt' your Alias. example: mysite.com!!!Jan2018 (eg: if password it to be changed monthly your salt might be !!!Jan2018. Make your salt unique and don't share your salt pattern. Use complex, but easy to remember, 'salt'.
 - Change passwords on regular basis
 - Do not store important passwords in a browser cache
 
