@@ -1,13 +1,16 @@
 # Forever_Passwords
 
-Based on PWCalc : https://chrome.google.com/webstore/detail/sha1-password-calculator/gfdaokhcoidlgljipinbbcafapmmdanb
+Based on PWCalc : 
+https://chrome.google.com/webstore/detail/sha1-password-calculator/gfdaokhcoidlgljipinbbcafapmmdanb
+https://extensions.gnome.org/extension/825/password-calculator/
+https://bixense.com/pwcalculator/
 
 Why create Forever_Passwords?
-The Chrome extension above is limited to use on Chrome only, so I wanted to port it to JS to make it accesible to all platforms and browsers (Android, Linux, etc) and to allow the possiblity to store the code locally for stand alone systems. This is why it is a single index.html file design.
+The Chrome extension and programs above are limited to where they can be used. So I wanted to port it to JS to make it accesible to all platforms and browsers (Android, Linux, etc). You can also store the code locally for stand alone systems. This is why it is a single index.html file design.
 
 Use:
 
-- run index.html
+- run index.html off the website (https://www.emogic.com/Forever_Passwords/) or your locally stored version
 - Select an Alias - usually based on url
 - Select a Secret - a word. phrase, or password
 - Password is generated 
