@@ -31,7 +31,7 @@ Recommendations:
 - Do not store important passwords in a browser cache!
 
 Possible issues:
-- Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com
+- Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias
 - The site does not like the password generated (no special character in early part of password)
 - You can't recreate passwords without this program, but this is the same with ANY password storage programs.
 - If password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules.
