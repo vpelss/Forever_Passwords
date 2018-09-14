@@ -166,7 +166,7 @@ if (typeof module != 'undefined' && module.exports) module.exports = Sha1; // â‰
 
 /* end Sha1 */
 
-var forever=new Date('October 17, 2050 03:24:00');  
+var forever = new Date('October 17, 2050 03:24:00');  
 var Cookie   = new Object();
 Cookie.day   = 86400000;
 Cookie.week  = Cookie.day * 7;
@@ -264,9 +264,6 @@ function GeneratePW()
 
 function SaveAlias()
 {
-//current: save new alias to cookie then update selected from cookies
-//maybe add to selected, then save cookie?
-  
 //use JSON associative array to squash duplicates
 
 var AliasCookie = getCookie( 'AliasList' ) || '{ }' ; 
@@ -280,16 +277,11 @@ var AliasListString = JSON.stringify(AliasList);
 setCookie('AliasList' , AliasListString , forever , '', '', '');
   
 BuildAliasSelect();  
-//var x = document.getElementById("localAliases");
-//var option = document.createElement("option");
-//option.text = Alias; 
-//x.add(option); 
 }
   
 function BuildAliasSelect()
 {
-//run on startup
-  
+//run on startup  
 //use JSON associative array to squash duplicates
 
 var AliasCookie = getCookie( 'AliasList' ) || '{}' ; 
@@ -307,10 +299,10 @@ for(var index in AliasList)
   x.add(option); 
   }
   
-CheckForEmptyLocalAlias();
+CheckForEmptyAliasSelect()();
 }
   
-function CheckForEmptyLocalAlias()
+function CheckForEmptyAliasSelect()
 {
 if ( document.getElementById("localAliases").options.length == 0)
     {
@@ -342,7 +334,7 @@ for (i = 0; i < x.length; i++)
 var AliasListString = JSON.stringify(AliasList);
 setCookie('AliasList' , AliasListString , forever , '', '', '');   
   
-CheckForEmptyLocalAlias();
+CheckForEmptyAliasSelect();
 }
   
 function SetAlias(t)
@@ -352,12 +344,8 @@ document.getElementById("Alias").value = txt;
 GeneratePW();
 }
   
-  //remove Saved Local Alaises after options added
-  //timeout
-  //dropdown closes!!!!!!!
-  
 </script>
-abc
+
 <h6 align='center'>based on PWCalc</h6>
 <h2 align='center'>Forever Passwords</h2>
 
@@ -394,16 +382,12 @@ abc
 <p class='tocenter'><a href='https://raw.githubusercontent.com/vpelss/Forever_Passwords/master/README.md' target='_blank'>Read Me / Help</p>
 <p class='tocenter'><a href='https://github.com/vpelss/Forever_Passwords' target='_blank'>Github</p>
 <p class='tocenter'><a href='https://www.emogic.com/' target='_blank'>by Emogic</p>
-  
-  
+    
 <div class='tocenter'>
  <div id='ans1'></div>
  <div id='ans2'></div>
  <div id='ans3'></div>
  <div id='ans4'></div>
 </div>
-
-  
-  
-  
+ 
 </body>
