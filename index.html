@@ -286,7 +286,9 @@ AliasList[Alias] = Alias;
 var AliasListString = JSON.stringify(AliasList);
 setCookie('AliasList' , AliasListString , forever , '', '', '');
   
-BuildAliasSelect();  
+BuildAliasSelect(); 
+
+document.getElementById("localAliases").value = Alias; //set select dropdown back to Alais
 }
   
 function BuildAliasSelect()
