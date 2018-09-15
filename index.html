@@ -7,9 +7,29 @@
 </style>
 </head>
 
-<body onload='BuildAliasSelect();'>
-
+<body onload='BuildAliasSelect(); openWin(); resizeWin() ;'>
+  
 <script>
+
+//var myWindow = window.open("", "", "width=100, height=100");  // Opens a new window;
+function openWin() 
+{
+//myWindow = window.open("", "", "width=100, height=100");  // Opens a new window
+}
+
+function resizeWin() 
+{
+//myWindow.resizeTo(250, 250);                             // Resizes the new window
+// myWindow.focus();
+  window.resizeTo(400,390);
+    window.focus();
+//var tt = window.document.getElementById("header");
+//window.resizeTo(250, 250);// Sets focus to the new window
+//tt.resizeTo(250, 250);// Sets focus to the new window
+}
+ 
+//window.onload=function(){  resizeWin() ; }
+    
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 /* SHA-1 (FIPS 180-4) implementation in JavaScript                    (c) Chris Veness 2002-2017  */
 /*                                                                                   MIT Licence  */
@@ -24,9 +44,9 @@
  * This is an annotated direct implementation of FIPS 180-4, without any optimisations. It is
  * intended to aid understanding of the algorithm rather than for production use.
  *
- * While it could be used where performance is not critical, I would recommend using the ‘Web
- * Cryptography API’ (developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest) for the browser,
- * or the ‘crypto’ library (nodejs.org/api/crypto.html#crypto_class_hash) in Node.js.
+ * While it could be used where performance is not critical, I would recommend using the 'Web
+ * Cryptography API' (developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest) for the browser,
+ * or the 'crypto' library (nodejs.org/api/crypto.html#crypto_class_hash) in Node.js.
  *
  * See csrc.nist.gov/groups/ST/toolkit/secure_hashing.html
  *     csrc.nist.gov/groups/ST/toolkit/examples.html
@@ -39,7 +59,7 @@ class Sha1 {
      * @param   {string} msg - (Unicode) string to be hashed.
      * @param   {Object} [options]
      * @param   {string} [options.msgFormat=string] - Message format: 'string' for JavaScript string
-     *   (gets converted to UTF-8 for hashing); 'hex-bytes' for string of hex bytes ('616263' ≡ 'abc') .
+     *   (gets converted to UTF-8 for hashing); 'hex-bytes' for string of hex bytes ('616263' = 'abc') .
      * @param   {string} [options.outFormat=hex] - Output format: 'hex' for string of contiguous
      *   hex bytes; 'hex-w' for grouping hex bytes into groups of (4 byte / 8 character) words.
      * @returns {string} Hash of msg as hex character string.
@@ -65,7 +85,7 @@ class Sha1 {
         msg += String.fromCharCode(0x80);  // add trailing '1' bit (+ 0's padding) to string [§5.1.1]
 
         // convert string msg into 512-bit/16-integer blocks arrays of ints [§5.2.1]
-        const l = msg.length/4 + 2; // length (in 32-bit integers) of msg + ‘1’ + appended length
+        const l = msg.length/4 + 2; // length (in 32-bit integers) of msg + '1' + appended length
         const N = Math.ceil(l/16);  // number of 16-integer-blocks required to hold 'l' ints
         const M = new Array(N);
 
@@ -104,7 +124,7 @@ class Sha1 {
                 a = T;
             }
 
-            // 4 - compute the new intermediate hash value (note 'addition modulo 2^32' – JavaScript
+            // 4 - compute the new intermediate hash value (note 'addition modulo 2^32' - JavaScript
             // '>>> 0' coerces to unsigned UInt32 which achieves modulo 2^32 addition)
             H[0] = (H[0]+a) >>> 0;
             H[1] = (H[1]+b) >>> 0;
@@ -133,7 +153,7 @@ class Sha1 {
 
         function hexBytesToString(hexStr) { // convert string of hex numbers to a string of chars (eg '616263' -> 'abc').
             const str = hexStr.replace(' ', ''); // allow space-separated groups
-            return str == '' ? '' : str.match(/.{2}/g).map(byte => String.fromCharCode(parseInt(byte, 16))).join('');
+            return str === '' ? '' : str.match(/.{2}/g).map(byte => String.fromCharCode(parseInt(byte, 16))).join('');
         }
     }
 
@@ -162,12 +182,12 @@ class Sha1 {
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
-if (typeof module != 'undefined' && module.exports) module.exports = Sha1; // ≡ export default Sha1
+if (typeof module != 'undefined' && module.exports) module.exports = Sha1; // = export default Sha1
 
 /* end Sha1 */
 
 var forever = new Date('October 17, 2050 03:24:00');  
-var Cookie   = new Object();
+var Cookie   = {};
 Cookie.day   = 86400000;
 Cookie.week  = Cookie.day * 7;
 Cookie.month = Cookie.day * 31;
@@ -196,19 +216,9 @@ function setCookie(name, value, expires, path, domain, secure)
     name + '=' + value + expires + path + domain + secure;
 }
 
-function deleteCookie(name, path, domain) 
-{
-  var expires = ';expires=Thu, 01-Jan-70 00:00:01 GMT';
-  (path)    ? ';path='    + path                  : '';
-  (domain)  ? ';domain='  + domain                : '';
-
-  if (getCookie(name))
-    document.cookie = name + '=' + expires + path + domain;
-}
-
 function hex2bin(hex)
 {
-    var bytes = [], str;
+    var bytes = [];
 
     for(var i=0; i< hex.length-1; i+=2)
         bytes.push( parseInt( hex.substr(i, 2), 16) );
@@ -241,7 +251,7 @@ function GeneratePW()
     var Secret = document.getElementById('Secret').value;
     var Alias = document.getElementById('Alias').value;
     var total = document.getElementById('Secret').value + document.getElementById('Alias').value;
-    if ( ( Secret == '') || ( Alias == '') )
+    if ( ( Secret === '') || ( Alias === '') )
         {
         document.getElementById('Password').value = '';    
         return;    
@@ -268,7 +278,7 @@ function SaveAlias()
 
 var AliasCookie = getCookie( 'AliasList' ) || '{ }' ; 
 var AliasList = JSON.parse(AliasCookie); 
-var AliasListKeys = Object.keys(AliasList) ;
+//var AliasListKeys = Object.keys(AliasList) ;
 
 var Alias = document.getElementById('Alias').value;
 AliasList[Alias] = Alias;
@@ -286,12 +296,12 @@ function BuildAliasSelect()
 
 var AliasCookie = getCookie( 'AliasList' ) || '{}' ; 
 var AliasList = JSON.parse(AliasCookie); 
-var AliasListKeys = Object.keys(AliasList) ;
+//var AliasListKeys = Object.keys(AliasList) ;
 
 document.getElementById("localAliases").innerHTML = ''; //erase current list 
 
 // take AliasList and add to <select>
-for(var index in AliasList) 
+for( var index in AliasList ) 
   {
   var x = document.getElementById("localAliases");
   var option = document.createElement("option");
@@ -299,12 +309,12 @@ for(var index in AliasList)
   x.add(option); 
   }
   
-CheckForEmptyAliasSelect()();
+CheckForEmptyAliasSelect();
 }
   
 function CheckForEmptyAliasSelect()
 {
-if ( document.getElementById("localAliases").options.length == 0)
+if ( document.getElementById("localAliases").options.length === 0)
     {
     //1st line should be 'Saved Local Aliases' if there are no elements only
     var x = document.getElementById("localAliases");
@@ -369,7 +379,8 @@ GeneratePW();
         <option value="24">24</option>
         <option value="28" selected>28</option>
     </select>
-
+  <input type="button" value="Clear" onclick="openWin(); resizeWin() ; getElementById('Alias').value=''; getElementById('Secret').value=''; getElementById('Password').value=''; copytoclipboard('Password'); ">
+ 
    <br> <br>
   
   <select id="localAliases" onclick=" SetAlias(this) " >
