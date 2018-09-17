@@ -34,6 +34,7 @@ Recommendations:
 - 'salt' your Alias. example: mysite.com!!!Jan2018 (eg: if password it to be changed monthly your salt might be !!!Jan2018. Make your salt unique and don't share your salt pattern. Use complex, but easy to remember, 'salt'.
 - Change passwords on regular basis
 - Do not store important passwords in a browser cache
+-clear your password in Forever Passwords after use 
 
 Possible issues:
 - Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias
