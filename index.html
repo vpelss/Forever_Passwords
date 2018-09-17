@@ -88,18 +88,18 @@ Sha1.hash = function(msg)
         M[N-1][15] = ((msg.length-1)*8) & 0xffffffff;
 
         // HASH COMPUTATION [§6.1.2]
-        for (var i=0; i<N; i++) {
+        for ( i=0; i<N; i++) {
             const W = new Array(80);
 
             // 1 - prepare message schedule 'W'
             for (var t=0;  t<16; t++) W[t] = M[i][t];
-            for (var t=16; t<80; t++) W[t] = Sha1.ROTL(W[t-3] ^ W[t-8] ^ W[t-14] ^ W[t-16], 1);
+            for (t=16; t<80; t++) W[t] = Sha1.ROTL(W[t-3] ^ W[t-8] ^ W[t-14] ^ W[t-16], 1);
 
             // 2 - initialise five working variables a, b, c, d, e with previous hash value
             var a = H[0], b = H[1], c = H[2], d = H[3], e = H[4];
 
             // 3 - main loop (use JavaScript '>>> 0' to emulate UInt32 variables)
-            for (var t=0; t<80; t++) {
+            for (t=0; t<80; t++) {
                 const s = Math.floor(t/20); // seq for blocks of 'f' functions and 'K' constants
                 const T = (Sha1.ROTL(a,5) + Sha1.f(s,b,c,d) + e + K[s] + W[t]) >>> 0;
                 e = d;
@@ -273,7 +273,7 @@ BuildAliasSelect();
 //document.getElementById("localAliases").value = Alias; //set select dropdown back to Alais . Not IE friendly
 //set select dropdown back to Alais
 var sel = document.getElementById("localAliases");
-selectOption(sel, Alias)
+selectOption(sel, Alias);
 }
 
 function selectOption(sel, val) {
@@ -375,7 +375,7 @@ GeneratePW();
         <option value="24">24</option>
         <option value="28" selected>28</option>
     </select>
-  <input type="button" value="Clear" onclick=" getElementById('Alias').value=''; getElementById('Secret').value=''; getElementById('Password').value=''; copytoclipboard('Password'); ">
+  <input type="button" value="Clear" onclick=" document.getElementById('Alias').value=''; document.getElementById('Secret').value=''; document.getElementById('Password').value=''; copytoclipboard('Password'); ">
    <br> <br> 
   <select id="localAliases" onclick=" SetAlias(this) " >
      <option value="" selected>Saved Local Aliases</option>   
