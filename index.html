@@ -7,34 +7,16 @@
 </style>
 </head>
 
-<body onload='BuildAliasSelect(); openWin(); resizeWin() ;'>
-  
+<body onload='BuildAliasSelect();'>
+
 <script>
 
-//var myWindow = window.open("", "", "width=100, height=100");  // Opens a new window;
-function openWin() 
-{
-//myWindow = window.open("", "", "width=100, height=100");  // Opens a new window
-}
-
-function resizeWin() 
-{
-//myWindow.resizeTo(250, 250);                             // Resizes the new window
-// myWindow.focus();
-  window.resizeTo(400,390);
-    window.focus();
-//var tt = window.document.getElementById("header");
-//window.resizeTo(250, 250);// Sets focus to the new window
-//tt.resizeTo(250, 250);// Sets focus to the new window
-}
- 
-//window.onload=function(){  resizeWin() ; }
-    
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 /* SHA-1 (FIPS 180-4) implementation in JavaScript                    (c) Chris Veness 2002-2017  */
 /*                                                                                   MIT Licence  */
 /* www.movable-type.co.uk/scripts/sha1.html                                                       */
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+//modified to work wit IE 11
 
 'use strict';
 
@@ -51,9 +33,8 @@ function resizeWin()
  * See csrc.nist.gov/groups/ST/toolkit/secure_hashing.html
  *     csrc.nist.gov/groups/ST/toolkit/examples.html
  */
-class Sha1 {
 
-    /**
+  /**
      * Generates SHA-1 hash of string.
      *
      * @param   {string} msg - (Unicode) string to be hashed.
@@ -64,15 +45,19 @@ class Sha1 {
      *   hex bytes; 'hex-w' for grouping hex bytes into groups of (4 byte / 8 character) words.
      * @returns {string} Hash of msg as hex character string.
      */
-    static hash(msg, options)
-       {
+  
+var Sha1 ={};
+//Sha1.hash = function(msg, options)  
+Sha1.hash = function(msg)  
+    {
         const defaults = { msgFormat: 'string', outFormat: 'hex' };
-        const opt = Object.assign(defaults, options);
+        //const opt = Object.assign(defaults, options);  ie 11 balks
+        const opt = defaults;
 
         switch (opt.msgFormat) {
             default: // default is to convert string to UTF-8, as SHA only deals with byte-streams
-            case 'string':   msg = utf8Encode(msg);       break;
-            case 'hex-bytes':msg = hexBytesToString(msg); break; // mostly for running tests
+            case 'string':   msg = Sha1.utf8Encode(msg);       break;
+            case 'hex-bytes':msg = Sha1.hexBytesToString(msg); break; // mostly for running tests
         }
 
         // constants [§4.2.1]
@@ -89,13 +74,13 @@ class Sha1 {
         const N = Math.ceil(l/16);  // number of 16-integer-blocks required to hold 'l' ints
         const M = new Array(N);
 
-        for (let i=0; i<N; i++) {
+        for (var i=0; i<N; i++) {
             M[i] = new Array(16);
-            for (let j=0; j<16; j++) {  // encode 4 chars per integer, big-endian encoding
+            for (var j=0; j<16; j++) {  // encode 4 chars per integer, big-endian encoding
                 M[i][j] = (msg.charCodeAt(i*64+j*4+0)<<24) | (msg.charCodeAt(i*64+j*4+1)<<16)
                         | (msg.charCodeAt(i*64+j*4+2)<< 8) | (msg.charCodeAt(i*64+j*4+3)<< 0);
             } // note running off the end of msg is ok 'cos bitwise ops on NaN return 0
-        }
+          }
         // add length (in bits) into final pair of 32-bit integers (big-endian) [§5.1.1]
         // note: most significant word would be (len-1)*8 >>> 32, but since JS converts
         // bitwise-op args to 32 bits, we need to simulate this by arithmetic operators
@@ -103,18 +88,18 @@ class Sha1 {
         M[N-1][15] = ((msg.length-1)*8) & 0xffffffff;
 
         // HASH COMPUTATION [§6.1.2]
-        for (let i=0; i<N; i++) {
+        for (var i=0; i<N; i++) {
             const W = new Array(80);
 
             // 1 - prepare message schedule 'W'
-            for (let t=0;  t<16; t++) W[t] = M[i][t];
-            for (let t=16; t<80; t++) W[t] = Sha1.ROTL(W[t-3] ^ W[t-8] ^ W[t-14] ^ W[t-16], 1);
+            for (var t=0;  t<16; t++) W[t] = M[i][t];
+            for (var t=16; t<80; t++) W[t] = Sha1.ROTL(W[t-3] ^ W[t-8] ^ W[t-14] ^ W[t-16], 1);
 
             // 2 - initialise five working variables a, b, c, d, e with previous hash value
-            let a = H[0], b = H[1], c = H[2], d = H[3], e = H[4];
+            var a = H[0], b = H[1], c = H[2], d = H[3], e = H[4];
 
             // 3 - main loop (use JavaScript '>>> 0' to emulate UInt32 variables)
-            for (let t=0; t<80; t++) {
+            for (var t=0; t<80; t++) {
                 const s = Math.floor(t/20); // seq for blocks of 'f' functions and 'K' constants
                 const T = (Sha1.ROTL(a,5) + Sha1.f(s,b,c,d) + e + K[s] + W[t]) >>> 0;
                 e = d;
@@ -134,7 +119,7 @@ class Sha1 {
         }
 
         // convert H0..H4 to hex strings (with leading zeros)
-        for (let h=0; h<H.length; h++) H[h] = ('00000000'+H[h].toString(16)).slice(-8);
+        for (var h=0; h<H.length; h++) H[h] = ('00000000'+H[h].toString(16)).slice(-8);
 
         // concatenate H0..H4, with separator if required
         const separator = opt.outFormat=='hex-w' ? ' ' : '';
@@ -142,44 +127,51 @@ class Sha1 {
         return H.join(separator);
 
         /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-
-        function utf8Encode(str) {
-            try {
-                return new TextEncoder().encode(str, 'utf-8').reduce((prev, curr) => prev + String.fromCharCode(curr), '');
-            } catch (e) { // no TextEncoder available?
-                return unescape(encodeURIComponent(str)); // monsur.hossa.in/2012/07/20/utf-8-in-javascript.html
-            }
-        }
-
-        function hexBytesToString(hexStr) { // convert string of hex numbers to a string of chars (eg '616263' -> 'abc').
-            const str = hexStr.replace(' ', ''); // allow space-separated groups
-            return str === '' ? '' : str.match(/.{2}/g).map(byte => String.fromCharCode(parseInt(byte, 16))).join('');
-        }
-    }
+    };
 
     /**
      * Function 'f' [§4.1.1].
      * @private
      */
-    static f(s, x, y, z)  {
+    //static f(s, x, y, z)  {
+Sha1.f = function(s, x, y, z)  {
         switch (s) {
             case 0: return (x & y) ^ (~x & z);          // Ch()
             case 1: return  x ^ y  ^  z;                // Parity()
             case 2: return (x & y) ^ (x & z) ^ (y & z); // Maj()
             case 3: return  x ^ y  ^  z;                // Parity()
         }
-    }
+      };
 
     /**
      * Rotates left (circular left shift) value x by n positions [§3.2.5].
      * @private
      */
-    static ROTL(x, n) {
+    //static ROTL(x, n) {
+Sha1.ROTL = function(x, n) {
         return (x<<n) | (x>>>(32-n));
-    }
+      };
+    
+//var utf8Encode = function (str)
+Sha1.utf8Encode = function (str)
+          {
+          return unescape(encodeURIComponent(str)); // monsur.hossa.in/2012/07/20/utf-8-in-javascript.html
+          };
+          
+Sha1.hexBytesToString = function (hexStr)
+    { // convert string of hex numbers to a string of chars (eg '616263' -> 'abc').
+            //const str = hexStr.replace(' ', ''); // allow space-separated groups
+            //return str === '' ? '' : str.match(/.{2}/g).map(byte => String.fromCharCode(parseInt(byte, 16))).join('');
+    var bytes = [];
 
-}
+    for(var i=0; i< hexStr.length-1; i+=2)
+        bytes.push( parseInt( hexStr.substr(i, 2), 16) );
 
+    return String.fromCharCode.apply(String , bytes);  
+    };
+ 
+ //end Sha1
+ 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
 if (typeof module != 'undefined' && module.exports) module.exports = Sha1; // = export default Sha1
@@ -216,14 +208,9 @@ function setCookie(name, value, expires, path, domain, secure)
     name + '=' + value + expires + path + domain + secure;
 }
 
-function hex2bin(hex)
+function hex2bin(hexStr)
 {
-    var bytes = [];
-
-    for(var i=0; i< hex.length-1; i+=2)
-        bytes.push( parseInt( hex.substr(i, 2), 16) );
-
-    return String.fromCharCode.apply(String , bytes);    
+return Sha1.hexBytesToString(hexStr);    
 }
 
 function nospaces(id)
@@ -250,7 +237,7 @@ function GeneratePW()
   
     var Secret = document.getElementById('Secret').value;
     var Alias = document.getElementById('Alias').value;
-    var total = document.getElementById('Secret').value + document.getElementById('Alias').value;
+    var total = Secret + Alias;
     if ( ( Secret === '') || ( Alias === '') )
         {
         document.getElementById('Password').value = '';    
@@ -265,11 +252,6 @@ function GeneratePW()
     var PWslice = PW.slice(0, size);
   
     document.getElementById('Password').value = PWslice;
-    
-    //document.getElementById('ans1').innerHTML = 'sha1: ' + v1;
-    //document.getElementById("ans2").innerHTML = 'Binary: ' + v2;
-    //document.getElementById("ans3").innerHTML = 'Password: ' + PW;
-    //document.getElementById('ans4').innerHTML = size;
 }
 
 function SaveAlias()
@@ -288,9 +270,24 @@ setCookie('AliasList' , AliasListString , forever , '', '', '');
   
 BuildAliasSelect(); 
 
-document.getElementById("localAliases").value = Alias; //set select dropdown back to Alais
+//document.getElementById("localAliases").value = Alias; //set select dropdown back to Alais . Not IE friendly
+//set select dropdown back to Alais
+var sel = document.getElementById("localAliases");
+selectOption(sel, Alias)
 }
-  
+
+function selectOption(sel, val) {
+    var opt; 
+    // loop through options in select list
+    for ( var i = 0, len = sel.options.length; i < len; i++ ) {
+        opt = sel.options[i]; //
+        if ( opt.value === val ) {
+            opt.selected = true;
+            break;
+        }
+    }
+}
+
 function BuildAliasSelect()
 {
 //run on startup  
@@ -366,13 +363,10 @@ GeneratePW();
     <input id='Alias' placeholder="Alias eg: mysite.com" size='50' onkeyup="GeneratePW();"> 
     <br><br>
     <input id='Secret' type='password' placeholder="Secret" size='50' onkeyup="GeneratePW();">
-</form>
-    </div>
-
-<form>
-    <input id='Password' type='text' size='50' placeholder="Password" readonly onclick="clipboard('Password')">
+  <br> <br>
+    <input id='Password' type='text' size='50' placeholder="Password" readonly onclick="copytoclipboard('Password')">
    <br> <br>
-    <input type="button" value="Copy" onclick=" copytoclipboard('Password'); SaveAlias(); ">
+    <input type="button" id="copybutton" value="Copy" onclick=" copytoclipboard('Password'); SaveAlias(); ">
     <select id="resize" onclick=" GeneratePW(); ">
         <option value="8">8</option>
         <option value="12">12</option>
@@ -381,26 +375,17 @@ GeneratePW();
         <option value="24">24</option>
         <option value="28" selected>28</option>
     </select>
-  <input type="button" value="Clear" onclick="openWin(); resizeWin() ; getElementById('Alias').value=''; getElementById('Secret').value=''; getElementById('Password').value=''; copytoclipboard('Password'); ">
- 
-   <br> <br>
-  
+  <input type="button" value="Clear" onclick=" getElementById('Alias').value=''; getElementById('Secret').value=''; getElementById('Password').value=''; copytoclipboard('Password'); ">
+   <br> <br> 
   <select id="localAliases" onclick=" SetAlias(this) " >
      <option value="" selected>Saved Local Aliases</option>   
-  </select>
-  
+  </select>  
 <input type='button' value='X' onclick="DeleteAlias();">
 </form>
-
-<p class='tocenter'><a href='https://raw.githubusercontent.com/vpelss/Forever_Passwords/master/README.md' target='_blank'>Read Me / Help</p>
-<p class='tocenter'><a href='https://github.com/vpelss/Forever_Passwords' target='_blank'>Github</p>
-<p class='tocenter'><a href='https://www.emogic.com/' target='_blank'>by Emogic</p>
-    
-<div class='tocenter'>
- <div id='ans1'></div>
- <div id='ans2'></div>
- <div id='ans3'></div>
- <div id='ans4'></div>
-</div>
+ </div>
+  
+<p class='tocenter'><a href='https://raw.githubusercontent.com/vpelss/Forever_Passwords/master/README.md' target='_blank'>Read Me / Help</a></p>
+<p class='tocenter'><a href='https://github.com/vpelss/Forever_Passwords' target='_blank'>Github</a></p>
+<p class='tocenter'><a href='https://www.emogic.com/' target='_blank'>by Emogic</a></p>
  
 </body>
