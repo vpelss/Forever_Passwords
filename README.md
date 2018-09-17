@@ -8,7 +8,7 @@ https://extensions.gnome.org/extension/825/password-calculator/
 
 https://bixense.com/pwcalculator/
 
-The programs above, while execlent, are limited to where they can be used. So I wrote Forever_Passwords in HTML/Javascript to make it accesible to all platforms and browsers. It's single file design allows you to easily store the code localy for stand alone systems.
+The programs above, while execlent, are limited to where they can be used. So I wrote Forever_Passwords in HTML/Javascript to attempt to make it accesible to all platforms and browsers. It's single file design allows you to easily store the code localy for stand alone systems. Tested with newest Chrome, Firefox, and IE 11.
 
 Why is the Forever Passords and PWCalc method of generating passwords for you?
 
