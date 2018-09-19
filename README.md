@@ -41,7 +41,7 @@ Possible issues:
 - A website might not like the password generated. I have not encountered this yet.
 - You can't recreate passwords without this program. But this is the same with ANY password storage programs.
 - If your password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules.
-- Some sites cibc.com have disabled copy and paste. They actually activly promote weak passwords.
+- Some sites (eg: cibc.com) have disabled copy and paste. They actually activly promote weak passwords.
 
 Notes: Spaces are not allowed in the Alias field. The reason is that trailing spaces are not visible, but may be present, and this will create a different password.
 
