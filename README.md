@@ -62,4 +62,4 @@ On Linux using
 
 echo -n "mysecretgmail.com" | sha1sum | xxd -r -p | base64
 
-getpassword.cgi and template.html use this method aand are for browsers that can't run the JS version.
+index.php is for browsers that can't run the JS version.
