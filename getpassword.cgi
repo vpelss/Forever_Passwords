@@ -22,7 +22,9 @@ $length = $in{'length'} || 28;
 
 $alias =~ s/\s//g; #no spaces allowed
 
-$password = qx{echo -n $secret$alias | sha1sum | xxd -r -p | base64};
+#$password = qx{echo -n $secret$alias | sha1sum | xxd -r -p | base64};
+#change to non system routine
+
 $password = substr( $password, 0, $length );
 
 #load page template 
