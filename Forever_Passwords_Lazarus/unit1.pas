@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, sha1, base64, FileUtil, Forms, Controls, Graphics, Dialogs,
-  StdCtrls;
+  StdCtrls, strutils;
 
 type
 
@@ -28,6 +28,8 @@ type
     procedure ComboBox1Change(Sender: TObject);
     procedure Edit1Change(Sender: TObject);
     procedure Edit2Change(Sender: TObject);
+    procedure Edit3Change(Sender: TObject);
+    procedure Edit3Enter(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -94,6 +96,7 @@ end;
 
 procedure TForm1.Edit1Change(Sender: TObject);
 begin
+   Edit1.text := DelSpace(Edit1.text);
   Sha();
 end;
 
@@ -137,6 +140,18 @@ if (Edit2.text = '' ) then
 else
    Edit2.PasswordChar:= chr(5);
 Sha();
+end;
+
+procedure TForm1.Edit3Change(Sender: TObject);
+begin
+
+end;
+
+procedure TForm1.Edit3Enter(Sender: TObject);
+begin
+     Edit3.SelectAll;
+  Edit3.CopyToClipboard;
+  Edit3.SelectAll;
 end;
 
 procedure TForm1.FormActivate(Sender: TObject);

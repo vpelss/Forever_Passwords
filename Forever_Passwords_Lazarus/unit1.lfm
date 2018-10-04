@@ -36,6 +36,8 @@ object Form1: TForm1
     Hint = 'Password'
     Top = 96
     Width = 256
+    OnChange = Edit3Change
+    OnEnter = Edit3Enter
     TabOrder = 2
     TextHint = 'Password'
   end
@@ -63,6 +65,7 @@ object Form1: TForm1
     Top = 128
     Width = 80
     ItemHeight = 0
+    ItemIndex = 4
     Items.Strings = (
       '8'
       '16'
