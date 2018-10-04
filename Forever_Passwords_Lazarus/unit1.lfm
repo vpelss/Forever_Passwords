@@ -1,0 +1,95 @@
+object Form1: TForm1
+  Left = 1024
+  Height = 208
+  Top = 463
+  Width = 313
+  Caption = 'Forever Passwords'
+  ClientHeight = 208
+  ClientWidth = 313
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnCreate = FormCreate
+  LCLVersion = '1.8.2.0'
+  object Edit1: TEdit
+    Left = 16
+    Height = 29
+    Hint = 'Alias'
+    Top = 16
+    Width = 256
+    OnChange = Edit1Change
+    TabOrder = 0
+    TextHint = 'Alias'
+  end
+  object Edit2: TEdit
+    Left = 16
+    Height = 29
+    Hint = 'Secret'
+    Top = 56
+    Width = 256
+    OnChange = Edit2Change
+    TabOrder = 1
+    TextHint = 'Secret'
+  end
+  object Edit3: TEdit
+    Left = 16
+    Height = 29
+    Hint = 'Password'
+    Top = 96
+    Width = 256
+    TabOrder = 2
+    TextHint = 'Password'
+  end
+  object Button1: TButton
+    Left = 16
+    Height = 25
+    Top = 132
+    Width = 75
+    Caption = 'Copy'
+    OnClick = Button1Click
+    TabOrder = 3
+  end
+  object Button2: TButton
+    Left = 104
+    Height = 25
+    Top = 132
+    Width = 75
+    Caption = 'Clear'
+    OnClick = Button2Click
+    TabOrder = 4
+  end
+  object ComboBox1: TComboBox
+    Left = 192
+    Height = 29
+    Top = 128
+    Width = 80
+    ItemHeight = 0
+    Items.Strings = (
+      '8'
+      '16'
+      '20'
+      '24'
+      '28'
+    )
+    OnChange = ComboBox1Change
+    TabOrder = 5
+    Text = '28'
+  end
+  object Button3: TButton
+    Left = 224
+    Height = 25
+    Top = 168
+    Width = 75
+    Caption = 'Delete'
+    OnClick = Button3Click
+    TabOrder = 6
+  end
+  object ComboBox2: TComboBox
+    Left = 16
+    Height = 29
+    Hint = 'Alias List'
+    Top = 168
+    Width = 200
+    ItemHeight = 0
+    TabOrder = 7
+  end
+end
