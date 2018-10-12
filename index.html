@@ -311,6 +311,36 @@ for( var index in AliasList )
 CheckForEmptyAliasSelect();
 }
   
+function GetAliasList()
+{
+var AliasCookie = getCookie( 'AliasList' ) || '{}' ; 
+var AliasList = JSON.parse(AliasCookie); 
+document.getElementById("AliasSave").value = ''; //erase current list 
+
+// take AliasList and add to AliasSave Textarea
+for( var index in AliasList ) 
+  {  
+  document.getElementById("AliasSave").value = document.getElementById("AliasSave").value + AliasList[index] + "\n";
+  }
+}
+  
+function SaveAliasList()
+{
+var AliasSaveText = document.getElementById("AliasSave").value; 
+var myRe = /\n\n/gi;
+AliasSaveText = AliasSaveText.replace(myRe,"");
+myRe = /[ ]/gi;
+AliasSaveText = AliasSaveText.replace(myRe,"");
+document.getElementById("AliasSave").value = AliasSaveText;
+  
+var AliasSaveArray = AliasSaveText.split('\n');
+  
+var AliasListString = JSON.stringify(AliasSaveArray);
+setCookie('AliasList' , AliasListString , forever , '', '', '');
+  
+BuildAliasSelect();   
+}
+  
 function CheckForEmptyAliasSelect()
 {
 if ( document.getElementById("localAliases").options.length === 0)
@@ -377,7 +407,7 @@ GeneratePW();
     </select>
   <input type="button" value="Clear" onclick=" document.getElementById('Alias').value=''; document.getElementById('Secret').value=''; document.getElementById('Password').value=''; copytoclipboard('Password'); ">
    <br> <br> 
-  <select id="localAliases" onclick=" SetAlias(this) " >
+  <select id="localAliases" onclick=" SetAlias(this) ">
      <option value="" selected>Saved Local Aliases</option>   
   </select>  
 <input type='button' value='X' onclick="DeleteAlias();">
@@ -388,5 +418,12 @@ GeneratePW();
 <p class='tocenter'><a href='https://github.com/vpelss/Forever_Passwords' target='_blank'>Github</a></p>
 <p class='tocenter'><a href='https://www.emogic.com/' target='_blank'>by Emogic</a></p>
 <p class='tocenter'><a href='https://www.emogic.com/cgi/Forever_Passwords/' target='_blank'>Doesn't work?</a></p>
+  
+<form>
+  <textarea id="AliasSave" rows="3" cols="50" placeholder="Alias Save Area. Saves to cookies. One per line. No spaces."></textarea>
+  </br>
+  <input type='button' value='Get Alias List' onclick="GetAliasList()">
+  <input type='button' value='Save Alias List' onclick="SaveAliasList()">
+</form>
  
 </body>
