@@ -1,5 +1,7 @@
 # Forever_Passwords
 
+Important: I have altered the default password length to 20 as many sites only allow passwords of length 20. Boggle!
+
 Based on PWCalc a password calculator: 
 
 https://chrome.google.com/webstore/detail/sha1-password-calculator/gfdaokhcoidlgljipinbbcafapmmdanb
