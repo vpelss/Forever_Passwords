@@ -423,7 +423,7 @@ GeneratePW();
   <textarea id="AliasSave" rows="3" cols="50" placeholder="Alias Save Area. Saves to cookies. One per line. No spaces."></textarea>
   </br>
   <input type='button' value='Get Alias List' onclick="GetAliasList()">
-  <input type='button' value='Save Alias List' onclick="SaveAliasList()">
+  <input type='button' value='Save Alias List' onclick="if(confirm('This will change your list. Are you sure?')){SaveAliasList()}">
 </form>
  
 </body>
