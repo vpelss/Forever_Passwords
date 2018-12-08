@@ -263,7 +263,8 @@ var AliasList = JSON.parse(AliasCookie);
 //var AliasListKeys = Object.keys(AliasList) ;
 
 var Alias = document.getElementById('Alias').value;
-AliasList[Alias] = Alias;
+AliasList[Alias] = Alias; //set as associative array
+//AliasList.push(Alias);
 
 var AliasListString = JSON.stringify(AliasList);
 setCookie('AliasList' , AliasListString , forever , '', '', '');
@@ -327,15 +328,21 @@ for( var index in AliasList )
 function SaveAliasList()
 {
 var AliasSaveText = document.getElementById("AliasSave").value; 
-var myRe = /\n\n/gi;
+var myRe = /\n\n/gi; //remove blanl lines
 AliasSaveText = AliasSaveText.replace(myRe,"");
-myRe = /[ ]/gi;
-AliasSaveText = AliasSaveText.replace(myRe,"");
+myRe = /[ ]/gi; //remove spaces
+AliasSaveText = AliasSaveText.replace(myRe,""); 
 document.getElementById("AliasSave").value = AliasSaveText;
   
-var AliasSaveArray = AliasSaveText.split('\n');
+var AliasSaveArray = AliasSaveText.split('\n'); //sets to an array. but we want an associative array! 
+//change to associative array
+var AliasSaveAssociativeArray;
+for(var i in AliasSaveArray)
+  {
+  AliasSaveAssociativeArray[i] = i;
+  }
   
-var AliasListString = JSON.stringify(AliasSaveArray);
+var AliasListString = JSON.stringify(AliasSaveAssociativeArray);
 setCookie('AliasList' , AliasListString , forever , '', '', '');
   
 BuildAliasSelect();   
