@@ -328,9 +328,11 @@ for( var index in AliasList )
 function SaveAliasList()
 {
 var AliasSaveText = document.getElementById("AliasSave").value; 
-var myRe = /\n\n/gi; //remove blanl lines
+var myRe = /\n\n/gi; //remove blank lines
 AliasSaveText = AliasSaveText.replace(myRe,"");
 myRe = /[ ]/gi; //remove spaces
+AliasSaveText = AliasSaveText.replace(myRe,""); 
+myRe = /\n$/g; //remove last \n
 AliasSaveText = AliasSaveText.replace(myRe,""); 
 document.getElementById("AliasSave").value = AliasSaveText;
   
