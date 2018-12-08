@@ -336,10 +336,10 @@ document.getElementById("AliasSave").value = AliasSaveText;
   
 var AliasSaveArray = AliasSaveText.split('\n'); //sets to an array. but we want an associative array! 
 //change to associative array
-var AliasSaveAssociativeArray;
+var AliasSaveAssociativeArray = {};
 for(var i in AliasSaveArray)
   {
-  AliasSaveAssociativeArray[i] = i;
+  AliasSaveAssociativeArray[AliasSaveArray[i]] = AliasSaveArray[i]
   }
   
 var AliasListString = JSON.stringify(AliasSaveAssociativeArray);
