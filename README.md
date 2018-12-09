@@ -1,18 +1,4 @@
-# Forever_Passwords
-
-Important: I have altered the default password length to 20 as many sites only allow passwords of length 20. Boggle!
-
-Based on PWCalc a password calculator: 
-
-https://chrome.google.com/webstore/detail/sha1-password-calculator/gfdaokhcoidlgljipinbbcafapmmdanb
-
-https://extensions.gnome.org/extension/825/password-calculator/
-
-https://bixense.com/pwcalculator/
-
-The programs above, while execlent, are limited to where they can be used. So I wrote Forever_Passwords in HTML/Javascript to attempt to make it accesible to all platforms and browsers. It's single file design allows you to easily store the code localy for stand alone systems. Tested with newest Chrome, Firefox, and IE 11.
-
-Why is the Forever Passords and PWCalc method of generating passwords for you?
+Why is the Forever Passwords method of generating passwords for you?
 
 Password management recommendations:
 - Do nor reuse passwords. Reuse of passwords is a bad practice. If one site get's hacked, your password is compromised on other sites.
@@ -43,7 +29,7 @@ Possible issues:
 - A website might not like the password generated. I have not encountered this yet.
 - You can't recreate passwords without this program. But this is the same with ANY password storage programs.
 - If your password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules.
-- Some sites (eg: cibc.com) have disabled copy and paste. They actually activly promote weak passwords.
+- Some sites (eg: cibc.com) have disabled copy and paste. They actually actively promote weak passwords.
 
 Notes: Spaces are not allowed in the Alias field. The reason is that trailing spaces are not visible, but may be present, and this will create a different password.
 
@@ -65,3 +51,15 @@ On Linux using
 echo -n "mysecretgmail.com" | sha1sum | xxd -r -p | base64
 
 index.php is for browsers that can't run the JS version.
+
+-------------------
+
+Based on PWCalc a password calculator:
+
+https://chrome.google.com/webstore/detail/sha1-password-calculator/gfdaokhcoidlgljipinbbcafapmmdanb
+
+https://extensions.gnome.org/extension/825/password-calculator/
+
+https://bixense.com/pwcalculator/
+
+The programs above, while excellent, are limited to where they can be used. So I wrote Forever_Passwords in HTML/Javascript to attempt to make it accessible to all platforms and browsers. It's single file design allows you to easily store the code locally for stand alone systems. Tested with newest Chrome, Firefox, and IE 11.
