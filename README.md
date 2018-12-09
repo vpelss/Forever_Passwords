@@ -16,7 +16,7 @@ Why is the Forever Passords and PWCalc method of generating passwords for you?
 
 Typical Password problems:
 - Reuse of passwords is a bad practice. If one site get's hacked, your password is compromised on other sites.
-- Passwords should not be written down or stored in any location
+- Passwords should not be written down or stored in any location, even stored by browsers
 - Password Storage solutions can potentialy be hacked. If that happens, all your passwords are compromised 
 - Multiple passwords are hard to remember
 
