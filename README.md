@@ -14,11 +14,11 @@ The programs above, while execlent, are limited to where they can be used. So I 
 
 Why is the Forever Passords and PWCalc method of generating passwords for you?
 
-Typical Password problems:
-- Reuse of passwords is a bad practice. If one site get's hacked, your password is compromised on other sites.
-- Passwords should not be written down or stored in any location, even stored by browsers
-- Password Storage solutions can potentialy be hacked. If that happens, all your passwords are compromised 
-- Multiple passwords are hard to remember
+Password management recommendations:
+- Do nor reuse passwords. Reuse of passwords is a bad practice. If one site get's hacked, your password is compromised on other sites.
+- Do not store passwords anywhere. Passwords should not be written down or stored in any location, even stored by browsers
+- Do not use password management software. Password Storage solutions can potentially be hacked. If that happens, all your passwords are compromised 
+- Passwords should be long, complex, and random. Multiple passwords are hard to remember
 
 Solution and benefits of Forever_Passwords:
 All passwords for each website is unique. The passwords are not stored. The passwords are incredibly complex. However the method to generate them is easy to remember.
