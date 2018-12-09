@@ -19,7 +19,7 @@ Note: For security reasons, use a unique, but easy to remember, pattern for the 
 
 Recommendations:
 - store a local copy of this program in the unlikely case our site, emogic.com, is temporarily down or have a backup plan!
-- 'salt' your Alias. example: mysite.com!!!Jan2018 (eg: if password it to be changed monthly your salt might be !!!Jan2018. Make your salt unique and don't share your salt pattern. Use complex, but easy to remember, 'salt'.
+- 'salt' your Alias. example: mysite.com!!!Jan2018 (eg: if your password must be changed monthly your salt might be !!!Jan2018. Make your salt unique and don't share your salt pattern. Use complex, but easy to remember, 'salt'.
 - Change passwords on regular basis
 - Do not store important passwords in a browser cache
 -clear your password in Forever Passwords after use 
