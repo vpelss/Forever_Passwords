@@ -1,9 +1,9 @@
-This is possibly the best way to manage your passwords. It is easy, safe and secure.
+Forever Passwords is the best way to manage your passwords. It is easy, safe and secure.
 
 Why is the Forever Passwords method of generating passwords for you?
 
 Password management recommendations:
-- Do not reuse passwords. Reuse of passwords is a bad practice. If one site get's hacked, your password is compromised on other sites.
+- Do not reuse passwords. Reuse of passwords is a bad practice. If one site is hacked, your password is compromised on other sites.
 - Do not store passwords anywhere. Passwords should not be written down, stored in any location and not stored by browsers
 - Passwords should be long, complex, and random. Multiple passwords are hard to remember
 - (This one is my opinion) Do not use password management software. Password Storage solutions protected all your paswswords with a single password. If your master password is compromised, all your passwords are compromised 
@@ -29,27 +29,25 @@ Recommendations:
 Possible issues:
 - Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias
 - A website might not like the password generated. I have not encountered this yet.
-- You can't generate your passwords without this program or an equivilent (see below). But this is the same with ANY password storage programs.
-- If your password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules.
-- Some sites (eg: cibc.com) have disabled copy and paste. They actually actively promote weak passwords. Possible solutions: Search for and install RightToCopy addin or disable js temporarily. 
+- You can't generate your passwords without this program or an equivilent (see below). But this is the same with ANY password storage programs. Download a copy to your PC.
+- If your password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules. Eg: Add 'compromised' to the Alias (www_emogic_com_compromised)
+- Some sites (eg: cibc.com) have disabled copy and paste. This promotes weak passwords. Possible solutions: Search for, and install, the RightToCopy add-in or disable js temporarily. 
 
-Notes: Spaces are not allowed in the Alias field. The reason is that trailing spaces are not visible, but may be present, and this will create a different password.
+Notes: Spaces are not allowed in the Alias field. The reason is that trailing spaces are not visible, but may be present, and this will create a different password and potentially cause confusion.
 
 The following link is a good password policy resource. See how secure your password is.
 https://www.grc.com/haystack.htm
 
 ---------------------
 
-You can do the same password generation:
+You can do the same password generation from a shell or command line:
 
 On MAC using
-
 echo -n "mysecretgmail.com" | shasum | xxd -r -p | base64
 
 or
 
 On Linux using
-
 echo -n "mysecretgmail.com" | sha1sum | xxd -r -p | base64
 
 index.php is for browsers that can't run the JS version.
