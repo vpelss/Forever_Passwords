@@ -1,28 +1,30 @@
+This is possibly the best way to manage your passwords. It is easy, safe and secure.
+
 Why is the Forever Passwords method of generating passwords for you?
 
 Password management recommendations:
-- Do nor reuse passwords. Reuse of passwords is a bad practice. If one site get's hacked, your password is compromised on other sites.
-- Do not store passwords anywhere. Passwords should not be written down or stored in any location, even stored by browsers
-- Do not use password management software. Password Storage solutions can potentially be hacked. If that happens, all your passwords are compromised 
+- Do not reuse passwords. Reuse of passwords is a bad practice. If one site get's hacked, your password is compromised on other sites.
+- Do not store passwords anywhere. Passwords should not be written down, stored in any location and not stored by browsers
 - Passwords should be long, complex, and random. Multiple passwords are hard to remember
+- (This one is my opinion) Do not use password management software. Password Storage solutions protected all your paswswords with a single password. If your master password is compromised, all your passwords are compromised 
 
 Solution and benefits of Forever_Passwords:
 All passwords for each website is unique. The passwords are not stored. The passwords are incredibly complex. However the method to generate them is easy to remember.
 
 How to use Forever_Passwords:
 - run index.html off the website (https://www.emogic.com/Forever_Passwords/) or your locally stored version
-- Select an Alias : usually based on url
-- Select a Secret : a word, phrase, or password
-- Password is generated : copy and use 
+- Select an Alias : usually based on url (eg: emogic,com)
+- Select a Secret : a word, phrase, or password (eg: The Sound of Music)
+- Forever_Passwords generates a long, complex password from your Alias and Secret : copy and use 
 
-Note: For security reasons, use a unique, but easy to remember, pattern for the Alias. If it is difficult to guess, your Secret can be simpler. However having both a complex Alias and Secret is the best.
+Note: For security reasons, use a unique, but easy to remember, pattern for the Alias that identifies the website you want to generate a password for (usually based on the URL eg: www1emogic2com). If it is difficult to guess, your Secret can be simpler. However having both a complex Alias and a complex Secret is the best option.
 
 Recommendations:
 - store a local copy of this program in the unlikely case our site, emogic.com, is temporarily down or have a backup plan!
 - 'salt' your Alias. example: mysite.com!!!Jan2018 (eg: if your password must be changed monthly your salt might be !!!Jan2018. Make your salt unique and don't share your salt pattern. Use complex, but easy to remember, 'salt'.
-- Change passwords on regular basis
+- Change passwords on regular basis (monthly or yearly)
 - Do not store important passwords in a browser cache
--clear your password in Forever Passwords after use 
+- Clear your password in Forever Passwords after use 
 
 Possible issues:
 - Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias
