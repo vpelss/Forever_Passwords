@@ -240,7 +240,7 @@ function GeneratePW()
     var total = Secret + Alias;
     if ( ( Secret === '') || ( Alias === '') )
         {
-        document.getElementById('Password').value = '';    
+        document.getElementById('Answer').value = '';    
         return;    
         }
 
@@ -251,7 +251,7 @@ function GeneratePW()
     var size = document.getElementById('resize').options[document.getElementById('resize').selectedIndex].value;
     var PWslice = PW.slice(0, size);
   
-    document.getElementById('Password').value = PWslice;
+    document.getElementById('Answer').value = PWslice;
 }
 
 function SaveAlias()
@@ -403,9 +403,9 @@ GeneratePW();
     <br><br>
     <input id='Secret' type='password' placeholder="Secret" size='50' onkeyup="GeneratePW();">
   <br> <br>
-    <input id='Password' type='text' size='50' placeholder="Password" readonly onclick="copytoclipboard('Password')">
+    <input id='Answer' type='text' size='50' placeholder="Answer" readonly onclick="copytoclipboard('Answer')">
    <br> <br>
-    <input type="button" id="copybutton" value="Copy" onclick=" copytoclipboard('Password'); SaveAlias(); ">
+    <input type="button" id="copybutton" value="Copy" onclick=" copytoclipboard('Answer'); SaveAlias(); ">
     <select id="resize" onclick=" GeneratePW(); ">
         <option value="8">8</option>
         <option value="12">12</option>
@@ -414,7 +414,7 @@ GeneratePW();
         <option value="24">24</option>
         <option value="28">28</option>
     </select>
-  <input type="button" value="Clear" onclick=" document.getElementById('Alias').value=''; document.getElementById('Secret').value=''; document.getElementById('Password').value=''; document.getElementById('AliasSave').value =''; copytoclipboard('Password'); ">
+  <input type="button" value="Clear" onclick=" document.getElementById('Alias').value=''; document.getElementById('Secret').value=''; document.getElementById('Answer').value=''; document.getElementById('AliasSave').value =''; copytoclipboard('Answer'); ">
    <br> <br> 
   <select id="localAliases" onclick=" SetAlias(this) ">
      <option value="" selected>Saved Local Aliases</option>   
