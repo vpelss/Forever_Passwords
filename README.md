@@ -25,6 +25,7 @@ Recommendations:
 - Change passwords on regular basis (monthly or yearly)
 - Do not store important passwords in a browser cache
 - Clear your password in Forever Passwords after use 
+-use a password with an odd number character length. Why? Most passwords have an een number of characters. The bad guys know this.
 
 Possible issues:
 - Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias
