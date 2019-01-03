@@ -17,22 +17,19 @@ How to use Forever_Passwords:
 - Select a Secret : a word, phrase, or password (eg: The Sound of Music)
 - Forever_Passwords generates a long, complex password from your Alias and Secret : copy and use 
 
-Note: For security reasons, use a unique, but easy to remember, pattern for the Alias that identifies the website you want to generate a password for (usually based on the URL eg: www1emogic2com). If it is difficult to guess, your Secret can be simpler. However having both a complex Alias and a complex Secret is the best option.
-
 Recommendations:
 - do not use your Secret anywhere else
+- your secret should be long, complex, and imposible to guess
 - store a local copy of this program in the unlikely case our site, emogic.com, is temporarily down or have a backup plan!
-- 'salt' your Alias. example: mysite.com!!!Jan2018 (eg: if your password must be changed monthly your salt might be !!!Jan2018. Make your salt unique and don't share your salt pattern. Use complex, but easy to remember, 'salt'.
-- Change passwords on regular basis (monthly or yearly)
-- Do not store important passwords in a browser cache
+- Do not store important passwords in a browser cache or in the cloud
 - Clear your password in Forever Passwords after use 
--use a password with an odd number character length. Why? Most passwords have an even number of characters. The bad guys know this.
+-use a password with an odd number character length. Why? Most passwords have an even number of characters. 
 
 Possible issues:
 - Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias
-- A website might not like the password generated. I have not encountered this yet.
-- You can't generate your passwords without this program or an equivilent (see below). But this is the same with ANY password storage programs. Download a copy to your PC.
-- If your password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules. Eg: Add 'compromised' to the Alias (www_emogic_com_compromised)
+- A website might not like the password generated. eg: too long, no special characters allowed
+- You can't generate your passwords without this program or an equivilent program (see below). But this is the same with ANY password storage programs. Download a copy to your PC. File->Save as HTML
+- If your password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules. Eg: Add 'compromised' to the Alias (emogic.com.compromised)
 - Some sites (eg: cibc.com) have disabled copy and paste. This promotes weak passwords. Possible solutions: Search for, and install, the RightToCopy add-in or disable js temporarily. 
 
 Notes: Spaces are not allowed in the Alias field. The reason is that trailing spaces are not visible, but may be present, and this will create a different password and potentially cause confusion.
