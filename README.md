@@ -20,6 +20,7 @@ How to use Forever_Passwords:
 Note: For security reasons, use a unique, but easy to remember, pattern for the Alias that identifies the website you want to generate a password for (usually based on the URL eg: www1emogic2com). If it is difficult to guess, your Secret can be simpler. However having both a complex Alias and a complex Secret is the best option.
 
 Recommendations:
+- do not use your Secret anywhere else
 - store a local copy of this program in the unlikely case our site, emogic.com, is temporarily down or have a backup plan!
 - 'salt' your Alias. example: mysite.com!!!Jan2018 (eg: if your password must be changed monthly your salt might be !!!Jan2018. Make your salt unique and don't share your salt pattern. Use complex, but easy to remember, 'salt'.
 - Change passwords on regular basis (monthly or yearly)
