@@ -6,7 +6,7 @@ Password management recommendations:
 - Do not reuse passwords. Reuse of passwords is a bad practice. If one site is hacked, your password is compromised on other sites.
 - Do not store passwords anywhere. Passwords should not be written down, stored in any location and not stored by browsers
 - Passwords should be long, complex, and random. Multiple passwords are hard to remember
-- (This one is my opinion) Do not use password management software. Password Storage solutions protected all your paswswords with a single password. If your master password is compromised, all your passwords are compromised 
+- (This one is my opinion only) Do not use password management software. Do you trust a company with all your passwords? 
 
 Solution and benefits of Forever_Passwords:
 All passwords for each website is unique. The passwords are not stored. The passwords are incredibly complex. However the method to generate them is easy to remember.
@@ -14,13 +14,14 @@ All passwords for each website is unique. The passwords are not stored. The pass
 How to use Forever_Passwords:
 - run index.html off the website (https://www.emogic.com/Forever_Passwords/) or your locally stored version
 - Select an Alias : usually based on url (eg: emogic,com)
-- Select a Secret : a word, phrase, or password (eg: The Sound of Music)
-- Forever_Passwords generates a long, complex password from your Alias and Secret : copy and use 
+- Select a Secret : select a long, complex, and hard to guess word, phrase, or password that will be used, with your Alias, to generate all your passwords (eg: The Sound of Music).
+- Forever_Passwords generates a unique, long, complex password based on each of your Alias and Secret combinations
+- click 'Copy' and use 
 
 Recommendations:
 - do not use your Secret anywhere else
 - your secret should be long, complex, and imposible to guess
-- store a local copy of this program in the unlikely case our site, emogic.com, is temporarily down or have a backup plan!
+- store a local copy of this program in the unlikely case our site, emogic.com, is temporarily down or have a backup plan! Download a copy to your PC. File->Save as HTML
 - Do not store important passwords in a browser cache or in the cloud
 - Clear your password in Forever Passwords after use 
 -use a password with an odd number character length. Why? Most passwords have an even number of characters. 
@@ -28,7 +29,6 @@ Recommendations:
 Possible issues:
 - Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias
 - A website might not like the password generated. eg: too long, no special characters allowed
-- You can't generate your passwords without this program or an equivilent program (see below). But this is the same with ANY password storage programs. Download a copy to your PC. File->Save as HTML
 - If your password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules. Eg: Add 'compromised' to the Alias (emogic.com.compromised) 
 
 Notes: Spaces are not allowed in the Alias field. The reason is that trailing spaces are not visible, but may be present, and this will create a different password and potentially cause confusion.
