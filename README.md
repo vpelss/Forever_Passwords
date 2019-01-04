@@ -29,8 +29,7 @@ Possible issues:
 - Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias
 - A website might not like the password generated. eg: too long, no special characters allowed
 - You can't generate your passwords without this program or an equivilent program (see below). But this is the same with ANY password storage programs. Download a copy to your PC. File->Save as HTML
-- If your password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules. Eg: Add 'compromised' to the Alias (emogic.com.compromised)
-- Some sites (eg: cibc.com) have disabled copy and paste. This promotes weak passwords. Possible solutions: Search for, and install, the RightToCopy add-in or disable js temporarily. 
+- If your password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules. Eg: Add 'compromised' to the Alias (emogic.com.compromised) 
 
 Notes: Spaces are not allowed in the Alias field. The reason is that trailing spaces are not visible, but may be present, and this will create a different password and potentially cause confusion.
 
