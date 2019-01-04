@@ -9,7 +9,7 @@ Password management recommendations:
 - (This one is my opinion only) Do not use password management software. Do you trust a company with all your passwords? 
 
 Solution and benefits of Forever_Passwords:
-All passwords for each website is unique. The passwords are not stored. The passwords are incredibly complex. However the method to generate them is easy to remember.
+Passwords generated for each website are long, unique and complex. The passwords are not stored. You only need to remember one Secret phrase or word to generate all your passwords.
 
 How to use Forever_Passwords:
 - run index.html off the website (https://www.emogic.com/Forever_Passwords/) or your locally stored version
