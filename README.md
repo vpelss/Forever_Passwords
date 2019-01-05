@@ -1,15 +1,10 @@
-Forever Passwords will easily create and manage long, complex passwords that are not stored anywhere! 
-
-Why is the Forever Passwords method of generating passwords for you?
+Forever Passwords generates a unique password for each website that is long and complex. You only need to remember one Secret phrase or word to generate all your passwords. The passwords are not stored anywhere but generated when you need them. 
 
 Password management recommendations:
-- Do not reuse passwords. Reuse of passwords is a bad practice. If one site is hacked, your password is compromised on other sites.
-- Do not store passwords anywhere. Passwords should not be written down, stored in any location and not stored by browsers
+- Do not reuse passwords on different sites
+- Do not store or save passwords ANYWHERE.
 - Passwords should be long and complex. 
 - (This one is my opinion only) Do not use password management software. Do you trust a company with all your passwords? 
-
-Solution and benefits of Forever_Passwords:
-Passwords generated for each website are long, unique and complex. The passwords are not stored. You only need to remember one Secret phrase or word to generate all your passwords.
 
 How to use Forever_Passwords:
 - run index.html off the website (https://www.emogic.com/Forever_Passwords/) or your locally stored version
