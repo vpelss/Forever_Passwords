@@ -1,11 +1,11 @@
-Forever Passwords is the best way to manage your passwords. It is easy, safe and secure.
+Forever Passwords will easily create and manage long, complex passwords that are not stored anywhere! 
 
 Why is the Forever Passwords method of generating passwords for you?
 
 Password management recommendations:
 - Do not reuse passwords. Reuse of passwords is a bad practice. If one site is hacked, your password is compromised on other sites.
 - Do not store passwords anywhere. Passwords should not be written down, stored in any location and not stored by browsers
-- Passwords should be long, complex, and random. Multiple passwords are hard to remember
+- Passwords should be long and complex. 
 - (This one is my opinion only) Do not use password management software. Do you trust a company with all your passwords? 
 
 Solution and benefits of Forever_Passwords:
