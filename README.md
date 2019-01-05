@@ -1,11 +1,5 @@
 Forever Passwords generates a unique password for each website that is long and complex. You only need to remember one Secret phrase or word to generate all your passwords. The passwords are not stored anywhere but generated when you need them. 
 
-Password management recommendations:
-- Do not reuse passwords on different sites
-- Do not store or save passwords ANYWHERE.
-- Passwords should be long and complex. 
-- (This one is my opinion only) Do not use password management software. Do you trust a company with all your passwords? 
-
 How to use Forever_Passwords:
 - run index.html off the website (https://www.emogic.com/Forever_Passwords/) or your locally stored version
 - Select an Alias : usually based on url (eg: emogic,com)
@@ -14,12 +8,11 @@ How to use Forever_Passwords:
 - click 'Copy' and use 
 
 Recommendations:
-- do not use your Secret anywhere else
-- your secret should be long, complex, and imposible to guess
-- store a local copy of this program in the unlikely case our site, emogic.com, is temporarily down or have a backup plan! Download a copy to your PC. File->Save as HTML
-- Do not store important passwords in a browser cache or in the cloud
+- do not use your Secret anywhere else. eg as a password on a web site
+- your Secret should be long, complex, and imposible to guess
+- store a local copy of this program (Forever Passwords) in the unlikely case our site, emogic.com, is temporarily down or have a backup plan! Download a copy to your PC. File->Save as HTML
+- Do not store passwords in a browser cache or in the cloud
 - Clear your password in Forever Passwords after use 
--use a password with an odd number character length. Why? Most passwords have an even number of characters. 
 
 Possible issues:
 - Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias
