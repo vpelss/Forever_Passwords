@@ -8,10 +8,10 @@ How to use Forever_Passwords:
 - click 'Copy' and use 
 
 eg:
-alias: b
-secret b 
-always produces password: mpAPU4llpCaZTh6QYAkgr/C06NI=
-(never use a simple secret as per this example)
+-alias: b
+-secret b 
+-always produces password: mpAPU4llpCaZTh6QYAkgr/C06NI=
+-(never use a simple secret as per this example)
 
 Recommendations:
 - do not use your Secret anywhere else. eg as a password on a web site
