@@ -7,6 +7,12 @@ How to use Forever_Passwords:
 - Forever_Passwords generates a unique, long, complex password based on each of your Alias and Secret combinations
 - click 'Copy' and use 
 
+eg:
+alias: b
+secret b 
+always produces password: mpAPU4llpCaZTh6QYAkgr/C06NI=
+(never use a simple secret as per this example)
+
 Recommendations:
 - do not use your Secret anywhere else. eg as a password on a web site
 - your Secret should be long, complex, and imposible to guess
