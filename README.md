@@ -9,7 +9,7 @@ How to use Forever_Passwords:
 
 eg:
 - alias: b
-- secret b 
+- secret: b 
 - always produces password: mpAPU4llpCaZTh6QYAkgr/C06NI=
 - (never use a simple secret as per this example)
 
