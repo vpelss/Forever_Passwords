@@ -19,6 +19,7 @@ Recommendations:
 - store a local copy of this program (Forever Passwords) in the unlikely case our site, emogic.com, is temporarily down or have a backup plan! Download a copy to your PC. File->Save as HTML
 - Do not store passwords in a browser cache or in the cloud
 - Clear your password in Forever Passwords after use 
+- You should use a differnent password on every web service you use. See: https://haveibeenpwned.com/
 
 Possible issues:
 - Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias
