@@ -423,7 +423,13 @@ BuildAliasSelect();
     <input id='Secret' type='password' placeholder="Secret: A secure word or phrase" size='50' onkeyup="GeneratePW();" title='Your Alias and this Secret generate a unique Answer.'>
   <br> <br>
     <input id='Answer' type='text' size='50' placeholder="Answer: A unique pw based on the Alias + Secret" readonly onclick="copytoclipboard('Answer')" title='This is your Answer to use.'>
-   <br><br>
+   <br>
+<input type="checkbox" id="NoSpecialCharacters" value="NoSpecialCharacters" onchange='GeneratePW();' title='Replaces base64 special characters + with X, / with Q, and = (base64 padding) with Z'> No Special Characters<br>
+ <br>
+ Not Required:
+<br> 
+<input id='AliasComment' placeholder='Comments for Alias eg:13 characters,no special char' title='This is a field for a comment for the current Alias. For example, some sites may have special password requirements.' size='50'>
+ <br><br>
     Answer Length <select id="resize" title="Select desired Answer length."  onchange=" GeneratePW(); ">
         <option value="8">8</option>
         <option value="9">9</option>
@@ -447,14 +453,9 @@ BuildAliasSelect();
         <option value="27">27</option>
         <option value="28" selected>28</option>
     </select>
-    <br><br>
-<input type="checkbox" id="NoSpecialCharacters" value="NoSpecialCharacters" onchange='GeneratePW();' title='Replaces base64 special characters + with X, / with Q, and = (base64 padding) with Z'> No Special Characters<br>
- <br>
- Not Required:
-<br> 
-<input id='AliasComment' placeholder='Comments for Alias eg:13 characters,no special char' title='This is a field for a comment for the current Alias. For example, some sites may have special password requirements.' size='50'>
 <br> <br>
    <input type="button" id="copybutton" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick=" copytoclipboard('Answer'); Copy(); ">
+
   <input type="button" value="Clear" title="Clears Answer and Secret if any." onclick="document.getElementById('Alias').value='';document.getElementById('AliasComment').value='';document.getElementById('Secret').value='';document.getElementById('Answer').value=''; document.getElementById('AliasSave').value =''; copytoclipboard('Answer'); ">
    <br> <br> 
   <select id="localAliases" onchange=" SetAlias(this) ">
