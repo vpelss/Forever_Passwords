@@ -1,15 +1,95 @@
 <head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <meta name="description" content="Forever Passwords">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Forever Passwords</title>
 <style>
   body { background-color: gray; }
   form { text-align: center; }
-  .tocenter { text-align: center; }
+  .tocenter 
+    {
+    text-align: center; 
+    }  
+  input , textarea , select , .tocenter  
+    {
+    font-size : 3vw; 
+    }
+  @media screen and (min-width: 333px)  /* font-size / 3 % */
+    {
+      input , textarea , select , .tocenter 
+        {
+        font-size: 10px; 
+      }
+    }
 </style>
 </head>
 
 <body onload='BuildAliasSelect();'>
 
+<div class='tocenter'>
+  <p>Password Calculator<br>Forever Password</p>
+
+  <div class='tocenter'>
+<form autocomplete="off">
+    <input id='Alias' placeholder="Site URL or Alias eg: mysite.com" size='50' onkeyup="GeneratePW();" title='This Alias field should be easily remembered by you and be unique to the program or site you want a pasword for.'>  
+    <br><br> 
+    <input id='Secret' type='password' placeholder="Secret: A secure word or phrase" size='50' onkeyup="GeneratePW();" title='Your Alias and this Secret generate a unique Answer.'>
+  <br> <br>
+    <input id='Answer' type='text' size='50' placeholder="Answer: A unique pw based on the Alias + Secret" readonly onclick="copytoclipboard('Answer')" title='This is your Answer to use.'>
+   <br>
+<input type="checkbox" id="NoSpecialCharacters" value="NoSpecialCharacters" onchange='GeneratePW();' title='Replaces base64 special characters + with X, / with Q, and = (base64 padding) with Z'> No Special Characters<br>
+ <br>
+ Not Required:
+<br> 
+<input id='AliasComment' placeholder='Comments for Alias eg:13 characters,no special char' title='This is a field for a comment for the current Alias. For example, some sites may have special password requirements.' size='50'>
+ <br><br>
+    Answer Length <select id="resize" title="Select desired Answer length."  onchange=" GeneratePW(); ">
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28" selected>28</option>
+    </select>
+<br> <br>
+   <input type="button" id="copybutton" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick=" copytoclipboard('Answer'); Copy(); ">
+
+  <input type="button" value="Clear" title="Clears Answer and Secret if any." onclick="document.getElementById('Alias').value='';document.getElementById('AliasComment').value='';document.getElementById('Secret').value='';document.getElementById('Answer').value=''; document.getElementById('AliasSave').value =''; copytoclipboard('Answer'); ">
+   <br> <br> 
+  <select id="localAliases" onchange=" SetAlias(this) ">
+     <option value="" selected>Saved Local Aliases</option>   
+  </select>  
+<input type='button' value='X' onclick="if(confirm('This will delete this Aliasfrom your list. Are you sure?')){Delete();}">
+</form>
+ </div>
+  
+<p class='tocenter'><a href='https://raw.githubusercontent.com/vpelss/Forever_Passwords/master/README.md' target='_blank'>Read Me / Help</a></p>
+<p class='tocenter'><a href='https://github.com/vpelss/Forever_Passwords' target='_blank'>Github</a></p>
+<p class='tocenter'><a href='https://www.emogic.com/' target='_blank'>by Emogic</a></p>
+<p class='tocenter'><a href='https://www.emogic.com/cgi/Forever_Passwords/' target='_blank'>Doesn't work?</a></p>
+  
+<form>
+ <textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup Alias List. Save the text generated in a safe location." title='You can import/export your current Alias list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.'></textarea>
+  <br>
+  <input type='button' value='Get Alias List' onclick="GetAliasList()">
+  <input type='button' value='Save Alias List' onclick="if(confirm('This will change your list. Are you sure?')){SaveAliasList()}">
+</form>
+    
+    
 <script>
 
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
@@ -413,68 +493,5 @@ BuildAliasSelect();
 
 </script>
 
-<h6 align='center'>Password Calculator</h6>
-<h2 align='center'>Forever Passwords</h2>
-
-  <div class='tocenter'>
-<form autocomplete="off">
-    <input id='Alias' placeholder="Site URL or Alias eg: mysite.com" size='50' onkeyup="GeneratePW();" title='This Alias field should be easily remembered by you and be unique to the program or site you want a pasword for.'>  
-    <br><br> 
-    <input id='Secret' type='password' placeholder="Secret: A secure word or phrase" size='50' onkeyup="GeneratePW();" title='Your Alias and this Secret generate a unique Answer.'>
-  <br> <br>
-    <input id='Answer' type='text' size='50' placeholder="Answer: A unique pw based on the Alias + Secret" readonly onclick="copytoclipboard('Answer')" title='This is your Answer to use.'>
-   <br>
-<input type="checkbox" id="NoSpecialCharacters" value="NoSpecialCharacters" onchange='GeneratePW();' title='Replaces base64 special characters + with X, / with Q, and = (base64 padding) with Z'> No Special Characters<br>
- <br>
- Not Required:
-<br> 
-<input id='AliasComment' placeholder='Comments for Alias eg:13 characters,no special char' title='This is a field for a comment for the current Alias. For example, some sites may have special password requirements.' size='50'>
- <br><br>
-    Answer Length <select id="resize" title="Select desired Answer length."  onchange=" GeneratePW(); ">
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-         <option value="13">13</option>
-        <option value="14">14</option>
-        <option value="15">15</option>
-        <option value="16">16</option>
-        <option value="17">17</option>
-        <option value="18">18</option>
-        <option value="19">19</option>
-        <option value="20">20</option>
-        <option value="21">21</option>
-        <option value="22">22</option>
-        <option value="23">23</option>
-        <option value="24">24</option>
-        <option value="25">25</option>
-        <option value="26">26</option>
-        <option value="27">27</option>
-        <option value="28" selected>28</option>
-    </select>
-<br> <br>
-   <input type="button" id="copybutton" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick=" copytoclipboard('Answer'); Copy(); ">
-
-  <input type="button" value="Clear" title="Clears Answer and Secret if any." onclick="document.getElementById('Alias').value='';document.getElementById('AliasComment').value='';document.getElementById('Secret').value='';document.getElementById('Answer').value=''; document.getElementById('AliasSave').value =''; copytoclipboard('Answer'); ">
-   <br> <br> 
-  <select id="localAliases" onchange=" SetAlias(this) ">
-     <option value="" selected>Saved Local Aliases</option>   
-  </select>  
-<input type='button' value='X' onclick="if(confirm('This will delete this Aliasfrom your list. Are you sure?')){Delete();}">
-</form>
- </div>
-  
-<p class='tocenter'><a href='https://raw.githubusercontent.com/vpelss/Forever_Passwords/master/README.md' target='_blank'>Read Me / Help</a></p>
-<p class='tocenter'><a href='https://github.com/vpelss/Forever_Passwords' target='_blank'>Github</a></p>
-<p class='tocenter'><a href='https://www.emogic.com/' target='_blank'>by Emogic</a></p>
-<p class='tocenter'><a href='https://www.emogic.com/cgi/Forever_Passwords/' target='_blank'>Doesn't work?</a></p>
-  
-<form>
- <textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup Alias List. Save the text generated in a safe location." title='You can import/export your current Alias list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.'></textarea>
-  <br>
-  <input type='button' value='Get Alias List' onclick="GetAliasList()">
-  <input type='button' value='Save Alias List' onclick="if(confirm('This will change your list. Are you sure?')){SaveAliasList()}">
-</form>
  
 </body>
