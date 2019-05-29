@@ -30,7 +30,7 @@
 
   <div class='tocenter'>
 <form autocomplete="off">
-    <input id='Alias' placeholder="Site URL or Alias eg: mysite.com" size='50' onkeyup="GeneratePW();" title='This Alias field should be easily remembered by you and be unique to the program or site you want a pasword for.'>  
+    <input id='Alias' placeholder="Site URL or Alias eg: mysite.com" size='50'   onkeyup="GeneratePW();" title='This Alias field should be easily remembered by you and be unique to the program or site you want a pasword for.'>  
     <br><br> 
     <input id='Secret' type='password' placeholder="Secret: A secure word or phrase" size='50' onkeyup="GeneratePW();" title='Your Alias and this Secret generate a unique Answer.'>
   <br> <br>
@@ -66,7 +66,7 @@
         <option value="28" selected>28</option>
     </select>
 <br> <br>
-   <input type="button" id="copybutton" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick=" copytoclipboard('Answer'); Copy(); ">
+   <input type="button" id="copybutton" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick="GeneratePW(); copytoclipboard('Answer'); Copy(); ">
 
   <input type="button" value="Clear" title="Clears Answer and Secret if any." onclick="document.getElementById('Alias').value='';document.getElementById('AliasComment').value='';document.getElementById('Secret').value='';document.getElementById('Answer').value=''; document.getElementById('AliasSave').value =''; copytoclipboard('Answer'); ">
    <br> <br> 
@@ -88,10 +88,8 @@
   <input type='button' value='Get Alias List' onclick="GetAliasList()">
   <input type='button' value='Save Alias List' onclick="if(confirm('This will change your list. Are you sure?')){SaveAliasList()}">
 </form>
-    
-    
+        
 <script>
-
 /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 /* SHA-1 (FIPS 180-4) implementation in JavaScript                    (c) Chris Veness 2002-2017  */
 /*                                                                                   MIT Licence  */
@@ -490,8 +488,6 @@ else
 AssociativeArrayToCookie(); 
 BuildAliasSelect();   
 }
-
-</script>
-
- 
+  
+</script> 
 </body>
