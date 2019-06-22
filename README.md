@@ -1,4 +1,4 @@
-Forever Passwords generates a unique password for each website that is long and complex (impossible to guess and shoulder surffing). You only need to remember one Secret phrase or word to generate all your passwords. The passwords are not stored anywhere but generated when you need them. This gives you peace of mind that your passwords will not be stolen from a third party. 
+Forever Passwords generates a unique password for each website that is long and complex (impossible to guess and difficult for shoulder surffing). You only need to remember one Secret phrase or word to generate all your passwords. The passwords are not stored anywhere but generated when you need them. This gives you peace of mind that your passwords will not be stolen from a third party. 
 
 How to use Forever_Passwords:
 - run index.html off the website (https://www.emogic.com/Forever_Passwords/) or your locally stored version
