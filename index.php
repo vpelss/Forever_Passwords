@@ -38,9 +38,9 @@ $c = substr($c,0,$length);
 <form action=""  method="post" target="_top" autocomplete="off" >
     <input name='alias' placeholder="Alias eg: mysite.com : no spaces, they will be removed" size='50'> 
     <br><br>
-    <input name='secret' type='password' placeholder="Secret" size='50'>
+    <input name='secret' type='password'placeholder="Secret: A secure word or phrase" size='50'>
   <br> <br>
-    <input name='answer'  placeholder="Answer" value="<? echo $c ?>" size='50'>
+    <input name='answer' placeholder="Answer: A unique pw based on the Alias + Secret" value="<? echo $c ?>" size='50'>
   <br> <br>
       <select name='length'>
         <option value="8">8</option>
