@@ -439,7 +439,7 @@ setCookie('AliasList' , AliasListString , forever , '', '', '');
   
 function SetAlias(t)
 {
-//document.getElementById('resize').value=28; //for the case of Saved_Local_Aliases that has no possible length set. 28 is default 
+document.getElementById('resize').value=28; //for the case of Saved_Local_Aliases that has no possible length set. 28 is default 
 var Alias = t.value; //get Selected Alias
 document.getElementById("Alias").value = Alias; //Set Alias 
 //exit if Alias does not exist. For 1st dummy option   
@@ -499,5 +499,5 @@ AssociativeArrayToCookie();
 BuildAliasSelect();   
 }
   
-</script> 
+</script> b
 </body>
