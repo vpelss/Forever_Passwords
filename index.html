@@ -68,7 +68,7 @@
 <br> <br>
    <input type="button" id="copybutton" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick="GeneratePW(); copytoclipboard('Answer'); Copy(); ">
 
-  <input type="button" value="Clear" title="Clears Answer and Secret if any." onclick="document.getElementById('Alias').value='';document.getElementById('AliasComment').value='';document.getElementById('Secret').value='';document.getElementById('Answer').value=''; copytoclipboard('Answer'); ">
+  <input type="button" value="Clear/Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not hanged. " onclick="document.getElementById('Alias').value='';document.getElementById('AliasComment').value='';document.getElementById('Secret').value='';document.getElementById('Answer').value=''; document.getElementById('resize').value=28 ;copytoclipboard('Answer'); ">
    <br> <br> 
   <select id="localAliases" title='Saved Local Aliases' onchange=" SetAlias(this) ">
   <option value="Saved_Local_Aliases" disabled selected hidden>Saved Local Aliases</option>      
@@ -439,12 +439,13 @@ setCookie('AliasList' , AliasListString , forever , '', '', '');
   
 function SetAlias(t)
 {
+document.getElementById('resize').value=28; //for the case of Saved_Local_Aliases that has no possible length set. 28 is default 
 var Alias = t.value; //get Selected Alias
 document.getElementById("Alias").value = Alias; //Set Alias 
 //exit if Alias does not exist. For 1st dummy option   
 if (typeof GlobalAssociativeArray[Alias] == "undefined")
 	{
-	//GeneratePW();
+	GeneratePW(); //for Saved_Local_Aliases option that does not exist in the GlobalAssociativeArray by design  
   document.getElementById("AliasComment").value = ''; //clear comments
 	return;
 	}
