@@ -5,4 +5,4 @@ This is always Saved_Local_Alias.
 This is done so if you always use the same Secret, you will be abble to identify that you typed it correctly as the default Answer will always be the same.
 -fixed js error on clicking on the Clear button
 -fixed comment box not clearing on an Alias set for Saved_Local_Alias
-
+-set Answer to length 28 for Saved_Local_Alias (default), and on clear/reset button 
