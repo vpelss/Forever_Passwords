@@ -40,7 +40,7 @@ $c = substr($c,0,$length);
     <br><br>
     <input name='secret' type='password' placeholder="Secret" size='50'>
   <br> <br>
-    <input name='password'  placeholder="Password" value="<? echo $c ?>" size='50'>
+    <input name='answer'  placeholder="Answer" value="<? echo $c ?>" size='50'>
   <br> <br>
       <select name='length'>
         <option value="8">8</option>
