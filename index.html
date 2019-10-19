@@ -1,4 +1,5 @@
-<head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <meta name="description" content="Forever Passwords">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Forever Passwords</title>
@@ -24,13 +25,12 @@
 </head>
 
 <body onload='BuildAliasSelect();'>
-
 <div class='tocenter'>
   <p>Password Calculator<br>Forever Password</p>
 
   <div class='tocenter'>
 <form autocomplete="off">
-    <input id='Alias' placeholder="Site URL or Alias eg: mysite.com" size='50'   onkeyup="GeneratePW();" title='This Alias field should be easily remembered by you and be unique to the program or site you want a pasword for.'>  
+    <input id='Alias' placeholder="Site URL or Alias eg: mysite.com" size='50' onkeyup="GeneratePW();" title='This Alias field should be easily remembered by you and be unique to the program or site you want a pasword for.'>  
     <br><br> 
     <input id='Secret' type='password' placeholder="Secret: A secure word or phrase" size='50' onkeyup="GeneratePW();" title='Your Alias and this Secret generate a unique Answer.'>
   <br> <br>
@@ -42,7 +42,7 @@
 <br> 
 <input id='AliasComment' placeholder='Comments for Alias eg:13 characters,no special char' title='This is a field for a comment for the current Alias. For example, some sites may have special password requirements.' size='50'>
  <br><br>
-    Answer Length <select id="resize" title="Select desired Answer length."  onchange=" GeneratePW(); ">
+    Answer Length <select id="resize" title="Select desired Answer length." onchange=" GeneratePW(); ">
         <option value="8">8</option>
         <option value="9">9</option>
         <option value="10">10</option>
@@ -68,10 +68,10 @@
 <br> <br>
    <input type="button" id="copybutton" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick="GeneratePW(); copytoclipboard('Answer'); Copy(); ">
 
-  <input type="button" value="Clear" title="Clears Answer and Secret if any." onclick="document.getElementById('Alias').value='';document.getElementById('AliasComment').value='';document.getElementById('Secret').value='';document.getElementById('Answer').value=''; document.getElementById('AliasSave').value =''; copytoclipboard('Answer'); ">
+  <input type="button" value="Clear" title="Clears Answer and Secret if any." onclick="document.getElementById('Alias').value='';document.getElementById('AliasComment').value='';document.getElementById('Secret').value='';document.getElementById('Answer').value=''; copytoclipboard('Answer'); ">
    <br> <br> 
-  <select id="localAliases" onchange=" SetAlias(this) ">
-     <option value="" selected>Saved Local Aliases</option>   
+  <select id="localAliases" title='Saved Local Aliases' onchange=" SetAlias(this) ">
+  <option value="Saved_Local_Aliases" disabled selected hidden>Saved Local Aliases</option>      
   </select>  
 <input type='button' value='X' onclick="if(confirm('This will delete this Aliasfrom your list. Are you sure?')){Delete();}">
 </form>
@@ -293,7 +293,7 @@ function hex2bin(hexStr)
 return Sha1.hexBytesToString(hexStr);    
 }
 
-function nospaces(id)
+function CheckForNoSpaces(id)
 {
     var t = document.getElementById(id);
     if(t.value.match(/\s/g))
@@ -313,16 +313,24 @@ function copytoclipboard(id)
   
 function GeneratePW()
 {
-nospaces('Alias');
-var Secret = document.getElementById('Secret').value;
+//recommend putting all testing logic in the getpw() function (all in one spot)
 var Alias = document.getElementById('Alias').value;
-var total = Secret + Alias;
-if ( ( Secret === '') || ( Alias === '') )
+CheckForNoSpaces('Alias');
+if ( Alias === '') 
+        { //no Alias, copy one from lo dropdowncalAliases dropdown
+        var e = document.getElementById('localAliases');
+        var strUser = e.options[e.selectedIndex].value;
+        document.getElementById('Alias').value = strUser;
+        //document.getElementById('Answer').value = '';    
+        //return;    
+        }
+var Secret = document.getElementById('Secret').value;
+if ( Secret === '') 
         {
         document.getElementById('Answer').value = '';    
         return;    
         }
-
+var total = Secret + Alias;  
 var v1 = Sha1.hash( total , ''); //sha1 160 bit, 20 byte, 40 hex
 var v2 = hex2bin( v1 ); //xxd or hex2bin - to binary stream
 var PW =  btoa( v2 ) ; //BASE64 - binary to ascii base64 
@@ -436,7 +444,8 @@ document.getElementById("Alias").value = Alias; //Set Alias
 //exit if Alias does not exist. For 1st dummy option   
 if (typeof GlobalAssociativeArray[Alias] == "undefined")
 	{
-	GeneratePW();
+	//GeneratePW();
+  document.getElementById("AliasComment").value = ''; //clear comments
 	return;
 	}
 //Get Comment
