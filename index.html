@@ -293,6 +293,11 @@ function hex2bin(hexStr)
 return Sha1.hexBytesToString(hexStr);    
 }
 
+function buf2hex(buffer) 
+{ // buffer is an ArrayBuffer
+  return Array.prototype.map.call(new Uint8Array(buffer), x => ('00' + x.toString(16)).slice(-2)).join('');
+}
+  
 function CheckForNoSpaces(id)
 {
     var t = document.getElementById(id);
@@ -311,7 +316,7 @@ function copytoclipboard(id)
   //alert("Copied the text: " + t.value);
  }
   
-function GeneratePW()
+async function GeneratePW() //async is here ncase we use digest / promise version
 {
 //recommend putting all testing logic in the getpw() function (all in one spot)
 var Alias = document.getElementById('Alias').value;
@@ -331,7 +336,18 @@ if ( Secret === '')
         return;    
         }
 var total = Secret + Alias;  
+
 var v1 = Sha1.hash( total , ''); //sha1 160 bit, 20 byte, 40 hex
+//OR  
+/*
+//see: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest
+const encoder = new TextEncoder();
+const data = encoder.encode(total);
+const digest = crypto.subtle.digest( 'SHA-1' , data); //start promise 'digest' 
+var value = await digest; //better than digest.then(function(value) //sha1 160 bit, 20 byte, 40 hex
+var v1 = buf2hex(value);  
+*/
+  
 var v2 = hex2bin( v1 ); //xxd or hex2bin - to binary stream
 var PW =  btoa( v2 ) ; //BASE64 - binary to ascii base64 
  
