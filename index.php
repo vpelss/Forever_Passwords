@@ -64,7 +64,7 @@ $c = substr($c,0,$length);
         <option value="26">26</option>
         <option value="27">27</option>
         <option value="28">28</option>   
-  </select>
+  </select> 
   <br> <br>
 <input type='submit' value='Get Password' ">
 </form>
