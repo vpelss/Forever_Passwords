@@ -1,1 +1,3 @@
+cookie with user(s) blocked by chrome 
+
 Fix injeted blank lines on Save Alias List
