@@ -1,7 +1,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <meta name="description" content="Forever Passwords">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <title>Forever Passwords</title>
 <style>
   body { background-color: gray; }
@@ -21,20 +21,24 @@
         font-size: 10px; 
       }
     }
+  .hideme
+    {
+   visibility: hidden;  
+    }
 </style>
 </head>
 
 <body onload='BuildAliasSelect();'>
 <div class='tocenter'>
   <p>Password Calculator<br>Forever Password</p>
- 
+
   <div class='tocenter'>
 <form autocomplete="off">
     <input id='Alias' placeholder="Site URL or Alias eg: mysite.com" size='50' onkeyup="GeneratePW();" title='This Alias field should be easily remembered by you and be unique to the program or site you want a pasword for.'>  
     <br><br> 
     <input id='Secret' type='password' placeholder="Secret: A secure word or phrase" size='50' onkeyup="GeneratePW();" title='Your Alias and this Secret generate a unique Answer.'>
   <br> <br>
-    <input id='Answer' type='text' size='50' placeholder="Answer: A unique pw based on the Alias + Secret" readonly onclick="copytoclipboard('Answer')" title='This is your Answer to use.'>
+    <input id='Answer' type='text' size='50' placeholder="Answer: A unique pw based on the Alias + Secret" readonly onclick="copytoclipboard('Answer');" title='This is your Answer to use.'>
    <br>
 <input type="checkbox" id="NoSpecialCharacters" value="NoSpecialCharacters" onchange='GeneratePW();' title='Replaces base64 special characters + with X, / with Q, and = (base64 padding) with Z'> No Special Characters<br>
  <br>
@@ -68,20 +72,20 @@
 <br> <br>
    <input type="button" id="copybutton" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick="GeneratePW(); copytoclipboard('Answer'); Copy(); ">
 
-  <input type="button" value="Clear/Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not hanged. " onclick="document.getElementById('Alias').value='';document.getElementById('AliasComment').value='';document.getElementById('Secret').value='';document.getElementById('Answer').value=''; document.getElementById('resize').value=28 ;copytoclipboard('Answer'); ">
+  <input type="button" id='clear_reset' value="Clear/Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not changed. Clipboard set to 'cleared'." onclick="clear_reset_data();">
    <br> <br> 
   <select id="localAliases" title='Saved Local Aliases' onchange=" SetAlias(this) ">
   <option value="Saved_Local_Aliases" disabled selected hidden>Saved Local Aliases</option>      
   </select>  
 <input type='button' value='X' onclick="if(confirm('This will delete this Aliasfrom your list. Are you sure?')){Delete();}">
+  
 </form>
  </div>
   
 <p class='tocenter'><a href='https://raw.githubusercontent.com/vpelss/Forever_Passwords/master/README.md' target='_blank'>Read Me / Help</a></p>
 <p class='tocenter'><a href='https://github.com/vpelss/Forever_Passwords' target='_blank'>Github</a></p>
 <p class='tocenter'><a href='https://www.emogic.com/' target='_blank'>by Emogic</a></p>
-<p class='tocenter'><a href='https://www.emogic.com/cgi/fp/' target='_blank'>Doesn't work?</a></p>
-  
+<p class='tocenter'><a href='https://www.emogic.com/cgi/Forever_Passwords/' target='_blank'>Doesn't work?</a></p> 
   <p class='tocenter'><a href='https://github.com/vpelss/Forever_Passwords/blob/master/Licence.txt' target='_blank'>Licence</a></p>
   
 <form>
@@ -310,17 +314,74 @@ function CheckForNoSpaces(id)
         }
 }
    
+document.addEventListener('dcopy', function(e){
+  e.clipboardData.setData('text/plain', document.getElementById('Answer').value);
+  //e.preventDefault(); // default behaviour is to copy any selected text
+});
+
+//not used
+var secondsToErase = 5;  
+var countdown;  
+var countdowninterval;
+function tick()
+{//every second count down one 
+countdown--;
+document.getElementById('timer_alert').innerHTML = 'Auto cleared in ' + countdown + ' seconds';
+if(countdown <= 0)
+  {
+  //clear_reset_data();
+  }
+}
+  
+//not used  
+function start_timers()  
+  {//on copy button or click on answer
+  countdown = secondsToErase;
+  countdowninterval = setInterval(tick , 1000);   
+  }
+
+//not used
+function stop_timers()
+{//after count downs OR typing -> GeneratePW() OR clear_reset
+//countdown = secondsToErase;
+clearInterval(countdowninterval); 
+document.getElementById('timer_alert').innerHTML = '';
+}
+   
+function clear_reset_data()
+{
+//document.getElementById('Alias').value='';
+document.getElementById('AliasComment').value='';
+document.getElementById('Secret').value='';
+document.getElementById('Answer').value='cleared';
+copytoclipboard2('cleared'); 
+document.getElementById('resize').value=28; 
+//stop_timers();
+}
+  
 function copytoclipboard(id)
 {
-  var t = document.getElementById(id);
-  t.select();
-  document.execCommand("copy"); /* Copy the text inside the text field */
-  //alert("Copied the text: " + t.value);
- }
+var t = document.getElementById(id);
+t.select();
+document.execCommand("copy", false, null); /* Copy the text inside the text field */
+alert('IMPORTANT: Please click Clear/Reset after pasting password to clear the Secret and clipboard!');
+}
+
+function copytoclipboard2(text) 
+  {
+  var textarea = document.createElement("TEXTAREA");
+  document.body.appendChild(textarea);
+  textarea.innerHTML =text;
+  textarea.value=text;
+  textarea.select();
+  document.execCommand("copy", false, null);
+  textarea.remove();
+   };
   
-async function GeneratePW() //async is here ncase we use digest / promise version
+async function GeneratePW() //async is here incase we use digest / promise version
 {
 //recommend putting all testing logic in the getpw() function (all in one spot)
+//stop_timers();
 var Alias = document.getElementById('Alias').value;
 CheckForNoSpaces('Alias');
 if ( Alias === '') 
