@@ -361,10 +361,10 @@ document.getElementById('resize').value=28;
   
 function copytoclipboard(id)
 {
+alert('IMPORTANT: Please click Clear/Reset after pasting password to clear the Secret and clipboard!');
 var t = document.getElementById(id);
 t.select();
 document.execCommand("copy", false, null); /* Copy the text inside the text field */
-alert('IMPORTANT: Please click Clear/Reset after pasting password to clear the Secret and clipboard!');
 }
 
 function copytoclipboard2(text) 
