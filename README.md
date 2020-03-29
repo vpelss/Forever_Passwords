@@ -1,4 +1,4 @@
-Forever Passwords generates a unique password for each website that is long and complex (impossible to guess and difficult for shoulder surffing). You only need to remember one Secret phrase or word to generate all your passwords. The passwords are not stored anywhere but generated when you need them. This gives you peace of mind that your passwords will not be stolen from a third party. 
+Forever Passwords generates a unique password for each website that is long and complex (impossible to guess and difficult for shoulder surffing). You only need to remember one Secret phrase or word to generate all your passwords. The passwords are not stored anywhere but generated when you need them. This gives you peace of mind that your passwords are not store in the cloud, or transfered over the internet. 
 
 How to use Forever_Passwords:
 - run index.html off the website (https://www.emogic.com/fp/) or your locally stored version
@@ -6,6 +6,7 @@ How to use Forever_Passwords:
 - Select a Secret : select a long, complex, and hard to guess word, phrase, or password that will be used, with your Alias, to generate all your passwords (eg: The Sound of Music).
 - Forever_Passwords generates a unique, long, complex password based on each of your Alias and Secret combinations
 - click 'Copy' and use 
+- Please click Clear/Reset after you have pasted your password. This clears your secret and the clipboard.
 
 eg:
 - alias: b
@@ -16,9 +17,9 @@ eg:
 Recommendations:
 - do not use your Secret anywhere else. eg as a password on a web site
 - your Secret should be long, complex, and imposible to guess
-- store a local copy of this program (Forever Passwords) in the unlikely case our site, emogic.com, is temporarily down or have a backup plan! Download a copy to your PC. File->Save as HTML
-- Do not store passwords in a browser cache or in the cloud
-- Clear your password in Forever Passwords after use 
+- store a local copy of this program (Forever Passwords) in the unlikely case our site, emogic.com, is temporarily down. Have a backup plan! Download a copy to your PC. File->Save as HTML
+- Do not store passwords in the browser cache or in the cloud
+- Clear your password in Forever Passwords after use. Click Clear/Reset
 - You should use a differnent password on every web service you use. See: https://haveibeenpwned.com/
 
 Possible issues:
