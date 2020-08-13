@@ -30,7 +30,7 @@
 
 <body onload='BuildAliasSelect();'>
 <div class='tocenter'>
-  <p>Password Calculator<br>tForever Password</p>
+  <p>Password Calculator<br>Forever Password</p>
 
   <div class='tocenter'>
 <form autocomplete="off">
@@ -265,6 +265,7 @@ if (typeof module != 'undefined' && module.exports) module.exports = Sha1; // = 
 /* end Sha1 */
 
 var forever = new Date('October 17, 2050 03:24:00');  
+var yesterday = new Date('October 17, 2000 03:24:00');  
 var Cookie   = {};
 Cookie.day   = 86400000;
 Cookie.week  = Cookie.day * 7;
@@ -441,8 +442,13 @@ var GlobalAssociativeArray = {}; //Alias list + comments and settings
 
 function CookieToAssociativeArray()
 {
+//old cooke option
 var AliasCookie = getCookie( 'AliasList' ) || '{}' ; 
 GlobalAssociativeArray = JSON.parse(AliasCookie);
+//if no cookies (deleted as we have html5 local save option)
+if( (AliasCookie === "{}") || (AliasCookie === '') || (AliasCookie === undefined) ){
+CookieToVar();  
+}
 } 
 
 function BuildAliasSelect()
@@ -517,9 +523,16 @@ CheckForEmptyAliasSelect();
 
 function AssociativeArrayToCookie()
 {
-//save to cookie
-var AliasListString = JSON.stringify(GlobalAssociativeArray);
-setCookie('AliasList' , AliasListString , forever , '', '', '');
+//save to local storage
+if(supports_html5_storage()){
+    VarToCookie();
+  //erase cookie as we want to use local storage now.
+  setCookie('AliasList' , AliasListString ,  yesterday , '', '', '');  
+}
+else{//save to cookie
+  var AliasListString = JSON.stringify(GlobalAssociativeArray);
+  setCookie('AliasList' , AliasListString , forever , '', '', '');
+}
 }
   
 function SetAlias(t)
@@ -583,6 +596,26 @@ else
 	}
 AssociativeArrayToCookie(); 
 BuildAliasSelect();   
+}
+  
+function CookieToVar()
+{  
+if( supports_html5_storage() == false ) {return} 
+if( typeof localStorage['Core_Values'] === 'undefined' ) {return } //nothing to restore. use var
+GlobalAssociativeArray = JSON.parse( localStorage['Core_Values'] );
+} 
+  
+function VarToCookie(){
+if( supports_html5_storage() == false ) {return} 
+localStorage['Core_Values'] = JSON.stringify( GlobalAssociativeArray );
+}
+  
+function supports_html5_storage() {
+  try {
+    return 'localStorage' in window && window['localStorage'] !== null;
+  } catch (e) {
+    return false;
+  }
 }
   
 </script> 
