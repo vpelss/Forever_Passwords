@@ -487,7 +487,8 @@ var Alias = document.getElementById('Alias').value;
 //GlobalAssociativeArray[Alias] = {'comment':document.getElementById("AliasComment").value}; //set as associative array
 GlobalAssociativeArray[Alias] = {'comment':document.getElementById('AliasComment').value , 'resize':document.getElementById('resize').value , 'NoSpecialCharacters':document.getElementById('NoSpecialCharacters').checked}; //set as associative array
 var AliasListString = JSON.stringify(GlobalAssociativeArray);
-setCookie('AliasList' , AliasListString , forever , '', '', '');
+AssociativeArrayToCookie();
+//setCookie('AliasList' , AliasListString , forever , '', '', '');
 BuildAliasSelect(); 
 //set select dropdown back to Alais
 //document.getElementById("localAliases").value = Alias; //set select dropdown back to Alais . Not IE friendly
