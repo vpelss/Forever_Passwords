@@ -93,6 +93,8 @@
   <br>
   <input type='button' value='Get Alias List' onclick="GetAliasList()">
   <input type='button' value='Save Alias List' onclick="if(confirm('This will change your list. Are you sure?')){SaveAliasList()}">
+  <br>
+   <input type='button' value='Export All' onclick="if(confirm('This will export all Alias and PW to clipboard. Correct alias must be set. Are you sure?')){ ExportAll(); }">
 </form>
         
 <script>
@@ -602,13 +604,13 @@ BuildAliasSelect();
 function CookieToVar()
 {  
 if( supports_html5_storage() == false ) {return} 
-if( typeof localStorage['Core_Values'] === 'undefined' ) {return } //nothing to restore. use var
+if( typeof localStorage['FP'] === 'undefined' ) {return } //nothing to restore. use var
 GlobalAssociativeArray = JSON.parse( localStorage['Core_Values'] );
 } 
   
 function VarToCookie(){
 if( supports_html5_storage() == false ) {return} 
-localStorage['Core_Values'] = JSON.stringify( GlobalAssociativeArray );
+localStorage['FP'] = JSON.stringify( GlobalAssociativeArray );
 }
   
 function supports_html5_storage() {
@@ -617,6 +619,23 @@ function supports_html5_storage() {
   } catch (e) {
     return false;
   }
+}
+  
+function ExportAll() {
+  var localAliases = document.getElementById('localAliases');
+  var i;
+  var theList = '';
+  
+  for(i = 0; i < localAliases.length; i++) {
+    //alias = localAlias[i];
+    localAliases.selectedIndex = i;
+    document.getElementById('Alias').value = localAliases[i].value;
+     SetAlias(localAliases);
+    theList = theList +  document.getElementById('Alias').value + ' : ' + document.getElementById('Answer').value + '\r\n';
+    //document.getElementById("JSONSave").value = theList;
+    copytoclipboard2(theList);    
+  }
+  alert('All your Alias and PW are on the clipboard!!!!!!!!!!! Please click Clear/Reset when done!!!!!!');
 }
   
 </script> 
