@@ -605,7 +605,7 @@ function CookieToVar()
 {  
 if( supports_html5_storage() == false ) {return} 
 if( typeof localStorage['FP'] === 'undefined' ) {return } //nothing to restore. use var
-GlobalAssociativeArray = JSON.parse( localStorage['Core_Values'] );
+GlobalAssociativeArray = JSON.parse( localStorage['FP'] );
 } 
   
 function VarToCookie(){
