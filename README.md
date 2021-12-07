@@ -1,6 +1,9 @@
+#About
+
 Forever Passwords generates a unique password for each website that is long and complex (impossible to guess and difficult for shoulder surffing). You only need to remember one Secret phrase or word to generate all your passwords. The passwords are not stored anywhere but generated when you need them. This gives you peace of mind that your passwords are not store in the cloud, or transfered over the internet. 
 
-How to use Forever_Passwords:
+# How to use Forever_Passwords
+
 - run index.html off the website (https://www.emogic.com/fp/) or your locally stored version
 - Select an Alias : usually based on url (eg: emogic,com)
 - Select a Secret : select a long, complex, and hard to guess word, phrase, or password that will be used, with your Alias, to generate all your passwords (eg: The Sound of Music).
@@ -14,7 +17,8 @@ eg:
 - always produces password: mpAPU4llpCaZTh6QYAkgr/C06NI=
 - (never use a simple secret as per this example)
 
-Recommendations:
+# Recommendations
+
 - do not use your Secret anywhere else. eg as a password on a web site
 - your Secret should be long, complex, and imposible to guess
 - store a local copy of this program (Forever Passwords) in the unlikely case our site, emogic.com, is temporarily down. Have a backup plan! Download a copy to your PC. File->Save as HTML
@@ -22,7 +26,8 @@ Recommendations:
 - Clear your password in Forever Passwords after use. Click Clear/Reset
 - You should use a differnent password on every web service you use. See: https://haveibeenpwned.com/
 
-Possible issues:
+# Possible issues
+
 - Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias
 - A website might not like the password generated. eg: too long, no special characters allowed
 - If your password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules. Eg: Add 'compromised' to the Alias (emogic.com.compromised) 
@@ -32,7 +37,7 @@ Notes: Spaces are not allowed in the Alias field. The reason is that trailing sp
 The following link is a good password policy resource. See how secure your password is.
 https://www.grc.com/haystack.htm
 
----------------------
+#Also
 
 You can do the same password generation from a shell or command line:
 
@@ -46,7 +51,7 @@ echo -n "mysecretgmail.com" | sha1sum | xxd -r -p | base64
 
 index.php is for browsers that can't run the JS version.
 
--------------------
+#Based On
 
 Based on PWCalc a password calculator:
 
