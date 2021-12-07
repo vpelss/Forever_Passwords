@@ -71,6 +71,7 @@ body { background-color: gray; }
 										<div>
 											<datalist id="localAliases"></datalist>
 										</div>
+
 									</td>
 
 									<td width='10%'><input data-mini='true' type='button' value='X' onclick='if(confirm("This will delete " + document.getElementById("localAliases").value + " from your list. Are you sure?")){Delete();}'></td>
@@ -78,7 +79,7 @@ body { background-color: gray; }
 							</table>
 
 						<div>
-							<input id='Secret' type='password' placeholder="Secret: A secure word or phrase" size='50' onkeyup="GeneratePW();" title='Your Alias and this Secret generate a unique Answer.'>
+							<input id='Secret' type='hassword' placeholder="Secret: A secure word or phrase" size='50' onkeyup="GeneratePW();" title='Your Alias and this Secret generate a unique Answer.'>
 						</div>
 
 						<div>
