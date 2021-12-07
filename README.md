@@ -1,4 +1,4 @@
-#About
+# About
 
 Forever Passwords generates a unique password for each website that is long and complex (impossible to guess and difficult for shoulder surffing). You only need to remember one Secret phrase or word to generate all your passwords. The passwords are not stored anywhere but generated when you need them. This gives you peace of mind that your passwords are not store in the cloud, or transfered over the internet. 
 
@@ -37,7 +37,7 @@ Notes: Spaces are not allowed in the Alias field. The reason is that trailing sp
 The following link is a good password policy resource. See how secure your password is.
 https://www.grc.com/haystack.htm
 
-#Also
+# Also
 
 You can do the same password generation from a shell or command line:
 
@@ -51,7 +51,7 @@ echo -n "mysecretgmail.com" | sha1sum | xxd -r -p | base64
 
 index.php is for browsers that can't run the JS version.
 
-#Based On
+# Based On
 
 Based on PWCalc a password calculator:
 
