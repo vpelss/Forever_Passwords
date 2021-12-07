@@ -62,3 +62,7 @@ https://extensions.gnome.org/extension/825/password-calculator/
 https://bixense.com/pwcalculator/
 
 The programs above, while excellent, are limited to where they can be used. So I wrote Forever_Passwords in HTML/Javascript to attempt to make it accessible to all platforms and browsers. It's single file design allows you to easily store the code locally for stand alone systems. Tested with newest Chrome, Firefox, and IE 11.
+
+# Created By
+
+https://www.emogic.com/
