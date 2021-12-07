@@ -41,6 +41,9 @@ body { background-color: gray; }
 .ui-grid-a>.ui-block-b{
 	_width:90%;
 }
+#Secret {
+    -webkit-text-security: disc;
+}
 	</style>
 </head>
 
@@ -81,7 +84,7 @@ body { background-color: gray; }
 
 
 						<div>
-							<input id='Secret' type='password' placeholder="Secret: A secure word or phrase" size='50' onkeyup="GeneratePW();" title='Your Alias and this Secret generate a unique Answer.'>
+							<input id='Secret' type='hassword' placeholder="Secret: A secure word or phrase" size='50' onkeyup="GeneratePW();" title='Your Alias and this Secret generate a unique Answer.'>
 						</div>
 
 						<div>
