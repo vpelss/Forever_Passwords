@@ -79,7 +79,7 @@ body { background-color: gray; }
 							</table>
 
 						<div>
-							<input id='Secret' type='not_password' placeholder="Secret: A secure word or phrase" size='50' onkeyup="GeneratePW();" title='Your Alias and this Secret generate a unique Answer.'>
+							<input id='Secret' type='text' placeholder="Secret: A secure word or phrase" size='50' onkeyup="GeneratePW();" title='Your Alias and this Secret generate a unique Answer.'>
 						</div>
 
 						<div>
@@ -87,7 +87,7 @@ body { background-color: gray; }
 						</div>
 
 						<div>
-							<input type="checkbox" id="NoSpecialCharacters" value="NoSpecialCharacters" onchange='GeneratePW();' title='Replaces base64 special characters + with X, / with Q, and = (base64 padding) with Z'> <label for='NoSpecialCharacters'>No Special Characters</label>
+							<input type="checkbox" id="NoSpecialCharacters" data-mini="true" value="NoSpecialCharacters" onchange='GeneratePW();' title='Replaces base64 special characters + with X, / with Q, and = (base64 padding) with Z'> <label for='NoSpecialCharacters'>No Special Characters</label>
 						</div>
 
 						<div>
@@ -187,13 +187,20 @@ body { background-color: gray; }
 								</div>
 								</td>
 							</tr>
-						</table><input type="button" id="copybutton" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick='GeneratePW(); copytoclipboard("Answer"); Copy();'> <input type="button" id='clear_reset' value="Clear/Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not changed. Clipboard set to 'cleared'." onclick="clear_reset_data();">
-
+						</table>
 						<div>
-							<input type="checkbox" id="" value="" onchange='' title=''> <label for=''>Timed Clear</label>
+						<input type="button" id="copybutton" data-mini="true" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick='GeneratePW(); copytoclipboard("Answer"); Copy();'>
+						</div>
+						<div>
+						<input type="button" id='clear_reset' data-mini="true" value="Clear/Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not changed. Clipboard set to 'cleared'." onclick="clear_reset_data();">
+						</div>
+						<div>
+							<input type="checkbox" id='clear_timer' data-mini="true" value="" onchange='' title=''> <label for='clear_timer'>Timed Clear</label>
 						</div>
 
 					</form>
+
+					<div id='timer_alert'></div>
 
 
 			<script type="text/javascript">
@@ -433,39 +440,32 @@ body { background-color: gray; }
 			});
 
 			//not used
-			/*
-									var secondsToErase = 5;
+									var secondsToErase = 10;
 									var countdown;
 									var countdowninterval;
 									function tick()
 									{//every second count down one
 									countdown--;
 									document.getElementById('timer_alert').innerHTML = 'Auto cleared in ' + countdown + ' seconds';
-									if(countdown <= 0)
-									{
-									//clear_reset_data();
+									if(countdown <= 0){
+										stop_timers();
+										clear_reset_data();
+										}
 									}
-									}
-									*/
 
-			//not used
-			/*
 									function start_timers()
 									{//on copy button or click on answer
+									document.getElementById('timer_alert').innerHTML = '';
 									countdown = secondsToErase;
 									countdowninterval = setInterval(tick , 1000);
 									}
-									*/
 
-			//not used
-			/*
 									function stop_timers()
 									{//after count downs OR typing -> GeneratePW() OR clear_reset
 									//countdown = secondsToErase;
 									clearInterval(countdowninterval);
 									document.getElementById('timer_alert').innerHTML = '';
 									}
-									*/
 
 			function clear_reset_data() {
 			document.getElementById('Alias').value = '';
@@ -475,14 +475,21 @@ body { background-color: gray; }
 			document.getElementById('Answer').value = '';
 			copytoclipboard2('cleared');
 			document.getElementById('resize').value = 28;
-			//stop_timers();
 			}
 
 			function copytoclipboard(id) {
-			alert('IMPORTANT: Please click Clear/Reset AFTER pasting pw to clear the pw and clipboard!');
+			//alert('IMPORTANT: Please click Clear/Reset AFTER pasting pw to clear the pw and clipboard!');
 			var t = document.getElementById(id);
 			t.select();
 			document.execCommand("copy", false, null); /* Copy the text inside the text field */
+			let clear_me = confirm("PW is in clipboard.\nPaste your password now,\nthen click OK to clear all settings and saved passwords (secure)\nOR\nCancel to leave it as is. (not secure)");
+			if(clear_me === true){
+				clear_reset_data();
+				}
+			if( document.getElementById('clear_timer').checked ){
+				start_timers();
+			}
+
 			}
 
 			function copytoclipboard2(text) {
@@ -561,6 +568,7 @@ body { background-color: gray; }
 			//CheckForEmptyAliasSelect();
 			}
 
+/*
 			function CheckForEmptyAliasSelect() {
 			if (document.getElementById("localAliases").options.length === 0) {
 					//1st line should be 'Saved Local Aliases' if there are no elements only
@@ -572,6 +580,7 @@ body { background-color: gray; }
 			//always fill Alias with 'Saved Local Aliases'
 			document.getElementById('Alias').value = 'Saved Local Aliases';
 			}
+*/
 
 			function Copy() {
 			var Alias = document.getElementById('Alias').value;
