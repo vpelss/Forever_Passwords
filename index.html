@@ -204,7 +204,6 @@ body { background-color: gray; }
 
 
 			<script type="text/javascript">
-	"use strict";
 
 	var GlobalAssociativeArray = {}; //Alias list + comments and settings //use JSON associative array to squash duplicates
 
@@ -450,6 +449,7 @@ body { background-color: gray; }
 									if(countdown <= 0){
 										stop_timers();
 										clear_reset_data();
+										document.getElementById('timer_alert').innerHTML = '<font color=red>Important: Alias and Secret were deleted, but your password is still on the clipboard!</font>';
 										}
 									}
 
@@ -471,7 +471,6 @@ body { background-color: gray; }
 			document.getElementById('Alias').value = '';
 			document.getElementById('AliasComment').value = '';
 			document.getElementById('Secret').value = '';
-			//document.getElementById('Answer').value = 'cleared';
 			document.getElementById('Answer').value = '';
 			copytoclipboard2('cleared');
 			document.getElementById('resize').value = 28;
@@ -482,15 +481,21 @@ body { background-color: gray; }
 			var t = document.getElementById(id);
 			t.select();
 			document.execCommand("copy", false, null); /* Copy the text inside the text field */
-			let clear_me = confirm("PW is in clipboard.\nPaste your password now,\nthen click OK to clear all settings and saved passwords (secure)\nOR\nCancel to leave it as is. (not secure)");
-			if(clear_me === true){
-				clear_reset_data();
-				}
+
 			if( document.getElementById('clear_timer').checked ){
 				start_timers();
+				}
+			else{
+				clear_dialog();
 			}
+	}
 
-			}
+			function clear_dialog(){
+									let clear_me = confirm("PW is in clipboard.\nPaste your password now,\nthen click OK to clear all settings and saved passwords (secure)\nOR\nCancel to leave it as is. (not secure)");
+					if(clear_me === true){
+							clear_reset_data();
+							}
+							}
 
 			function copytoclipboard2(text) {
 			var textarea = document.createElement("TEXTAREA");
