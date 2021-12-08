@@ -51,9 +51,9 @@ body { background-color: gray; }
 
 	<div data-role="page" data-dom-cache="true" id='main'>
 		<div data-role="header">
-			<a href='#links' target='_top' class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-bars"></a>
+			<a href='#Menu' target='_top' class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-bars"></a>
 
-			<h6>Password Calc : FP</h6>
+			<h6>PW Calc : FP</h6>
 		</div>
 
 		<div role="main" class="ui-content">
@@ -65,7 +65,7 @@ body { background-color: gray; }
 								<tr>
 									<td width='90%'>
 										<div>
-											<input type="text" id='Alias' list='localAliases' placeholder="Site URL or Alias eg: mysite.com" onclick='this.select();' onkeyup='GeneratePW();'>
+											<input type="text" id='Alias' list='localAliases' placeholder="Site URL or Alias eg: mysite.com" onclick='this.select();' onkeyup='GeneratePW();' onchange='SetAlias(this);'>
 										</div>
 
 										<div>
@@ -187,21 +187,9 @@ body { background-color: gray; }
 						</table><input type="button" id="copybutton" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick='GeneratePW(); copytoclipboard("Answer"); Copy();'> <input type="button" id='clear_reset' value="Clear/Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not changed. Clipboard set to 'cleared'." onclick="clear_reset_data();">
 
 						<div>
-							<textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup Alias List. Save the text generated in a safe location." title='You can import/export your current Alias list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.'>
-					</textarea>
+							<input type="checkbox" id="" value="" onchange='' title=''> <label for=''>Timed Clear</label>
 						</div>
 
-						<div>
-							<input type='button' value='Get Alias List' onclick="GetAliasList()">
-						</div>
-
-						<div>
-							<input type='button' value='Save Alias List' onclick="if(confirm('This will change your list. Are you sure?')){SaveAliasList();}">
-
-						</div>
-						<div>
-						<input type='button' value='Export All' onclick="if(confirm('This will export all Alias, settings, and comments to clipboard. Are you sure?')){ ExportAll(); }">
-						</div>
 					</form>
 
 
@@ -617,6 +605,7 @@ body { background-color: gray; }
 			//delete item from associative array
 			delete GlobalAssociativeArray[SelectedName];
 			AssociativeArrayToCookie(); //save to cookie
+			document.getElementById("Alias").value = '';;
 			//CheckForEmptyAliasSelect();
 			}
 
@@ -723,7 +712,7 @@ body { background-color: gray; }
 	</div>
 
 
-	<div data-role="page" id='links'>
+	<div data-role="page" id='Menu'>
 		<div data-role="header">
 			<a href='#main' target='_top' class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-delete"></a>
 
@@ -731,6 +720,10 @@ body { background-color: gray; }
 		</div>
 
 		<div role="main" class="ui-content">
+
+<div>
+			<a href='#ManageAliasList' class='ui-btn ui-shadow ui-corner-all'>Backup/Restore/Copy Alias List</a>
+</div>
 
 <div>
 			<a href='https://github.com/vpelss/Forever_Passwords#readme' target='_blank' class='ui-btn ui-shadow ui-corner-all'>Read Me / Help</a>
@@ -748,11 +741,40 @@ body { background-color: gray; }
 			<a href='https://www.emogic.com/cgi/fp/' target='_blank' class='ui-btn ui-shadow ui-corner-all'>Doesn't work?</a>
 </div>
 
-
-
 		</div>
 	</div>
 
+<div data-role="page" id='ManageAliasList'>
+		<div data-role="header">
+			<a href='#main' target='_top' class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-delete"></a>
+
+			<h6>Password Calc : FP</h6>
+		</div>
+
+		<div role="main" class="ui-content">
+
+
+	<form>
+		<div>
+			<input type='button' value='Get Alias List' onclick="GetAliasList()">
+		</div>
+
+		<div>
+			<input type='button' value='Save Alias List' onclick="if(confirm('This will change your list. Are you sure?')){SaveAliasList();}">
+		</div>
+
+		<div>
+			<input type='button' value='Export All' onclick="if(confirm('This will export all Alias, settings, and comments to clipboard. Are you sure?')){ ExportAll(); }">
+		</div>
+
+		<div>
+			<textarea id="JSONSave" rows="3" cols="50" placeholder='Import/Export/Backup Alias List. Save the text generated in a safe location.' title='You can import/export your current Alias list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.'>
+	</textarea>
+		</div>
+	</form>
+
+		</div>
+	</div>
 
 </body>
 </html>
