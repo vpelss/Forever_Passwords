@@ -97,8 +97,9 @@ body { background-color: gray; }
 						<table>
 							<tr>
 								<td><label for='resize'>Answer Length</label></td>
-
-								<td><select id="resize" name="resize" title="Select desired Answer length." onchange=" GeneratePW();">
+								<td>
+									<div id='outerresize'>
+									<select id="resize" name="resize" title="Select desired Answer length." onchange=" GeneratePW();" data-mini="true">
 									<option value="8">
 										8
 									</option>
@@ -182,7 +183,9 @@ body { background-color: gray; }
 									<option value="28" selected>
 										28
 									</option>
-								</select></td>
+								</select>
+								</div>
+								</td>
 							</tr>
 						</table><input type="button" id="copybutton" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick='GeneratePW(); copytoclipboard("Answer"); Copy();'> <input type="button" id='clear_reset' value="Clear/Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not changed. Clipboard set to 'cleared'." onclick="clear_reset_data();">
 
@@ -605,7 +608,7 @@ body { background-color: gray; }
 			//delete item from associative array
 			delete GlobalAssociativeArray[SelectedName];
 			AssociativeArrayToCookie(); //save to cookie
-			document.getElementById("Alias").value = '';;
+			document.getElementById("Alias").value = '';
 			//CheckForEmptyAliasSelect();
 			}
 
@@ -647,11 +650,13 @@ body { background-color: gray; }
 					document.getElementById("AliasComment").value = '';
 			}
 			//get rezize
+			document.getElementById('resize').value = 28; //default
 			if (typeof GlobalAssociativeArray[Alias].resize != "undefined") {
 					document.getElementById('resize').value = GlobalAssociativeArray[Alias].resize;
-			} else {
-					document.getElementById('resize').value = 28;
-			}
+				}
+			if (typeof $ == 'function'){//if using jquery, refresh display is required
+					$( "#resize" ).selectmenu( "refresh" );
+					}
 			//get NoSpecialCharacters
 			if (typeof GlobalAssociativeArray[Alias].NoSpecialCharacters != "undefined") {
 					document.getElementById('NoSpecialCharacters').checked = GlobalAssociativeArray[Alias].NoSpecialCharacters;
@@ -707,7 +712,8 @@ body { background-color: gray; }
 
 			alert('All your Alias, settings, and comments are on the clipboard!');
 			}
-			</script>
+
+				</script>
 		</div>
 	</div>
 
