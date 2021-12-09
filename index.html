@@ -161,7 +161,7 @@
 							</tr>
 						</table>
 						<div>
-						<input type="button" id="copybutton" data-mini="true" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick='GeneratePW(); copytoclipboard("Answer"); Copy();'>
+						<input type="button" id="copybutton" data-mini="true" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick='GeneratePW(); addToList(); copytoclipboard("Answer");'>
 						</div>
 						<div>
 						<input type="button" id='clear_reset' data-mini="true" value="Clear / Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not changed. Clipboard set to 'cleared'." onclick="clear_reset_data();">
@@ -463,11 +463,11 @@
 	}
 
 			function clear_dialog(){
-									let clear_me = confirm("PW is in clipboard.\nPaste your password now,\nthen click OK to clear all settings and saved passwords (secure)\nOR\nCancel to leave it as is. (not secure)");
-					if(clear_me === true){
+				let clear_me = confirm("PW is in clipboard.\nPaste your password now,\nthen click OK to clear all settings and saved passwords (secure)\nOR\nCancel to leave it as is. (not secure)");
+				if(clear_me === true){
 							clear_reset_data();
 							}
-							}
+			}
 
 			function copytoclipboard2(text) {
 			var textarea = document.createElement("TEXTAREA");
@@ -559,7 +559,7 @@
 			}
 */
 
-			function Copy() {
+			function addToList() {
 			var Alias = document.getElementById('Alias').value;
 			GlobalAssociativeArray[Alias] = {
 					'comment': document.getElementById('AliasComment').value,
