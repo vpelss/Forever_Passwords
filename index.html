@@ -14,34 +14,7 @@
 
 	<title>Forever Passwords</title>
 	<style type="text/css">
-body { background-color: gray; }
-	aform { text-align: center; }
-		.atocenter
-	{
-	text-align: center;
-	}
-	input , textarea , select , .tocenter
-	{
-	font-size : 3vw;
-	}
-	@media screen and (min-width: 333px)  /* font-size / 3 % */
-	{
-	  input , textarea , select , .tocenter
-		{
-		font-size: 10px;
-	  }
-	}
-	.hideme
-	{
-	visibility: hidden;
-	}
- .ui-grid-a>.ui-block-a{
-	_width:90%;
-}
-.ui-grid-a>.ui-block-b{
-	_width:90%;
-}
-#Secret { /*fix / block password managers forcing fields to fill*/
+	#Secret { /*fix / block password managers forcing fields to fill*/
     -webkit-text-security: disc;
 }
 	</style>
@@ -58,8 +31,7 @@ body { background-color: gray; }
 
 		<div role="main" class="ui-content">
 
-					<form autocomplete="new-password">
-
+					<form>
 
 							<table>
 								<tr>
@@ -74,7 +46,7 @@ body { background-color: gray; }
 
 									</td>
 
-									<td width='10%'><input data-mini='true' type='button' value='X' onclick='if(confirm("This will delete " + document.getElementById("localAliases").value + " from your list. Are you sure?")){Delete();}'></td>
+									<td width='10%'><input data-mini='true' type='button' value='X' onclick='if(confirm("This will delete " + document.getElementById("Alias").value + " from your list. Are you sure?")){Delete();}'></td>
 								</tr>
 							</table>
 
@@ -192,7 +164,7 @@ body { background-color: gray; }
 						<input type="button" id="copybutton" data-mini="true" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick='GeneratePW(); copytoclipboard("Answer"); Copy();'>
 						</div>
 						<div>
-						<input type="button" id='clear_reset' data-mini="true" value="Clear/Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not changed. Clipboard set to 'cleared'." onclick="clear_reset_data();">
+						<input type="button" id='clear_reset' data-mini="true" value="Clear / Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not changed. Clipboard set to 'cleared'." onclick="clear_reset_data();">
 						</div>
 						<div>
 							<input type="checkbox" id='clear_timer' data-mini="true" value="" onchange='' title=''> <label for='clear_timer'>Timed Clear</label>
@@ -597,10 +569,10 @@ body { background-color: gray; }
 			AssociativeArrayToCookie();
 			BuildAliasSelect();
 			//set select drop down back to Alias
-					var sel = document.getElementById("localAliases");
-			selectOption(sel, Alias);
+			//var sel = document.getElementById("Alias");
+			//selectOption(sel, Alias);
 			}
-
+/*
 			function selectOption(sel, val) {
 			var opt;
 			// loop through options in select list
@@ -612,7 +584,7 @@ body { background-color: gray; }
 					}
 			}
 			}
-
+*/
 			function Delete() {
 			//var SelectedName = document.getElementById("localAliases").value; //get Selected name
 			var SelectedName = document.getElementById("Alias").value; //get Selected name
@@ -776,11 +748,11 @@ body { background-color: gray; }
 
 	<form>
 		<div>
-			<input type='button' value='Get Alias List' onclick="GetAliasList()">
+			<input type='button' value='Get Alias List' onclick='GetAliasList();'>
 		</div>
 
 		<div>
-			<input type='button' value='Save Alias List' onclick="if(confirm('This will change your list. Are you sure?')){SaveAliasList();}">
+			<input type='button' value='Save Alias List' onclick='if(confirm("This will change your list. Are you sure?")){SaveAliasList();}'>
 		</div>
 
 		<div>
