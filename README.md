@@ -66,3 +66,7 @@ The programs above, while excellent, are limited to where they can be used. So I
 # Created By
 
 https://www.emogic.com/
+
+# to do:
+
+- check box for ensure special character 
