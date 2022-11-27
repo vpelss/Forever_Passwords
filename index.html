@@ -22,226 +22,227 @@
 
 <body onload='BuildAliasSelect();'>
 
-	<div data-role="page" data-dom-cache="true" id='main'>
-		<div data-role="header">
-			<a href='#Menu' target='_top' class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-bars"></a>
+<div data-role="page" data-dom-cache="true" id='main'>
+	<div data-role="header">
+		<a href='#Menu' target='_top' class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-bars"></a>
 
-			<h6>PW Calc : FP</h6>
-		</div>
-
-		<div role="main" class="ui-content">
-
-					<form>
-
-							<table>
-								<tr>
-									<td width='90%'>
-										<div>
-											<input type="text" id='Alias' list='dataList' placeholder="Site URL or Alias eg: mysite.com" onclick='this.select();' onkeyup='GeneratePW();' onchange='AliasChanged(this.value);'>
-										</div>
-
-										<div>
-											<datalist id="dataList"></datalist>
-										</div>
-
-									</td>
-
-									<td width='10%'><input data-mini='true' type='button' value='X' onclick='if(confirm("This will delete " + document.getElementById("Alias").value + " from your list. Are you sure?")){Delete();}'></td>
-								</tr>
-							</table>
-
-						<div>
-							<input id='Secret' type='text' placeholder="Secret: A secure word or phrase" size='50' onkeyup="GeneratePW();" title='Your Alias and this Secret generate a unique Answer.'>
-						</div>
-
-						<div>
-							<input id='Answer' type='text' size='50' placeholder="Answer: A unique pw based on the Alias + Secret" readonly onclick="copytoclipboard('Answer');" title='This is your Answer to use.'>
-						</div>
-
-						<div>
-							<input type="checkbox" id="NoSpecialCharacters" data-mini="true" value="NoSpecialCharacters" onchange='GeneratePW();' title='Replaces base64 special characters + with X, / with Q, and = (base64 padding) with Z'> <label for='NoSpecialCharacters'>No Special Characters</label>
-						</div>
-
-						<div>
-							<input id='AliasComment' placeholder='Comments for Alias eg:13 characters,no special char' title='This is a field for a comment for the current Alias. For example, some sites may have special password requirements.' size='50'>
-						</div>
-
-						<table>
-							<tr>
-								<td><label for='resize'>Answer Length</label></td>
-								<td>
-									<div id='outerresize'>
-									<select id="resize" name="resize" title="Select desired Answer length." onchange=" GeneratePW();" data-mini="true">
-									<option value="8">
-										8
-									</option>
-
-									<option value="9">
-										9
-									</option>
-
-									<option value="10">
-										10
-									</option>
-
-									<option value="11">
-										11
-									</option>
-
-									<option value="12">
-										12
-									</option>
-
-									<option value="13">
-										13
-									</option>
-
-									<option value="14">
-										14
-									</option>
-
-									<option value="15">
-										15
-									</option>
-
-									<option value="16">
-										16
-									</option>
-
-									<option value="17">
-										17
-									</option>
-
-									<option value="18">
-										18
-									</option>
-
-									<option value="19">
-										19
-									</option>
-
-									<option value="20">
-										20
-									</option>
-
-									<option value="21">
-										21
-									</option>
-
-									<option value="22">
-										22
-									</option>
-
-									<option value="23">
-										23
-									</option>
-
-									<option value="24">
-										24
-									</option>
-
-									<option value="25">
-										25
-									</option>
-
-									<option value="26">
-										26
-									</option>
-
-									<option value="27">
-										27
-									</option>
-
-									<option value="28" selected>
-										28
-									</option>
-								</select>
-								</div>
-								</td>
-							</tr>
-						</table>
-						<div>
-						<input type="button" id="copybutton" data-mini="true" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick='GeneratePW(); addToList(); copytoclipboard("Answer");'>
-						</div>
-						<div>
-						<input type="button" id='clear_reset' data-mini="true" value="Clear / Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not changed. Clipboard set to 'cleared'." onclick="clear_reset_data();">
-						</div>
-						<div>
-							<input type="checkbox" id='clear_timer' data-mini="true" value="" onchange='' title=''> <label for='clear_timer'>Timed Clear</label>
-						</div>
-
-					</form>
-
-					<div id='timer_alert'></div>
-
-
-					</div>
+		<h6>PW Calc : FP</h6>
 	</div>
 
+	<div role="main" class="ui-content">
+		<form>
+			<table>
+				<tr>
+					<td width='90%'>
+						<div>
+							<input type="text" id='Alias' list='dataList' placeholder="Site URL or Alias eg: mysite.com" onclick='this.select();this.value="";GeneratePW();' onkeyup='GeneratePW();' onchange='AliasChanged(this.value);'>
+						</div>
 
-	<div data-role="page" id='Menu'>
-		<div data-role="header">
-			<a href='#main' target='_top' class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-delete"></a>
+						<div>
+							<datalist id="dataList"></datalist>
+						</div>
+					</td>
 
-			<h6>Password Calc : FP</h6>
-		</div>
+					<td width='10%'><input data-mini='true' type='button' value='X' onclick='if(confirm("This will delete " + document.getElementById("Alias").value + " from your list. Are you sure?")){Delete();}'></td>
+				</tr>
+			</table>
 
-		<div role="main" class="ui-content">
+			<div>
+				<input id='Secret' type='text' placeholder="Secret: A secure word or phrase" size='50' onkeyup="GeneratePW();" title='Your Alias and this Secret generate a unique Answer.'>
+			</div>
 
-<div>
+			<div>
+				<input id='Answer' type='text' size='50' placeholder="Answer: A unique pw based on the Alias + Secret" readonly onclick="copytoclipboard('Answer');" title='This is your Answer to use.'>
+			</div>
+
+			<div>
+				<input type="radio" checked=true id="NoCharacterReplacements" name="Character_Types" data-mini="true" value="NoCharacterReplacements" onchange='GeneratePW();' title='Replaces no characters. Default.'> <label for='NoCharacterReplacements'>No Character Replacements (default)</label>
+			</div>
+			<div>
+				<input type="radio" id="NoSpecialCharacters" name="Character_Types" data-mini="true" value="NoSpecialCharacters" onchange='GeneratePW();' title='Replaces base64 special characters + with X, / with Q, and = (base64 padding) with Z'> <label for='NoSpecialCharacters'>No Special Characters</label>
+			</div>
+			<div>
+				<input type="radio" id="ForceSpecialCharacters" name="Character_Types" data-mini="true" value="ForceSpecialCharacters" onchange='GeneratePW();' title='If no special characters, replace last character with a !'> <label for='ForceSpecialCharacters'>Force Special Characters</label>
+			</div>
+
+			<div>
+				<input id='AliasComment' placeholder='Comments for Alias eg:13 characters,no special char' title='This is a field for a comment for the current Alias. For example, some sites may have special password requirements.' size='50'>
+			</div>
+
+			<table>
+				<tr>
+					<td><label for='resize'>Answer Length</label></td>
+
+					<td>
+						<div id='outerresize'>
+							<select id="resize" name="resize" title="Select desired Answer length." onchange=" GeneratePW();" data-mini="true">
+								<option value="8">
+									8
+								</option>
+
+								<option value="9">
+									9
+								</option>
+
+								<option value="10">
+									10
+								</option>
+
+								<option value="11">
+									11
+								</option>
+
+								<option value="12">
+									12
+								</option>
+
+								<option value="13">
+									13
+								</option>
+
+								<option value="14">
+									14
+								</option>
+
+								<option value="15">
+									15
+								</option>
+
+								<option value="16">
+									16
+								</option>
+
+								<option value="17">
+									17
+								</option>
+
+								<option value="18">
+									18
+								</option>
+
+								<option value="19">
+									19
+								</option>
+
+								<option value="20">
+									20
+								</option>
+
+								<option value="21">
+									21
+								</option>
+
+								<option value="22">
+									22
+								</option>
+
+								<option value="23">
+									23
+								</option>
+
+								<option value="24">
+									24
+								</option>
+
+								<option value="25">
+									25
+								</option>
+
+								<option value="26">
+									26
+								</option>
+
+								<option value="27">
+									27
+								</option>
+
+								<option value="28" selected>
+									28
+								</option>
+							</select>
+						</div>
+					</td>
+				</tr>
+			</table>
+
+			<div>
+				<input type="button" id="copybutton" data-mini="true" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick='GeneratePW(); addToList(); copytoclipboard("Answer");'>
+			</div>
+
+			<div>
+				<input type="button" id='clear_reset' data-mini="true" value="Clear / Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not changed. Clipboard set to 'cleared'." onclick="clear_reset_data();">
+			</div>
+
+			<div>
+				<input type="checkbox" id='clear_timer' data-mini="true" value="" onchange='' title=''> <label for='clear_timer'>Timed Clear</label>
+			</div>
+		</form>
+
+		<div id='timer_alert'></div>
+	</div>
+</div>
+
+
+
+<div data-role="page" id='Menu'>
+	<div data-role="header">
+		<a href='#main' target='_top' class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-delete"></a>
+
+		<h6>Password Calc : FP</h6>
+	</div>
+
+	<div role="main" class="ui-content">
+		<div>
 			<a href='#ManageAliasList' class='ui-btn ui-shadow ui-corner-all'>Backup/Restore/Copy Alias List</a>
-</div>
+		</div>
 
-<div>
+		<div>
 			<a href='https://github.com/vpelss/Forever_Passwords#readme' target='_blank' class='ui-btn ui-shadow ui-corner-all'>Read Me / Help</a>
-</div>
+		</div>
 
-<div>
+		<div>
 			<a href='https://github.com/vpelss/Forever_Passwords' target='_blank' class='ui-btn ui-shadow ui-corner-all'>Github</a>
-</div>
+		</div>
 
-<div>
+		<div>
 			<a href='https://github.com/vpelss/Forever_Passwords/blob/master/Licence.txt' target='_blank' class='ui-btn ui-shadow ui-corner-all'>Licence</a>
-</div>
+		</div>
 
-<div>
+		<div>
 			<a href='https://www.emogic.com/cgi/fp/' target='_blank' class='ui-btn ui-shadow ui-corner-all'>Doesn't work?</a>
-</div>
-
 		</div>
 	</div>
+</div>
+
 
 <div data-role="page" id='ManageAliasList'>
-		<div data-role="header">
-			<a href='#main' target='_top' class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-delete"></a>
+	<div data-role="header">
+		<a href='#main' target='_top' class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-delete"></a>
 
-			<h6>Password Calc : FP</h6>
-		</div>
-
-		<div role="main" class="ui-content">
-
-
-	<form>
-		<div>
-			<input type='button' value='Get Alias List' onclick='GetAliasList();'>
-		</div>
-
-		<div>
-			<input type='button' value='Save Alias List' onclick='if(confirm("This will change your list. Are you sure?")){SaveAliasList();}'>
-		</div>
-
-		<div>
-			<input type='button' value='Export All' onclick="if(confirm('This will export all Alias, settings, and comments to clipboard. Are you sure?')){ ExportAll(); }">
-		</div>
-
-		<div>
-			<textarea id="JSONSave" rows="3" cols="50" placeholder='Import/Export/Backup Alias List. Save the text generated in a safe location.' title='You can import/export your current Alias list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.'>
-	</textarea>
-		</div>
-	</form>
-
-		</div>
+		<h6>Password Calc : FP</h6>
 	</div>
+
+	<div role="main" class="ui-content">
+		<form>
+			<div>
+				<input type='button' value='Get Alias List' onclick='GetAliasList();'>
+			</div>
+
+			<div>
+				<input type='button' value='Save Alias List' onclick='if(confirm("This will change your list. Are you sure?")){SaveAliasList();}'>
+			</div>
+
+			<div>
+				<input type='button' value='Export All' onclick="if(confirm('This will export all Alias, settings, and comments to clipboard. Are you sure?')){ ExportAll(); }">
+			</div>
+
+			<div>
+				<textarea id="JSONSave" rows="3" cols="50" placeholder='Import/Export/Backup Alias List. Save the text generated in a safe location.' title='You can import/export your current Alias list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.'>
+</textarea>
+			</div>
+		</form>
+	</div>
+</div>
 
 <script type = "text/javascript">
 
@@ -540,20 +541,28 @@ function GeneratePW() { //async is here in case we use digest / promise version
 	var v2 = hex2bin(v1); //xxd or hex2bin - to binary stream
 	var PW = btoa(v2); //BASE64 - binary to ascii base64
 
+	//size adjust first!
+	var size = document.getElementById('resize').options[document.getElementById('resize').selectedIndex].value;
+	PW = PW.slice(0, size);
+
+	var pattern;
 	if (document.getElementById('NoSpecialCharacters').checked == true) { //use capital X , Q , Z least used letters
-		var pattern = /[+]/g;
+		pattern = /[+]/g;
 		PW = PW.replace(pattern, "X");
 		pattern = /[/]/g;
 		PW = PW.replace(pattern, "Q");
 		pattern = /[=]/g;
 		PW = PW.replace(pattern, "Z");
 	}
+	if (document.getElementById('ForceSpecialCharacters').checked == true) { //chech for + , / , = . If note, replace last char with =
+		pattern = /[+/=]/g;
+		if(! pattern.test(PW) ){
+			PW = PW.replace(/.$/, '=');
+		}
+	}
 
-	var size = document.getElementById('resize').options[document.getElementById('resize').selectedIndex].value;
-	var PWslice = PW.slice(0, size);
-
-	document.getElementById('Answer').value = PWslice;
-}
+	document.getElementById('Answer').value = PW;
+	}
 
 function BuildAliasSelect() { //runs on start up
 	LocalStorageToVar();
@@ -570,11 +579,24 @@ function BuildAliasSelect() { //runs on start up
 
 function addToList() {
 	var Alias = document.getElementById('Alias').value;
+
+	//find and set Character_Types radio input
+	var Character_Types;
+	var elements = document.getElementsByName('Character_Types');
+	for (i = 0; i < elements.length; i++) {
+		if (elements[i].checked) {
+		Character_Types = elements[i].value;
+		break;
+		}
+	}
+
 	GlobalAssociativeArray[Alias] = {
 		'comment': document.getElementById('AliasComment').value,
 		'resize': document.getElementById('resize').value,
-		'NoSpecialCharacters': document.getElementById('NoSpecialCharacters').checked
+		'Character_Types' : Character_Types
+		//'NoSpecialCharacters': document.getElementById('NoSpecialCharacters').checked
 	}; //set as associative array
+
 	VarToLocalStorage();
 	BuildAliasSelect();
 }
@@ -656,13 +678,20 @@ function AliasChanged(value) {
 	if (typeof $ == 'function') { //if using jquery, refresh display is required
 		$("#resize").selectmenu("refresh");
 	}
-	if (typeof GlobalAssociativeArray[Alias].NoSpecialCharacters != "undefined") { //get NoSpecialCharacters
-		document.getElementById('NoSpecialCharacters').checked = GlobalAssociativeArray[Alias].NoSpecialCharacters;
-	} else {
-		document.getElementById('NoSpecialCharacters').checked = false;
+
+	if (typeof GlobalAssociativeArray[Alias].Character_Types != "undefined") { //get Character_Types and set it's element's checked to true
+		var id_is = GlobalAssociativeArray[Alias].Character_Types;
+		document.getElementById( id_is ).checked = true;
 	}
+	else { //set default
+		document.getElementById('NoCharacterReplacements').checked = true;
+	}
+	if (typeof $ == 'function') { //if using jquery, refresh display is required
+		$("#NoCharacterReplacements , #NoSpecialCharacters , #ForceSpecialCharacters").checkboxradio('refresh');
+	}
+
 	GeneratePW();
-}
+	}
 
 function GetAliasList() {
 	LocalStorageToVar();
