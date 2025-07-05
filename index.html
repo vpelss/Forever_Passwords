@@ -20,61 +20,61 @@
 	</style>
 </head>
 
-<body onload='BuildAliasSelect();'>
-
-<div data-role="page" data-dom-cache="true" id='main'>
+<body onload="BuildAliasSelect();">
+  
+<div data-role="page" data-dom-cache="true" id="main">
 	<div data-role="header">
-		<a href='#Menu' target='_top' class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-bars"></a>
+		<a href="#Menu" target="_top" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-bars"></a>
 
 		<h6>PW Calc : FP</h6>
-	</div>
+	</div> 
 
 	<div role="main" class="ui-content">
 		<form>
 			<table>
 				<tr>
-					<td width='90%'>
+					<td width="90%">
 						<div>
-							<input type="text" id='Alias' autocomplete='off' list='dataList' placeholder="Site URL or Alias eg: mysite.com" onclick='this.select();this.value="";GeneratePW();' onkeyup='GeneratePW();' onchange='AliasChanged(this.value);'>
+							<input type="text" id="Alias" autocomplete="off" list="dataList" placeholder="Site URL or Alias eg: mysite.com" onclick="this.select();this.value='';GeneratePW();" onkeyup="GeneratePW();" onchange="AliasChanged(this.value);">
 						</div>
 
 						<div>
-							<datalist id="dataList" autocomplete='off' ></datalist>
+							<datalist id="dataList" autocomplete="off" ></datalist>
 						</div>
 					</td>
 
-					<td width='10%'><input data-mini='true' type='button' value='X' onclick='if(confirm("This will delete " + document.getElementById("Alias").value + " from your list. Are you sure?")){Delete();}'></td>
+					<td width="10%"><input data-mini="true" type="button" value="X" onclick="if(confirm('This will delete ' + document.getElementById('Alias').value + ' from your list. Are you sure?')){Delete();}"></td>
 				</tr>
 			</table>
 
 			<div>
-				<input id='Secret' type='text' autocomplete='off' placeholder="Secret: A secure word or phrase" size='50' onkeyup="GeneratePW();" title='Your Alias and this Secret generate a unique Answer.'>
+				<input id="Secret" type="text" autocomplete="off" placeholder="Secret: A secure word or phrase" size="50" onkeyup="GeneratePW();" title="Your Alias and this Secret generate a unique Answer.">
 			</div>
 
 			<div>
-				<input id='Answer' type='text' size='50' placeholder="Answer: A unique pw based on the Alias + Secret" readonly onclick="copytoclipboard('Answer');" title='This is your Answer to use.'>
+				<input id="Answer" type="text" size="50" placeholder="Answer: A unique pw based on the Alias + Secret" readonly onclick="copytoclipboard('Answer');" title="This is your Answer to use.">
 			</div>
 
 			<div>
-				<input type="radio" checked=true id="NoCharacterReplacements" name="Character_Types" data-mini="true" value="NoCharacterReplacements" onchange='GeneratePW();' title='Replaces no characters. Default.'> <label for='NoCharacterReplacements'>No Character Replacements (default)</label>
+				<input type="radio" checked="true" id="NoCharacterReplacements" name="Character_Types" data-mini="true" value="NoCharacterReplacements" onchange="GeneratePW();" title="Replaces no characters. Default."> <label for="NoCharacterReplacements">No Character Replacements (default)</label>
 			</div>
 			<div>
-				<input type="radio" id="NoSpecialCharacters" name="Character_Types" data-mini="true" value="NoSpecialCharacters" onchange='GeneratePW();' title='Replaces base64 special characters + with X, / with Q, and = (base64 padding) with Z'> <label for='NoSpecialCharacters'>No Special Characters</label>
+				<input type="radio" id="NoSpecialCharacters" name="Character_Types" data-mini="true" value="NoSpecialCharacters" onchange="GeneratePW();" title="Replaces base64 special characters + with X, / with Q, and = (base64 padding) with Z"> <label for="NoSpecialCharacters">No Special Characters</label>
 			</div>
 			<div>
-				<input type="radio" id="ForceSpecialCharacters" name="Character_Types" data-mini="true" value="ForceSpecialCharacters" onchange='GeneratePW();' title='If no special characters, replace last character with a !'> <label for='ForceSpecialCharacters'>Force Special Characters</label>
+				<input type="radio" id="ForceSpecialCharacters" name="Character_Types" data-mini="true" value="ForceSpecialCharacters" onchange="GeneratePW();" title="If no special characters, replace last character with a !"> <label for="ForceSpecialCharacters">Force Special Characters</label>
 			</div>
 
 			<div>
-				<input id='AliasComment' placeholder='Comments for Alias eg:13 characters,no special char' title='This is a field for a comment for the current Alias. For example, some sites may have special password requirements.' size='50'>
+				<input id="AliasComment" placeholder="Comments for Alias eg:13 characters,no special char" title="This is a field for a comment for the current Alias. For example, some sites may have special password requirements." size="50">
 			</div>
 
 			<table>
 				<tr>
-					<td><label for='resize'>Answer Length</label></td>
+					<td><label for="resize">Answer Length</label></td>
 
 					<td>
-						<div id='outerresize'>
+						<div id="outerresize">
 							<select id="resize" name="resize" title="Select desired Answer length." onchange=" GeneratePW();" data-mini="true">
 								<option value="8">
 									8
@@ -166,58 +166,58 @@
 			</table>
 
 			<div>
-				<input type="button" id="copybutton" data-mini="true" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick='GeneratePW(); addToList(); copytoclipboard("Answer");'>
+				<input type="button" id="copybutton" data-mini="true" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick="GeneratePW(); addToList(); copytoclipboard('Answer');">
 			</div>
 
 			<div>
-				<input type="button" id='clear_reset' data-mini="true" value="Clear / Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not changed. Clipboard set to 'cleared'." onclick="clear_reset_data();">
+				<input type="button" id="clear_reset" data-mini="true" value="Clear / Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not changed. Clipboard set to 'cleared'." onclick="clear_reset_data();">
 			</div>
 
 			<div>
-				<input type="checkbox" id='clear_timer' data-mini="true" value="" onchange='' title=''> <label for='clear_timer'>Timed Clear</label>
+				<input type="checkbox" id="clear_timer" data-mini="true" value="" onchange="" title=""> <label for="clear_timer">Timed Clear</label>
 			</div>
 		</form>
 
-		<div id='timer_alert'></div>
+		<div id="timer_alert"></div>
 	</div>
 </div>
 
 
 
-<div data-role="page" id='Menu'>
+<div data-role="page" id="Menu">
 	<div data-role="header">
-		<a href='#main' target='_top' class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-delete"></a>
+		<a href="#main" target="_top" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-delete"></a>
 
 		<h6>Password Calc : FP</h6>
 	</div>
 
 	<div role="main" class="ui-content">
 		<div>
-			<a href='#ManageAliasList' class='ui-btn ui-shadow ui-corner-all'>Backup/Restore/Copy Alias List</a>
+			<a href="#ManageAliasList" class="ui-btn ui-shadow ui-corner-all">Backup/Restore/Copy Alias List</a>
 		</div>
 
 		<div>
-			<a href='https://github.com/vpelss/Forever_Passwords#readme' target='_blank' class='ui-btn ui-shadow ui-corner-all'>Read Me / Help</a>
+			<a href="https://github.com/vpelss/Forever_Passwords#readme" target="_blank" class="ui-btn ui-shadow ui-corner-all">Read Me / Help</a>
 		</div>
 
 		<div>
-			<a href='https://github.com/vpelss/Forever_Passwords' target='_blank' class='ui-btn ui-shadow ui-corner-all'>Github</a>
+			<a href="https://github.com/vpelss/Forever_Passwords" target="_blank" class="ui-btn ui-shadow ui-corner-all">Github</a>
 		</div>
 
 		<div>
-			<a href='https://github.com/vpelss/Forever_Passwords/blob/master/Licence.txt' target='_blank' class='ui-btn ui-shadow ui-corner-all'>Licence</a>
+			<a href="https://github.com/vpelss/Forever_Passwords/blob/master/Licence.txt" target="_blank" class="ui-btn ui-shadow ui-corner-all">Licence</a>
 		</div>
 
 		<div>
-			<a href='https://www.emogic.com/cgi/fp/' target='_blank' class='ui-btn ui-shadow ui-corner-all'>Doesn't work?</a>
+			<a href="https://www.emogic.com/cgi/fp/" target="_blank" class="ui-btn ui-shadow ui-corner-all">Doesn't work?</a>
 		</div>
 	</div>
 </div>
 
 
-<div data-role="page" id='ManageAliasList'>
+<div data-role="page" id="ManageAliasList">
 	<div data-role="header">
-		<a href='#main' target='_top' class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-delete"></a>
+		<a href="#main" target="_top" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-delete"></a>
 
 		<h6>Password Calc : FP</h6>
 	</div>
@@ -225,24 +225,26 @@
 	<div role="main" class="ui-content">
 		<form>
 			<div>
-				<input type='button' value='Get Alias List' onclick='GetAliasList();'>
+				<input type="button" value="Get Alias List" onclick="GetAliasList();">
 			</div>
 
 			<div>
-				<input type='button' value='Save Alias List' onclick='if(confirm("This will change your list. Are you sure?")){SaveAliasList();}'>
+				<input type="button" value="Save Alias List" onclick="if(confirm('This will change your list. Are you sure?'')){SaveAliasList();}">
 			</div>
 
 			<div>
-				<input type='button' value='Export All' onclick="if(confirm('This will export all Alias, settings, and comments to clipboard. Are you sure?')){ ExportAll(); }">
+				<input type="button" value="Export All" onclick="if(confirm('This will export all Alias, settings, and comments to clipboard. Are you sure?')){ ExportAll(); }">
 			</div>
 
 			<div>
-				<textarea id="JSONSave" rows="3" cols="50" placeholder='Import/Export/Backup Alias List. Save the text generated in a safe location.' title='You can import/export your current Alias list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.'>
+				<textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup Alias List. Save the text generated in a safe location." title="You can import/export your current Alias list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.">
 </textarea>
 			</div>
 		</form>
 	</div>
 </div>
+
+</body>
 
 <script type = "text/javascript">
 
