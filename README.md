@@ -8,7 +8,7 @@ Forever Passwords generates a unique password for each website that is long and 
 - Select an Alias : usually based on url (eg: emogic,com)
 - Select a Secret : select a long, complex, and hard to guess word, phrase, or password that will be used, with your Alias, to generate all your passwords (eg: The Sound of Music).
 - Forever_Passwords generates a unique, long, complex password based on each of your Alias and Secret combinations
-- click 'Copy' and use 
+- click 'Copy' and use. Not when you click 'Copy' your url will be saved in the URL/Alias dropdown menu. You can export this list to be used on another pc/browser. It is STRONGLY suggested you keep a backup of this alias list.
 - Please click Clear/Reset after you have pasted your password. This clears your secret and the clipboard.
 
 eg:
