@@ -12,9 +12,9 @@ Forever Passwords generates a unique SHA password for each website that is long 
 - Please click Clear/Reset after you have pasted your password. This clears your secret and the clipboard.
 
 eg:
-- alias: b
+- alias: a
 - secret: b 
-- always produces password: mpAPU4llpCaZTh6QYAkgr/C06NI=
+- always produces password: bAWWuKxgkZEYGpBRfVHAtIbyN5k=
 - (never use a simple secret as per this example)
 
 # Recommendations
