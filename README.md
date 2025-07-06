@@ -21,16 +21,16 @@ eg:
 
 - do not use your Secret anywhere else. eg as a password on a web site
 - your Secret should be long, complex, and imposible to guess
-- store a local copy of this program (Forever Passwords) in the unlikely case our site, emogic.com, is temporarily down. Have a backup plan! Download a copy to your PC. File->Save as HTML
-- Do not store passwords in the browser cache or in the cloud
+- store a local copy of this program (Forever Passwords) in the case our emogic.com, github or yor internet is temporarily down. Have a backup plan! Download a copy to your PC. File->Save as HTML
+- Do not your Secret in the browser cache
 - Clear your password in Forever Passwords after use. Click Clear/Reset
-- You should use a differnent password on every web service you use. See: https://haveibeenpwned.com/
+- You should use a differnent password on every web service you use. See: https://haveibeenpwned.com/. This will happen automatically if you use the site URL as the Alias field.
 
 # Possible issues
 
-- Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias
+- Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias, not just mysite.com
 - A website might not like the password generated. eg: too long, no special characters allowed
-- If your password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules. Eg: Add 'compromised' to the Alias (emogic.com.compromised) 
+- If your password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules. Eg: Add 'compromised' to the Alias (emogic.com.compromised) or (1.emogic.com) 
 
 Notes: Spaces are not allowed in the Alias field. The reason is that trailing spaces are not visible, but may be present, and this will create a different password and potentially cause confusion.
 
