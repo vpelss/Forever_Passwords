@@ -3,48 +3,48 @@
   "name": "Forever Passwords",
   "icons": [
     {
-      "src": "/icon.svg",
+      "src": "./icon.svg",
       "type": "image/svg+xml",
       "sizes": "512x512"
     },
     {
-      "src": "/icon.svg",
+      "src": "./icon.svg",
       "type": "image/svg+xml",
       "sizes": "192x192"
     }
   ],
-  "id": "/?source=pwa",
-  "start_url": "/",
+  "id": "./?source=pwa",
+  "start_url": "./",
   "background_color": "#3367D6",
   "display": "standalone",
-  "scope": "/",
+  "scope": "./",
   "theme_color": "#3367D6",
   "shortcuts": [
     {
       "name": "Forever Passwords",
       "short_name": "FP",
       "description": "Forever Passwords",
-      "url": "/",
-      "icons": [{ "src": "/icon.svg", "sizes": "192x192" }]
+      "url": "./",
+      "icons": [{ "src": "./icon.svg", "sizes": "192x192" }]
     },
     {
       "name": "Forever Passwords2",
       "short_name": "FP2",
       "description": "Forever Passwords 2",
-      "url": "/tomorrow?source=pwa",
-      "icons": [{ "src": "/icon.svg", "sizes": "192x192" }]
+      "url": "./?source=pwa",
+      "icons": [{ "src": "./icon.svg", "sizes": "192x192" }]
     }
   ],
   "description": "Weather forecast information",
   "screenshots": [
     {
-      "src": "/images/screenshot1.png",
+      "src": "./images/screenshot1.png",
       "type": "image/png",
       "sizes": "540x720",
       "form_factor": "narrow"
     },
     {
-      "src": "/images/screenshot2.jpg",
+      "src": "./images/screenshot2.jpg",
       "type": "image/jpg",
       "sizes": "720x540",
       "form_factor": "wide"
