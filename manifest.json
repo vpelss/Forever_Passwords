@@ -23,7 +23,7 @@
     {
       "name": "Forever Passwords",
       "short_name": "FP",
-      "description": "Forever Passwords",
+      "description": "Forever Passwords : Your passwords are not stored anywhere! Password Generator & Calculator using SHA Hash",
       "url": "./",
       "icons": [{ "src": "./192.svg", "sizes": "192x192" }]
     },
