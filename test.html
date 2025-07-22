@@ -1,0 +1,784 @@
+
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  
+  
+  
+
+  <title>Forever Passwords</title>
+
+    <link rel="canonical" href="https://codepen.io/vpelss/pen/ZEWqgPj">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="manifest" href="./manifest.json"> 
+
+  
+  <link rel='stylesheet' href='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css'>
+  
+<style>
+#Secret { /*fix / block password managers forcing fields to fill*/
+    -webkit-text-security: disc;
+</style>
+
+  
+  
+  
+</head>
+
+<body>
+  <h6>Password Calc : FP</h6><div data-role="page" data-dom-cache="true" id="main">
+  <div data-role="header">
+    <a href="#Menu" target="_top" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-bars"></a>
+
+    <h6>Forever Passwords : Your passwords are not stored anywhere!</h6>
+    <h6>Password Generator & Calculator using SHA Hash</h6>
+  </div>
+
+  <div role="main" class="ui-content">
+    <form>
+      <table>
+        <tr>
+          <td width="90%">
+            <div>
+              <input type="text" id="Alias" autocomplete="off" list="dataList" placeholder="Site URL or Alias eg: mysite.com" onclick="this.select();this.value='';GeneratePW();" onkeyup="GeneratePW();" onchange="AliasChanged(this.value);">
+            </div>
+
+            <div>
+              <datalist id="dataList" autocomplete="off"></datalist>
+            </div>
+          </td>
+
+          <td width="10%"><input data-mini="true" type="button" value="X" onclick="if(confirm('This will delete ' + document.getElementById('Alias').value + ' from your list. Are you sure?')){Delete();}"></td>
+        </tr>
+      </table>
+
+      <div>
+        <input id="Secret" type="text" autocomplete="off" placeholder="Secret: A secure word or phrase" size="50" onkeyup="GeneratePW();" title="Your Alias and this Secret generate a unique Answer.">
+      </div>
+
+      <div>
+        <input id="Answer" type="text" size="50" placeholder="Answer: A unique pw based on the Alias + Secret" readonly onclick="copytoclipboard('Answer');" title="This is your Answer to use.">
+      </div>
+
+      <div>
+        <input type="radio" checked="true" id="NoCharacterReplacements" name="Character_Types" data-mini="true" value="NoCharacterReplacements" onchange="GeneratePW();" title="Replaces no characters. Default."> <label for="NoCharacterReplacements">No Character Replacements (default)</label>
+      </div>
+      <div>
+        <input type="radio" id="NoSpecialCharacters" name="Character_Types" data-mini="true" value="NoSpecialCharacters" onchange="GeneratePW();" title="Replaces base64 special characters + with X, / with Q, and = (base64 padding) with Z"> <label for="NoSpecialCharacters">No Special Characters</label>
+      </div>
+      <div>
+        <input type="radio" id="ForceSpecialCharacters" name="Character_Types" data-mini="true" value="ForceSpecialCharacters" onchange="GeneratePW();" title="If no special characters, replace last character with a !"> <label for="ForceSpecialCharacters">Force Special Characters</label>
+      </div>
+
+      <div>
+        <input id="AliasComment" placeholder="Comments for Alias eg:13 characters,no special char" title="This is a field for a comment for the current Alias. For example, some sites may have special password requirements." size="50">
+      </div>
+
+      <table>
+        <tr>
+          <td><label for="resize">Answer Length</label></td>
+
+          <td>
+            <div id="outerresize">
+              <select id="resize" name="resize" title="Select desired Answer length." onchange=" GeneratePW();" data-mini="true">
+                <option value="8">
+                  8
+                </option>
+
+                <option value="9">
+                  9
+                </option>
+
+                <option value="10">
+                  10
+                </option>
+
+                <option value="11">
+                  11
+                </option>
+
+                <option value="12">
+                  12
+                </option>
+
+                <option value="13">
+                  13
+                </option>
+
+                <option value="14">
+                  14
+                </option>
+
+                <option value="15">
+                  15
+                </option>
+
+                <option value="16">
+                  16
+                </option>
+
+                <option value="17">
+                  17
+                </option>
+
+                <option value="18">
+                  18
+                </option>
+
+                <option value="19">
+                  19
+                </option>
+
+                <option value="20">
+                  20
+                </option>
+
+                <option value="21">
+                  21
+                </option>
+
+                <option value="22">
+                  22
+                </option>
+
+                <option value="23">
+                  23
+                </option>
+
+                <option value="24">
+                  24
+                </option>
+
+                <option value="25">
+                  25
+                </option>
+
+                <option value="26">
+                  26
+                </option>
+
+                <option value="27">
+                  27
+                </option>
+
+                <option value="28" selected>
+                  28
+                </option>
+              </select>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <div>
+        <input type="button" id="copybutton" data-mini="true" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick="GeneratePW(); addToList(); copytoclipboard('Answer');">
+      </div>
+
+      <div>
+        <input type="button" id="clear_reset" data-mini="true" value="Clear / Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not changed. Clipboard set to 'cleared'." onclick="clear_reset_data();">
+      </div>
+
+      <div>
+        <input type="checkbox" id="clear_timer" data-mini="true" value="" onchange="" title=""> <label for="clear_timer">Timed Clear</label>
+      </div>
+    </form>
+
+    <div id="timer_alert"></div>
+  </div>
+</div>
+
+<div data-role="page" id="Menu">
+  <div data-role="header">
+    <a href="#main" target="_top" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-delete"></a>
+
+    <h6>Forever Passwords : Your passwords are not stored anywhere!</h6>
+    <h6>Password Generator & Calculator using SHA Hash</h6>
+  </div>
+
+  <div role="main" class="ui-content">
+    <div>
+      <a href="#ManageAliasList" class="ui-btn ui-shadow ui-corner-all">Backup/Restore/Copy Alias List</a>
+    </div>
+
+    <div>
+      <a href="https://github.com/vpelss/Forever_Passwords#readme" target="_blank" class="ui-btn ui-shadow ui-corner-all">Read Me / Help</a>
+    </div>
+
+    <div>
+      <a href="https://github.com/vpelss/Forever_Passwords" target="_blank" class="ui-btn ui-shadow ui-corner-all">Github</a>
+    </div>
+
+    <div>
+      <a href="https://github.com/vpelss/Forever_Passwords/blob/master/Licence.txt" target="_blank" class="ui-btn ui-shadow ui-corner-all">Licence</a>
+    </div>
+
+    <div>
+      <a href="https://www.emogic.com/cgi/fp/" target="_blank" class="ui-btn ui-shadow ui-corner-all">Doesn't work?</a>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" id="ManageAliasList">
+  <div data-role="header">
+    <a href="#main" target="_top" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-delete"></a>
+
+    <h6>Password Calc : FP</h6>
+  </div>
+
+  <div role="main" class="ui-content">
+    <form>
+      <div>
+        <input type="button" value="Get Alias List" onclick="GetAliasList();">
+      </div>
+
+      <div>
+        <input type="button" value="Save Alias List" onclick="if(confirm('This will change your list. Are you sure?')){SaveAliasList();}">
+      </div>
+
+      <div>
+        <input type="button" value="Export All" onclick="if(confirm('This will export all Alias, settings, and comments to clipboard. Are you sure?')){ ExportAll(); }">
+      </div>
+
+      <div>
+        <textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup Alias List. Save the text generated in a safe location." title="You can import/export your current Alias list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.">
+</textarea>
+      </div>
+    </form>
+  </div>
+</div>
+  <script src='https://code.jquery.com/jquery-1.11.1.min.js'></script>
+<script src='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js'></script>
+      <script id="rendered-js" >
+let GlobalAssociativeArray = {}; //Alias list + comments and settings //use JSON associative array to squash duplicates
+let forever = new Date("October 17, 2050 03:24:00");
+let yesterday = new Date("October 17, 2000 03:24:00");
+let Cookie = {};
+Cookie.day = 86400000;
+Cookie.week = Cookie.day * 7;
+Cookie.month = Cookie.day * 31;
+Cookie.year = Cookie.day * 365;
+
+if (!supports_html5_storage()) {
+  alert(
+    "This browser does not support local storage. Limited Alias list size as we are using cookies."
+  );
+}
+
+document.body.onload = function() {BuildAliasSelect();};
+
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* SHA-1 (FIPS 180-4) implementation in JavaScript                    (c) Chris Veness 2002-2017  */
+/*                                                                                   MIT Licence  */
+/* www.movable-type.co.uk/scripts/sha1.html                                                       */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+//modified to work with IE 11 by vp
+
+/**
+ * SHA-1 hash function reference implementation.
+ *
+ * This is an annotated direct implementation of FIPS 180-4, without any optimisations. It is
+ * intended to aid understanding of the algorithm rather than for production use.
+ *
+ * While it could be used where performance is not critical, I would recommend using the 'Web
+ * Cryptography API' (developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest) for the browser,
+ * or the 'crypto' library (nodejs.org/api/crypto.html#crypto_class_hash) in Node.js.
+ *
+ * See csrc.nist.gov/groups/ST/toolkit/secure_hashing.html
+ *     csrc.nist.gov/groups/ST/toolkit/examples.html
+ */
+
+/**
+ * Generates SHA-1 hash of string.
+ *
+ * @param   {string} msg - (Unicode) string to be hashed.
+ * @param   {Object} [options]
+ * @param   {string} [options.msgFormat=string] - Message format: 'string' for JavaScript string
+ *   (gets converted to UTF-8 for hashing); 'hex-bytes' for string of hex bytes ('616263' = 'abc') .
+ * @param   {string} [options.outFormat=hex] - Output format: 'hex' for string of contiguous
+ *   hex bytes; 'hex-w' for grouping hex bytes into groups of (4 byte / 8 character) words.
+ * @returns {string} Hash of msg as hex character string.
+ */
+
+//build sha object
+let Sha1 = {};
+//Sha1.hash = function(msg, options)
+function Sha1_hash(msg) {
+  //Sha1.hash = function(msg) {
+  const defaults = {
+    msgFormat: "string",
+    outFormat: "hex"
+  };
+  //const opt = Object.assign(defaults, options);  ie 11 balks
+  const opt = defaults;
+
+  switch (opt.msgFormat) {
+    default: // default is to convert string to UTF-8, as SHA only deals with byte-streams
+    case "string":
+      msg = Sha1_utf8Encode(msg);
+      break;
+    case "hex-bytes":
+      msg = Sha1_hexBytesToString(msg);
+      break; // mostly for running tests
+  }
+
+  // constants [§4.2.1]
+  const K = [0x5a827999, 0x6ed9eba1, 0x8f1bbcdc, 0xca62c1d6];
+
+  // initial hash value [§5.3.1]
+  const H = [0x67452301, 0xefcdab89, 0x98badcfe, 0x10325476, 0xc3d2e1f0];
+
+  // PREPROCESSING [§6.1.1]
+  msg += String.fromCharCode(0x80); // add trailing '1' bit (+ 0's padding) to string [§5.1.1]
+
+  // convert string msg into 512-bit/16-integer blocks arrays of ints [§5.2.1]
+  const l = msg.length / 4 + 2; // length (in 32-bit integers) of msg + '1' + appended length
+  const N = Math.ceil(l / 16); // number of 16-integer-blocks required to hold 'l' ints
+  const M = new Array(N);
+
+  for (let i = 0; i < N; i++) {
+    M[i] = new Array(16);
+    for (let j = 0; j < 16; j++) {
+      // encode 4 chars per integer, big-endian encoding
+      M[i][j] =
+        (msg.charCodeAt(i * 64 + j * 4 + 0) << 24) |
+        (msg.charCodeAt(i * 64 + j * 4 + 1) << 16) |
+        (msg.charCodeAt(i * 64 + j * 4 + 2) << 8) |
+        (msg.charCodeAt(i * 64 + j * 4 + 3) << 0);
+    } // note running off the end of msg is ok 'cos bitwise ops on NaN return 0
+  }
+  // add length (in bits) into final pair of 32-bit integers (big-endian) [§5.1.1]
+  // note: most significant word would be (len-1)*8 >>> 32, but since JS converts
+  // bitwise-op args to 32 bits, we need to simulate this by arithmetic operators
+  M[N - 1][14] = ((msg.length - 1) * 8) / Math.pow(2, 32);
+  M[N - 1][14] = Math.floor(M[N - 1][14]);
+  M[N - 1][15] = ((msg.length - 1) * 8) & 0xffffffff;
+
+  // HASH COMPUTATION [§6.1.2]
+  for (i = 0; i < N; i++) {
+    const W = new Array(80);
+
+    // 1 - prepare message schedule 'W'
+    for (let t = 0; t < 16; t++) W[t] = M[i][t];
+    for (t = 16; t < 80; t++)
+      W[t] = Sha1_ROTL(W[t - 3] ^ W[t - 8] ^ W[t - 14] ^ W[t - 16], 1);
+
+    // 2 - initialise five working variables a, b, c, d, e with previous hash value
+    let a = H[0],
+      b = H[1],
+      c = H[2],
+      d = H[3],
+      e = H[4];
+
+    // 3 - main loop (use JavaScript '>>> 0' to emulate UInt32 variables)
+    for (t = 0; t < 80; t++) {
+      const s = Math.floor(t / 20); // seq for blocks of 'f' functions and 'K' constants
+      const T = (Sha1_ROTL(a, 5) + Sha1_f(s, b, c, d) + e + K[s] + W[t]) >>> 0;
+      e = d;
+      d = c;
+      c = Sha1_ROTL(b, 30) >>> 0;
+      b = a;
+      a = T;
+    }
+
+    // 4 - compute the new intermediate hash value (note 'addition modulo 2^32' - JavaScript
+    // '>>> 0' coerces to unsigned UInt32 which achieves modulo 2^32 addition)
+    H[0] = (H[0] + a) >>> 0;
+    H[1] = (H[1] + b) >>> 0;
+    H[2] = (H[2] + c) >>> 0;
+    H[3] = (H[3] + d) >>> 0;
+    H[4] = (H[4] + e) >>> 0;
+  }
+
+  // convert H0..H4 to hex strings (with leading zeros)
+  for (let h = 0; h < H.length; h++)
+    H[h] = ("00000000" + H[h].toString(16)).slice(-8);
+
+  // concatenate H0..H4, with separator if required
+  const separator = opt.outFormat == "hex-w" ? " " : "";
+
+  return H.join(separator);
+
+  /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+}
+// end hash
+
+/**
+ * Function 'f' [§4.1.1].
+ * @private
+ */
+//static f(s, x, y, z)  {
+function Sha1_f(s, x, y, z) {
+  //Sha1.f = function(s, x, y, z) {
+  switch (s) {
+    case 0:
+      return (x & y) ^ (~x & z); // Ch()
+    case 1:
+      return x ^ y ^ z; // Parity()
+    case 2:
+      return (x & y) ^ (x & z) ^ (y & z); // Maj()
+    case 3:
+      return x ^ y ^ z; // Parity()
+  }
+}
+
+/**
+ * Rotates left (circular left shift) value x by n positions [§3.2.5].
+ * @private
+ */
+//static ROTL(x, n) {
+function Sha1_ROTL(x, n) {
+  //Sha1.ROTL = function(x, n) {
+  return (x << n) | (x >>> (32 - n));
+}
+
+//let utf8Encode = function (str)
+function Sha1_utf8Encode(str) {
+  //Sha1.utf8Encode = function(str) {
+  return unescape(encodeURIComponent(str)); // monsur.hossa.in/2012/07/20/utf-8-in-javascript.html
+}
+
+function Sha1_hexBytesToString(hexStr) {
+  // convert string of hex numbers to a string of chars (eg '616263' -> 'abc').
+  //Sha1.hexBytesToString = function(hexStr) { // convert string of hex numbers to a string of chars (eg '616263' -> 'abc').
+  //modified to work with IE 11
+  //const str = hexStr.replace(' ', ''); // allow space-separated groups
+  //return str === '' ? '' : str.match(/.{2}/g).map(byte => String.fromCharCode(parseInt(byte, 16))).join('');
+  let bytes = [];
+  for (let i = 0; i < hexStr.length - 1; i += 2)
+    bytes.push(parseInt(hexStr.substr(i, 2), 16));
+
+  return String.fromCharCode.apply(String, bytes);
+}
+
+function hex2bin(hexStr) {
+  return Sha1_hexBytesToString(hexStr);
+}
+
+/*function buf2hex(buffer){ // buffer is an ArrayBuffer
+				return Array.prototype.map.call(new Uint8Array(buffer), x => ('00' + x.toString(16)).slice(-2)).join('');
+				}*/
+
+function CheckForNoSpaces(id) {
+  let t = document.getElementById(id);
+  if (t.value.match(/\s/g)) {
+    alert("Sorry, you are not allowed to enter any spaces");
+    t.value = t.value.replace(/\s/g, "");
+  }
+}
+
+document.addEventListener("dcopy", function (e) {
+  e.clipboardData.setData(
+    "text/plain",
+    document.getElementById("Answer").value
+  );
+});
+
+let secondsToErase = 10;
+let countdown;
+let countdowninterval;
+
+function tick() {
+  //every second count down one
+  countdown--;
+  document.getElementById("timer_alert").innerHTML =
+    "Auto cleared in " + countdown + " seconds";
+  if (countdown <= 0) {
+    stop_timers();
+    clear_reset_data();
+    document.getElementById("timer_alert").innerHTML =
+      "<font color=red>Important: Alias and Secret were deleted, but your password is still on the clipboard!</font>";
+  }
+}
+
+function start_timers() {
+  //on copy button or click on answer
+  document.getElementById("timer_alert").innerHTML = "";
+  countdown = secondsToErase;
+  countdowninterval = setInterval(tick, 1000);
+}
+
+function stop_timers() {
+  //after count downs OR typing -> GeneratePW() OR clear_reset
+  clearInterval(countdowninterval);
+  document.getElementById("timer_alert").innerHTML = "";
+}
+
+function clear_reset_data() {
+  document.getElementById("Alias").value = "";
+  document.getElementById("AliasComment").value = "";
+  document.getElementById("Secret").value = "";
+  document.getElementById("Answer").value = "";
+  copytoclipboard2("cleared");
+  document.getElementById("resize").value = 28;
+}
+
+function copytoclipboard(id) {
+  //alert('IMPORTANT: Please click Clear/Reset AFTER pasting pw to clear the pw and clipboard!');
+  let t = document.getElementById(id);
+  t.select();
+  document.execCommand(
+    "copy",
+    false,
+    null
+  ); /* Copy the text inside the text field */
+
+  if (document.getElementById("clear_timer").checked) {
+    start_timers();
+  } else {
+    clear_dialog();
+  }
+}
+
+function clear_dialog() {
+  let clear_me = confirm(
+    "PW is in clipboard.\nPaste your password now,\nthen click OK to clear all settings and saved passwords (secure)\nOR\nCancel to leave it as is. (not secure)"
+  );
+  if (clear_me === true) {
+    clear_reset_data();
+  }
+}
+
+function copytoclipboard2(text) {
+  let textarea = document.createElement("TEXTAREA");
+  document.body.appendChild(textarea);
+  textarea.innerHTML = text;
+  textarea.value = text;
+  textarea.select();
+  document.execCommand("copy", false, null);
+  textarea.remove();
+}
+
+//async function GeneratePW() //async is here incase we use digest / promise version
+function GeneratePW() {
+  //async is here in case we use digest / promise version
+  let Alias = document.getElementById("Alias").value;
+  CheckForNoSpaces("Alias");
+  let Secret = document.getElementById("Secret").value;
+  if (Secret === "") {
+    document.getElementById("Answer").value = "";
+    return;
+  }
+  let total = Secret + Alias;
+
+  let v1 = Sha1_hash(total, ""); //sha1 160 bit, 20 byte, 40 hex
+  //OR
+  /*
+			//see: https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest
+			const encoder = new TextEncoder();
+			const data = encoder.encode(total);
+			const digest = crypto.subtle.digest( 'SHA-1' , data); //start promise 'digest'
+			let value = await digest; //better than digest.then(function(value) //sha1 160 bit, 20 byte, 40 hex
+			let v1 = buf2hex(value);
+			*/
+
+  let v2 = hex2bin(v1); //xxd or hex2bin - to binary stream
+  let PW = btoa(v2); //BASE64 - binary to ascii base64
+
+  //size adjust first!
+  let size = document.getElementById("resize").options[
+    document.getElementById("resize").selectedIndex
+  ].value;
+  PW = PW.slice(0, size);
+
+  let pattern;
+  if (document.getElementById("NoSpecialCharacters").checked == true) {
+    //use capital X , Q , Z least used letters
+    pattern = /[+]/g;
+    PW = PW.replace(pattern, "X");
+    pattern = /[/]/g;
+    PW = PW.replace(pattern, "Q");
+    pattern = /[=]/g;
+    PW = PW.replace(pattern, "Z");
+  }
+  if (document.getElementById("ForceSpecialCharacters").checked == true) {
+    //chech for + , / , = . If note, replace last char with =
+    pattern = /[+/=]/g;
+    if (!pattern.test(PW)) {
+      PW = PW.replace(/.$/, "=");
+    }
+  }
+
+  document.getElementById("Answer").value = PW;
+}
+
+function BuildAliasSelect() {
+  //runs on start up
+  LocalStorageToVar();
+  document.getElementById("dataList").innerHTML = ""; //erase current list
+  // take GlobalAssociativeArray and add index to <select>
+  for (let index in GlobalAssociativeArray)
+    if (GlobalAssociativeArray.hasOwnProperty(index)) {
+      let x = document.getElementById("dataList");
+      let option = document.createElement("option");
+      option.id = index;
+      option.text = index;
+      x.appendChild(option);
+    }
+}
+
+function addToList() {
+  let Alias = document.getElementById("Alias").value;
+
+  //find and set Character_Types radio input
+  let Character_Types;
+  let elements = document.getElementsByName("Character_Types");
+  for (i = 0; i < elements.length; i++) {
+    if (elements[i].checked) {
+      Character_Types = elements[i].value;
+      break;
+    }
+  }
+
+  GlobalAssociativeArray[Alias] = {
+    comment: document.getElementById("AliasComment").value,
+    resize: document.getElementById("resize").value,
+    Character_Types: Character_Types
+    //'NoSpecialCharacters': document.getElementById('NoSpecialCharacters').checked
+  }; //set as associative array
+
+  VarToLocalStorage();
+  BuildAliasSelect();
+}
+
+function Delete() {
+  let SelectedName = document.getElementById("Alias").value; //get Selected name
+  let x = document.getElementById(SelectedName);
+  x.remove(x.selectedIndex);
+  //delete item from associative array
+  delete GlobalAssociativeArray[SelectedName];
+  VarToLocalStorage();
+  document.getElementById("Alias").value = "";
+}
+
+function VarToLocalStorage() {
+  let AliasListString = JSON.stringify(GlobalAssociativeArray);
+  if (supports_html5_storage()) {
+    localStorage.FP = AliasListString;
+    setCookie("AliasList", "", yesterday, "", "", ""); //erase cookie as we want to use local storage now.
+  } else {
+    //save to cookie
+    setCookie("AliasList", AliasListString, forever, "", "", "");
+  }
+}
+
+function LocalStorageToVar() {
+  if (supports_html5_storage()) {
+    if (typeof localStorage.FP === "undefined") {
+      return;
+    } //nothing to restore
+    GlobalAssociativeArray = JSON.parse(localStorage.FP);
+  } else {
+    let data = getCookie("AliasList") || "{}";
+    GlobalAssociativeArray = JSON.parse(data);
+  }
+}
+
+function getCookie(name) {
+  let cookies = document.cookie;
+  let start = cookies.indexOf(name + "=");
+  if (start == -1) return null;
+  let len = start + name.length + 1;
+  let end = cookies.indexOf(";", len);
+  if (end == -1) end = cookies.length;
+  return unescape(cookies.substring(len, end));
+}
+
+function setCookie(name, value, expires, path, domain, secure) {
+  value = escape(value);
+  expires = expires ? ";expires=" + expires.toGMTString() : "";
+  path = path ? ";path=" + path : "";
+  domain = domain ? ";domain=" + domain : "";
+  secure = secure ? ";secure" : "";
+
+  document.cookie = name + "=" + value + expires + path + domain + secure;
+}
+
+function AliasChanged(value) {
+  document.getElementById("resize").value = 28; //for the case of Saved_Local_Aliases that has no possible length set. 28 is default
+  let Alias = value; //get Selected Alias
+  //exit if Alias does not exist. For 1st dummy option
+  if (typeof GlobalAssociativeArray[Alias] == "undefined") {
+    GeneratePW(); //for Saved_Local_Aliases option that does not exist in the GlobalAssociativeArray by design
+    document.getElementById("AliasComment").value = ""; //clear comments
+    return;
+  }
+  //Get Comment
+  if (typeof GlobalAssociativeArray[Alias].comment != "undefined") {
+    document.getElementById("AliasComment").value =
+      GlobalAssociativeArray[Alias].comment;
+  } else {
+    document.getElementById("AliasComment").value = "";
+  }
+  //get rezize
+  document.getElementById("resize").value = 28; //default
+  if (typeof GlobalAssociativeArray[Alias].resize != "undefined") {
+    document.getElementById("resize").value =
+      GlobalAssociativeArray[Alias].resize;
+  }
+  if (typeof $ == "function") {
+    //if using jquery, refresh display is required
+    $("#resize").selectmenu("refresh");
+  }
+
+  if (typeof GlobalAssociativeArray[Alias].Character_Types != "undefined") {
+    //get Character_Types and set it's element's checked to true
+    let id_is = GlobalAssociativeArray[Alias].Character_Types;
+    document.getElementById(id_is).checked = true;
+  } else {
+    //set default
+    document.getElementById("NoCharacterReplacements").checked = true;
+  }
+  if (typeof $ == "function") {
+    //if using jquery, refresh display is required
+    $(
+      "#NoCharacterReplacements , #NoSpecialCharacters , #ForceSpecialCharacters"
+    ).checkboxradio("refresh");
+  }
+
+  GeneratePW();
+}
+
+function GetAliasList() {
+  LocalStorageToVar();
+  document.getElementById("JSONSave").value = JSON.stringify(
+    GlobalAssociativeArray,
+    null,
+    "\t"
+  );
+}
+
+function SaveAliasList() {
+  if (document.getElementById("JSONSave").value == "") {
+    GlobalAssociativeArray = {};
+  } else {
+    GlobalAssociativeArray = JSON.parse(
+      document.getElementById("JSONSave").value
+    );
+  }
+  VarToLocalStorage();
+  BuildAliasSelect();
+}
+
+function supports_html5_storage() {
+  try {
+    return "localStorage" in window && window.localStorage !== null;
+    //return false;
+  } catch (e) {
+    return false;
+  }
+}
+
+function ExportAll() {
+  LocalStorageToVar();
+  copytoclipboard2(JSON.stringify(GlobalAssociativeArray));
+  alert("All your Alias, settings, and comments are on the clipboard!");
+}
+    </script>
+
+  
+</body>
+
+</html>
