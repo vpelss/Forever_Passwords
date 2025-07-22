@@ -19,23 +19,7 @@
   "display": "standalone",
   "scope": "./",
   "theme_color": "#3367D6",
-  "shortcuts": [
-    {
-      "name": "Forever Passwords",
-      "short_name": "FP",
-      "description": "Forever Passwords : Your passwords are not stored anywhere! Password Generator & Calculator using SHA Hash",
-      "url": "./",
-      "icons": [{ "src": "./192.svg", "sizes": "192x192" }]
-    },
-    {
-      "name": "Forever Passwords2",
-      "short_name": "FP2",
-      "description": "Forever Passwords 2",
-      "url": "./?source=pwa",
-      "icons": [{ "src": "./192.svg", "sizes": "192x192" }]
-    }
-  ],
-  "description": "Forever Passwords : Your passwords are not stored anywhere! Password Generator & Calculator using SHA Hash",
+  "description": "Forever Passwords : Your passwords are not stored anywhere! Password Generator &amp; Calculator using SHA Hash",
   "screenshots": [
     {
       "src": "./192.svg",
@@ -49,5 +33,9 @@
       "sizes": "192x192",
       "form_factor": "wide"
     }
+  ],
+  "categories": [
+    "security",
+    "utilities"
   ]
 }
