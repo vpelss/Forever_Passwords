@@ -9,18 +9,14 @@
 
 <body>
 
-<h6 align='center'>Note: for off brand browsers. Calc done on emogic.com, not by JS</h6>
-<h6 align='center'>based on PWCalc</h6>
-<h2 align='center'>Forever Passwords</h2>
-
 <?php
-if ( $_GET["length"] )
+if ( isset( $_GET["alias"] ) )
     {
     $alias = $_GET["alias"] ; 
     $secret = $_GET["secret"] ;
     $length = $_GET["length"];   
     }
-if ( $_POST["length"] )
+if ( isset ( $_POST["alias"] ) )
     {
     $alias = $_POST["alias"]; 
     $secret =  $_POST["secret"];
@@ -34,13 +30,18 @@ $c = base64_encode ( $b );
 $c = substr($c,0,$length);
 ?>
 
+
+<h6 align='center'>Note: for off brand browsers. Calc done on emogic.com, not by JS</h6>
+<h6 align='center'>based on PWCalc</h6>
+<h2 align='center'>Forever Passwords</h2>
+
 <div class='tocenter'>
 <form action=""  method="post" target="_top" autocomplete="off" >
     <input name='alias' placeholder="Alias eg: mysite.com : no spaces, they will be removed" size='50'> 
     <br><br>
     <input name='secret' type='password'placeholder="Secret: A secure word or phrase" size='50'>
   <br> <br>
-    <input name='answer' placeholder="Answer: A unique pw based on the Alias + Secret" value="<? echo $c ?>" size='50'>
+    <input name="answer" placeholder="Answer: A unique pw based on the Alias + Secret" value="<?php echo $c ?>" size="50">
   <br> <br>
       <select name='length'>
         <option value="8">8</option>
@@ -64,7 +65,7 @@ $c = substr($c,0,$length);
         <option value="26">26</option>
         <option value="27">27</option>
         <option value="28">28</option>   
-  </select> 
+  </select>
   <br> <br>
 <input type='submit' value='Get Password' ">
 </form>
@@ -73,6 +74,7 @@ $c = substr($c,0,$length);
 <p class='tocenter'><a href='https://raw.githubusercontent.com/vpelss/Forever_Passwords/master/README.md' target='_blank'>Read Me / Help</a></p>
 <p class='tocenter'><a href='https://github.com/vpelss/Forever_Passwords' target='_blank'>Github</a></p>
 <p class='tocenter'><a href='https://www.emogic.com/' target='_blank'>by Emogic</a></p>
+
 
 </body>
  
