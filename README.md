@@ -1,6 +1,8 @@
 
 # About
 
+With Forever Passwords, your passwords are not stored anywhere. Passwords are Calculated using SHA Hash.
+
 Forever Passwords generates a unique SHA password for each website that is long and complex (impossible to guess and difficult for shoulder surffing). You only need to remember one Secret phrase or word to generate all your passwords. The passwords are not stored anywhere but generated when you need them. This gives you peace of mind that your passwords are not store in the cloud, or transfered over the internet. 
 
 # How to use Forever_Passwords
