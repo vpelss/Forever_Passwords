@@ -7,7 +7,7 @@ Forever Passwords generates a unique SHA password for each website that is long 
 
 # How to use Forever_Passwords
 
-- run index.html off the website (https://www.emogic.com/mine/fp/) or (https://vpelss.github.io/Forever_Passwords/) or your locally stored version
+- run index.html off the website (https://vpelss.github.io/Forever_Passwords/) or your locally stored version
 - Select an Alias : usually based on url (eg: emogic,com)
 - Select a Secret : select a long, complex, and hard to guess word, phrase, or password that will be used, with your Alias, to generate all your passwords (eg: The Sound of Music).
 - Forever_Passwords generates a unique, long, complex password based on each of your Alias and Secret combinations
