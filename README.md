@@ -45,14 +45,14 @@ https://www.grc.com/haystack.htm
 You can do the same password generation from a shell or command line:
 
 On MAC using
-echo -n "mysecretgmail.com" | shasum | xxd -r -p | base64
+echo -n "mysecret+url" | shasum | xxd -r -p | base64
 
 or
 
 On Linux using
-echo -n "mysecretgmail.com" | sha1sum | xxd -r -p | base64
+echo -n "mysecret+url" | sha1sum | xxd -r -p | base64
 
-index.php is for browsers that can't run the JS version.
+backup.php is for browsers that can't run the JS version.
 
 # Based On
 
@@ -64,7 +64,7 @@ https://extensions.gnome.org/extension/825/password-calculator/
 
 https://bixense.com/pwcalculator/
 
-The programs above, while excellent, are limited to where they can be used. So I wrote Forever_Passwords in HTML/Javascript to attempt to make it accessible to all platforms and browsers. It's single file design allows you to easily store the code locally for stand alone systems. Tested with newest Chrome, Firefox, and IE 11.
+The programs above, while excellent, are limited to where they can be used. So I wrote Forever_Passwords in HTML/Javascript to attempt to make it accessible to all platforms and browsers. It's single file design allows you to easily store the code locally for stand alone systems. Tested with newest Chrome, Firefox, and Edge.
 
 # Created By
 
