@@ -11,7 +11,7 @@ Forever Passwords generates a unique SHA password for each website that is long 
 - Select an Alias : usually based on url (eg: emogic,com)
 - Select a Secret : select a long, complex, and hard to guess word, phrase, or password that will be used, with your Alias, to generate all your passwords (eg: The Sound of Music).
 - Forever_Passwords generates a unique, long, complex password based on each of your Alias and Secret combinations
-- click 'Copy' and use. Not when you click 'Copy' your url will be saved in the URL/Alias dropdown menu. You can export this list to be used on another pc/browser. It is STRONGLY suggested you keep a backup of this alias list.
+- click 'Copy' and use. Note, when you click 'Copy', your url will be saved in the URL/Alias dropdown menu. You can export this Alias list to be used on another pc/browser. It is STRONGLY suggested you keep a backup of this alias list.
 - Please click Clear/Reset after you have pasted your password. This clears your secret and the clipboard.
 
 eg:
@@ -25,7 +25,7 @@ eg:
 - do not use your Secret anywhere else. eg as a password on a web site
 - your Secret should be long, complex, and imposible to guess
 - store a local copy of this program (Forever Passwords) in the case our emogic.com, github or yor internet is temporarily down. Have a backup plan! Download a copy to your PC. File->Save as HTML
-- Do not your Secret in the browser cache
+- Do not save your Secret in the browser cache or in a password manager
 - Clear your password in Forever Passwords after use. Click Clear/Reset
 - You should use a differnent password on every web service you use. See: https://haveibeenpwned.com/. This will happen automatically if you use the site URL as the Alias field.
 
