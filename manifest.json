@@ -1,5 +1,5 @@
 {
-  "short_name": "FPw",
+  "short_name": "fPw",
   "name": "Forever Passwords",
   "icons": [
     {
@@ -16,7 +16,7 @@
   "id": "/Forever_Passwords/",
   "start_url": "./",
   "background_color": "#3367D6",
-  "display": "standalone",
+  "display": "minimal-ui",
   "scope": "/",
   "theme_color": "#3367D6",
   "description": "Forever Passwords : Your passwords are not stored anywhere! Password Generator &amp; Calculator using SHA Hash",
