@@ -72,4 +72,5 @@ https://www.emogic.com/
 
 # to do:
 
+- timed clear wipes clipboard
 - check box for ensure special character 
