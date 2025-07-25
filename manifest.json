@@ -22,16 +22,10 @@
   "description": "Forever Passwords : Your passwords are not stored anywhere! Password Generator and Calculator using SHA1 Hash",
   "screenshots": [
     {
-      "src": "./192.svg",
-      "type": "image/svg+xml",
+      "src": "./192.png",
+      "type": "image/png",
       "sizes": "192x192",
       "form_factor": "narrow"
-    },
-    {
-      "src": "./192.svg",
-      "type": "image/svg+xml",
-      "sizes": "192x192",
-      "form_factor": "wide"
     }
   ],
   "categories": [
