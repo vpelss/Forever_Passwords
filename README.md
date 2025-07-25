@@ -5,7 +5,7 @@ With Forever Passwords, your passwords are not stored anywhere. Passwords are Ca
 
 Forever Passwords generates a unique SHA password for each website that is long and complex (impossible to guess and difficult for shoulder surffing). You only need to remember one Secret phrase or word to generate all your passwords. The passwords are not stored anywhere but generated when you need them. This gives you peace of mind that your passwords are not store in the cloud, or transfered over the internet. 
 
-You can now install as a Proggressive Web App (PWA) in your modern browser. On a desktop usually an install icon is just right of the url box. On a phone it is usually under the uper threee dots or maybe under share icon on an iphone and may say 'Add to Home Screen'. <a href="https://vpelss.github.io/Forever_Passwords" target="_blank">fp</a>
+You can now install as a Proggressive Web App (PWA) in your modern browser. On a desktop usually an install icon is just right of the url box. On a phone it is usually under the uper threee dots or maybe under share icon on an iphone and may say 'Add to Home Screen'. <a href="https://vpelss.github.io/Forever_Passwords" target="blank">ffffffffffffffffp</a>
 
 # How to use Forever_Passwords
 
