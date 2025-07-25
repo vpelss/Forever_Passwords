@@ -5,11 +5,11 @@ With Forever Passwords, your passwords are not stored anywhere. Passwords are Ca
 
 Forever Passwords generates a unique SHA password for each website that is long and complex (impossible to guess and difficult for shoulder surffing). You only need to remember one Secret phrase or word to generate all your passwords. The passwords are not stored anywhere but generated when you need them. This gives you peace of mind that your passwords are not store in the cloud, or transfered over the internet. 
 
-You can now install as a Proggressive Web App (PWA) in your modern browser. On a desktop usually an install icon is just right of the url box. On a phone it is usually under the uper threee dots or maybe under share icon on an iphone and may say 'Add to Home Screen'.
+You can now install as a Proggressive Web App (PWA) in your modern browser. On a desktop usually an install icon is just right of the url box. On a phone it is usually under the uper threee dots or maybe under share icon on an iphone and may say 'Add to Home Screen'. <a href="https://vpelss.github.io/Forever_Passwords">https://vpelss.github.io/Forever_Passwords</a>
 
 # How to use Forever_Passwords
 
-- run index.html off the website (https://vpelss.github.io/Forever_Passwords/) or your locally stored version
+- run index.html off the website (https://vpelss.github.io/Forever_Passwords) or your locally stored version
 - Select an Alias : usually based on url (eg: emogic,com)
 - Select a Secret : select a long, complex, and hard to guess word, phrase, or password that will be used, with your Alias, to generate all your passwords (eg: The Sound of Music).
 - Forever_Passwords generates a unique, long, complex password based on each of your Alias and Secret combinations
