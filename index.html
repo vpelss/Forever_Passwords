@@ -8,7 +8,7 @@
   
   
 
-  <title>Forever Passwords</title>
+  <title>Forever Passwords Jmobile</title>
 
     <link rel="canonical" href="https://codepen.io/vpelss/pen/ZEWqgPj">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -33,10 +33,11 @@
     <a href="#Menu" target="_top" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-bars"></a>
 
     <h4>fPw : Password Calculator</h4>
+  
   </div>
-
+ 
   <div role="main" class="ui-content">
-    <form>
+        <form>
       <table>
         <tr>
           <td width="90%">
@@ -215,6 +216,11 @@
     <div>
       <a href="https://www.emogic.com/cgi/fp/backup.php" target="blank" class="ui-btn ui-shadow ui-corner-all">Doesn't work?</a>
     </div>
+    
+        <div>
+      <a href="#" id="install" class="ui-btn ui-shadow ui-corner-all">Install as PWA</a>
+    </div>
+    
   </div>
 </div>
 
@@ -248,7 +254,8 @@
 </div>
   <script src='https://code.jquery.com/jquery-1.11.1.min.js'></script>
 <script src='https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js'></script>
-      <script id="rendered-js" >
+<script src='https://code.jquery.com/ui/1.11.1/jquery-ui.js'></script>
+    <script id="rendered-js" >
 let GlobalAssociativeArray = {}; //Alias list + comments and settings //use JSON associative array to squash duplicates
 let forever = new Date("October 17, 2050 03:24:00");
 let yesterday = new Date("October 17, 2000 03:24:00");
@@ -473,7 +480,7 @@ document.addEventListener("dcopy", function (e) {
   );
 });
 
-let secondsToErase = 10;
+let secondsToErase = 30;
 let countdown;
 let countdowninterval;
 
@@ -529,9 +536,12 @@ function copytoclipboard(id) {
   }
 }
 
-function clear_dialog() {
+function clear_dialog() { 
+  
+//$( "#popupBasic" ).popup( "open" );
+ 
   let clear_me = confirm(
-    "PW is in clipboard.\nPaste your password now,\nthen click OK to clear all settings and saved passwords (secure)\nOR\nCancel to leave it as is. (not secure)"
+    "ERASE CLIPBOARD, ALIAS AND SECRET NOW ???\n\nYour password is saved on the clipboard.\nIt is suggested to paste your password now,\nthen click OK to clear all settings and the passwords from the clipboard (secure)\nOR\nCancel to leave it as is. (not secure)"
   );
   if (clear_me === true) {
     clear_reset_data();
@@ -773,7 +783,55 @@ function ExportAll() {
   copytoclipboard2(JSON.stringify(GlobalAssociativeArray));
   alert("All your Alias, settings, and comments are on the clipboard!");
 }
-    </script>
+
+
+//https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/How_to/Trigger_install_prompt
+
+// main.js
+
+let installPrompt = null;
+const installButton = document.querySelector("#install");
+
+window.addEventListener("beforeinstallprompt", (event) => {
+  event.preventDefault();
+  installPrompt = event;
+  installButton.removeAttribute("hidden");
+});
+
+// main.js
+
+installButton.addEventListener("click", async () => {
+  if (!installPrompt) {
+    return;
+  }
+  const result = await installPrompt.prompt();
+  console.log(`Install prompt was: ${result.outcome}`);
+  disableInAppInstallPrompt();
+});
+
+function disableInAppInstallPrompt() {
+  installPrompt = null;
+  installButton.setAttribute("hidden", "");
+}
+
+// main.js
+
+window.addEventListener("appinstalled", () => {
+  disableInAppInstallPrompt();
+});
+
+window.addEventListener("beforeinstallprompt", async (event) => {
+  const relatedApps = await navigator.getInstalledRelatedApps();
+
+  // Search for a specific installed platform-specific app
+  const psApp = relatedApps.find((app) => app.id === "/Forever_Passwords/");
+
+  if (psApp) {
+    event.preventDefault();
+    // Update UI as appropriate
+  }
+});
+  </script>
 
   
 </body>
