@@ -18,12 +18,12 @@ eg:
 
 # Recommendations
 
+- store a local copy of this program (Forever Passwords) in the case our emogic.com, github or the internet is temporarily down. Have a backup plan! Download a copy to your PC. File->Save as HTML
 - do not use your Secret anywhere else. eg as a password on a web site
 - your Secret should be long, complex, and imposible to guess
-- store a local copy of this program (Forever Passwords) in the case our emogic.com, github or yor internet is temporarily down. Have a backup plan! Download a copy to your PC. File->Save as HTML
 - Do not save your Secret in the browser cache or in a password manager
 - Clear your password in Forever Passwords after use. Click Clear/Reset
-- You should use a differnent password on every web service you use. See: https://haveibeenpwned.com/. This will happen automatically if you use the site URL as the Alias field.
+- You should use a differnent password on every web service you use. This will happen automatically if you use the site URL as the Alias field. See: https://haveibeenpwned.com/
 
 # PWA
 
