@@ -1,18 +1,16 @@
 
-# About
+# About Forever Passwords
 
-With Forever Passwords, your passwords are not stored anywhere. Passwords are Calculated using the SHA Hash.
+Passwords are Calculated using the SHA Hash when you need them. Your passwords are 'not stored' on your device or in the cloud.
 
-Forever Passwords generates a unique password for each website that is long, complex, impossible to guess, and difficult for shoulder surffing. You only need to remember one Secret phrase or word to generate ALL your passwords. The passwords are not stored anywhere but calculated when you need them. Your passwords are not store in the cloud, or transfered over the internet. 
-
-You can now install Forever Passwords as a Proggressive Web App (PWA) from your modern browser if desired. From a PC usually there should be an install icon is just right of the url box. On a Android phone it is usually under the upper three verical dots, then 'Install App'. On an IPhone using Chrome, use the share icon on the right of the url bar, then more, then 'Add to Home Screen'. https://vpelss.github.io/Forever_Passwords
+It calculates a unique complex password for each website. You only need to remember one secret phrase or word to generate ALL your passwords. 
 
 # How to use Forever_Passwords
 
 - run index.html off the website (https://vpelss.github.io/Forever_Passwords) or your locally stored version
 - Select an Alias : Usually based on url (eg: emogic,com)
 - Select a Secret : Select a long, complex, and hard to guess word or phrase (eg: The Sound of Music). The Secret and Alias are used together to generate all your Answer/Password
-- Forever_Passwords generates a unique, long, complex password based on each of your Alias and Secret combinations
+- Your password is generated in the Answer box
 - click 'Copy' and use. Note, when you click 'Copy', your url will be saved in the URL/Alias dropdown menu. You can export this Alias list to be used on another pc/browser. It is STRONGLY suggested you keep a backup of this alias list.
 - Please click Clear/Reset after you have pasted your password. This clears your secret and the clipboard.
 
@@ -30,6 +28,14 @@ eg:
 - Do not save your Secret in the browser cache or in a password manager
 - Clear your password in Forever Passwords after use. Click Clear/Reset
 - You should use a differnent password on every web service you use. See: https://haveibeenpwned.com/. This will happen automatically if you use the site URL as the Alias field.
+
+# PWA
+
+You can now install Forever Passwords as a Proggressive Web App (PWA) if desired. 
+
+- From a PC usually there should be an install icon is just right of the url box
+- On a Android phone it is usually under the upper three verical dots, then 'Install App'
+- On an IPhone using Chrome, use the share icon on the right of the url bar, then more, then 'Add to Home Screen'. https://vpelss.github.io/Forever_Passwords
 
 # Possible issues
 
