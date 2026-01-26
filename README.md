@@ -31,7 +31,8 @@ You can now install Forever Passwords as a Proggressive Web App (PWA) if desired
 
 - From a PC usually there should be an install icon is just right of the url box
 - On a Android phone it is usually under the upper three verical dots, then 'Install App'
-- On an IPhone using Chrome, use the share icon on the right of the url bar, then more, then 'Add to Home Screen'. https://vpelss.github.io/Forever_Passwords
+- On an IPhone using Chrome, use the share icon on the right of the url bar, then more, then 'Add to Home Screen'
+- https://vpelss.github.io/Forever_Passwords
 
 # Possible issues
 
