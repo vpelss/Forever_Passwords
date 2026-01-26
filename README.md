@@ -7,7 +7,7 @@ Using one secret word or phrase, unique passwords are calculated for each websit
 - https://vpelss.github.io/Forever_Passwords
 - Select an Alias: Usually based on a website url (eg: emogic,com)
 - Select a Secret: A long, complex, hard to guess word or phrase (eg: The Sound of Music). 
-- Your password is in the Answer box. The Secret and Alias are used together to generate all your Answer/Passwords
+- Your password is in the Answer box. The Secret and Alias are used together to calculate all your Answer/Passwords using the SHA algorithm
 - click 'Copy/Save' and use. Note, when you click 'Copy/Save', your url will be saved in the URL/Alias dropdown menu. You can export this Alias list to be used in Forever Passwords in another browser. It is STRONGLY suggested you keep an uptodate backup of this alias list. 
 - Please click Clear/Reset after you have pasted your password. This clears your Secret and the clipboard.
 
