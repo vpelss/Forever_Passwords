@@ -1,24 +1,21 @@
 
 # About Forever Passwords
 
-Passwords are Calculated using the SHA Hash when you need them. Your passwords are 'not stored' on your device or in the cloud.
-
-It calculates a unique complex password for each website. You only need to remember one secret phrase or word to generate ALL your passwords. 
+Using one secret word or phrase, unique passwords are calculated for each website or program when you need them. Your passwords are 'not stored' on your device or in the cloud.
 
 # How to use Forever_Passwords
 
-- run index.html off the website (https://vpelss.github.io/Forever_Passwords) or your locally stored version
-- Select an Alias : Usually based on url (eg: emogic,com)
-- Select a Secret : Select a long, complex, and hard to guess word or phrase (eg: The Sound of Music). The Secret and Alias are used together to generate all your Answer/Password
-- Your password is generated in the Answer box
-- click 'Copy' and use. Note, when you click 'Copy', your url will be saved in the URL/Alias dropdown menu. You can export this Alias list to be used on another pc/browser. It is STRONGLY suggested you keep a backup of this alias list.
-- Please click Clear/Reset after you have pasted your password. This clears your secret and the clipboard.
+- https://vpelss.github.io/Forever_Passwords
+- Select an Alias: Usually based on a website url (eg: emogic,com)
+- Select a Secret: A long, complex, hard to guess word or phrase (eg: The Sound of Music). 
+- Your password is in the Answer box. The Secret and Alias are used together to generate all your Answer/Passwords
+- click 'Copy/Save' and use. Note, when you click 'Copy/Save', your url will be saved in the URL/Alias dropdown menu. You can export this Alias list to be used in Forever Passwords in another browser. It is STRONGLY suggested you keep an uptodate backup of this alias list. 
+- Please click Clear/Reset after you have pasted your password. This clears your Secret and the clipboard.
 
 eg:
-- alias: a
-- secret: b 
-- always produces password: bAWWuKxgkZEYGpBRfVHAtIbyN5k=
-- (never use a simple secret as per this example)
+- Alias: www.emogic.com
+- Secret: TheSoundOfMusic
+- Answer/Password: VZN8y0YedQO8yE+I9soWniRyPhE=
 
 # Recommendations
 
@@ -41,7 +38,7 @@ You can now install Forever Passwords as a Proggressive Web App (PWA) if desired
 
 - Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias, not just mysite.com
 - A website might not like the password generated. eg: too long, no special characters allowed
-- If your password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules. Eg: Add 'compromised' to the Alias (emogic.com.compromised) or (1.emogic.com) 
+- If your password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules. Eg: Add 'compromised' to the Alias (emogic.com.compromised) or (1.emogic.com)
 
 Notes: Spaces are not allowed in the Alias field. The reason is that trailing spaces are not visible, but may be present, and this will create a different password and potentially cause confusion.
 
