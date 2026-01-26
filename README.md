@@ -1,4 +1,3 @@
-
 # About Forever Passwords
 
 Using one secret word or phrase, unique passwords are calculated for each website or program when you need them. Your passwords are 'not stored' on your device or in the cloud.
@@ -75,7 +74,3 @@ The programs above, while excellent, are limited to where they can be used. So I
 
 https://www.emogic.com/
 
-# to do:
-
-- timed clear wipes clipboard
-- check box for ensure special character 
