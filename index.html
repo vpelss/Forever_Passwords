@@ -350,9 +350,7 @@ function clear_reset_data() {
 }
 
 function copytoclipboard(id) {
-  //alert('IMPORTANT: Please click Clear/Reset AFTER pasting pw to clear the pw and clipboard!');
   let t = document.getElementById(id);
-  //let t = this;
   t.select();
   document.execCommand(
     "copy",
@@ -386,7 +384,7 @@ function copytoclipboard2(text) {
   textarea.remove();
 }
 
-//async function GeneratePW() //async is here incase we use digest / promise version
+//async as we use promise based window.crypto.subtle.digest in this function
 async function GeneratePW() {
   stop_timers();
   let Alias = document.getElementById("Alias").value;
@@ -415,7 +413,6 @@ async function GeneratePW() {
   PW = PW.slice(0, size);
 
   let pattern;
-  //if (document.getElementById("NoSpecialCharacters").checked == true) {
   if (
     document.getElementById("character_modifications").value ==
     "no_special_characters"
