@@ -2,6 +2,8 @@
 
 Using one secret word or phrase, unique passwords are calculated using the SHA-1 hash function for each website or program. Your passwords are 'not stored' on your device or in the cloud.
 
+ - SHA1 gives us a 20 byte hash value (message digest) rendered as 40 hexadecimal digits. Then we convert the 40 hex didgets to binary. Then convert the binary data to Base64 which gives us a wider spectrum of characters. In escence we convert the SHA1 Hexadecimal message digest to Base64.
+
 # How to use Forever_Passwords
 
 - https://vpelss.github.io/Forever_Passwords
