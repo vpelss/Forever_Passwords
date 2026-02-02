@@ -2,8 +2,6 @@
 
 Using one secret word or phrase, unique passwords are calculated using the SHA-1 hash function for each website or program. Your passwords are 'not stored' on your device or in the cloud.
 
- - Technical: SHA1 gives us a 20 byte hash value (message digest) rendered as 40 hexadecimal digits. Then we convert the 40 hex didgets to binary. Then convert the binary data to Base64 which gives us a wider spectrum of characters. In escence we convert the SHA1 Hexadecimal message digest to Base64.
-
 # How to use Forever_Passwords
 
 - https://vpelss.github.io/Forever_Passwords
@@ -72,6 +70,10 @@ https://extensions.gnome.org/extension/825/password-calculator/
 https://bixense.com/pwcalculator/
 
 The programs above, while excellent, are limited to where they can be used. So I wrote Forever_Passwords in HTML/Javascript to attempt to make it accessible to all platforms and browsers. It's single file design allows you to easily store the code locally for stand alone systems. Tested with newest Chrome, Firefox, and Edge.
+
+# Technical
+
+We take an alias (web url) and join it to a Secret then feed that merged string to a SHA1 rourine. SHA1 gives us a 20 byte hash value (message digest) rendered as 40 hexadecimal digits. Then we convert the 40 hex didgets to binary. Then convert the binary data to Base64 which gives us a wider spectrum of characters. In escence we convert the SHA1 Hexadecimal message digest to Base64. This value is the password.
 
 # Created By
 
