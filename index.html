@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" >
 
@@ -270,17 +271,17 @@ Cookie.week = Cookie.day * 7;
 Cookie.month = Cookie.day * 31;
 Cookie.year = Cookie.day * 365;
 
-function openMenu(){
+function openMenu() {
   document.getElementById("main_page_component").style.display = "none";
   document.getElementById("menu_page_component").style.display = "block";
   document.getElementById("menu_icon").style.display = "none";
   document.getElementById("x_icon").style.display = "inline";
 }
 
-function closeMenu(){
-    document.getElementById("main_page_component").style.display = "block";
+function closeMenu() {
+  document.getElementById("main_page_component").style.display = "block";
   document.getElementById("menu_page_component").style.display = "none";
-    document.getElementById("menu_icon").style.display = "inline";
+  document.getElementById("menu_icon").style.display = "inline";
   document.getElementById("x_icon").style.display = "none";
 }
 
@@ -365,11 +366,8 @@ function copytoclipboard(id) {
     clear_dialog();
   }
 }
-//document.getElementById('Answer').addEventListener('click', copytoclipboard);
 
 function clear_dialog() {
-  //$( "#popupBasic" ).popup( "open" );
-
   let clear_me = confirm(
     "ERASE CLIPBOARD, ALIAS AND SECRET NOW ???\n\nYour password is saved on the clipboard.\nIt is suggested to paste your password now,\nthen click OK to clear all settings and the passwords from the clipboard (secure)\nOR\nCancel to leave it as is. (not secure)"
   );
@@ -390,7 +388,6 @@ function copytoclipboard2(text) {
 
 //async function GeneratePW() //async is here incase we use digest / promise version
 async function GeneratePW() {
-  //async is here in case we use digest / promise version
   stop_timers();
   let Alias = document.getElementById("Alias").value;
   CheckForNoSpaces("Alias");
@@ -401,14 +398,11 @@ async function GeneratePW() {
   }
   let total = Secret + Alias;
 
-   const TE = new TextEncoder();
-  const TD = new TextDecoder();
-  
+  const TE = new TextEncoder();
   let tempUint8Array = TE.encode(total);
   hashed = await window.crypto.subtle.digest("SHA-1", tempUint8Array);
   tempUint8Array = new Uint8Array(hashed);
-  //v11 = tempUint8Array.toHex(); 
-  PW =  tempUint8Array.toBase64()
+  PW = tempUint8Array.toBase64();
 
   //let v1 = Sha1_hash(total, ""); //sha1 160 bit, 20 byte, 40 hex
   //let v2 = hex2bin(v1); //xxd or hex2bin - to binary stream
@@ -434,7 +428,6 @@ async function GeneratePW() {
     pattern = /[=]/g;
     PW = PW.replace(pattern, "Z");
   }
-  //if (document.getElementById("ForceSpecialCharacters").checked == true) {
   if (
     document.getElementById("character_modifications").value ==
     "force_special_characters"
@@ -445,7 +438,6 @@ async function GeneratePW() {
       PW = PW.replace(/.$/, "=");
     }
   }
-
   document.getElementById("Answer").value = PW;
 }
 
@@ -472,17 +464,6 @@ function addAliasToList() {
     "character_modifications"
   );
   let character_modifications = character_modifications_element.value;
-
-  /*
-  let Character_Types;
-  let elements = document.getElementsByName("Character_Types");
-  for (let i = 0; i < elements.length; i++) {
-    if (elements[i].checked) {
-      Character_Types = elements[i].value;
-      break;
-    }
-  }
-*/
 
   GlobalAssociativeArray[Alias] = {
     comment: document.getElementById("AliasComment").value,
@@ -636,8 +617,7 @@ function ExportAll() {
   alert("All your Alias, settings, and comments are on the clipboard!");
 }
 
-//button to install PWA
-//https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/How_to/Trigger_install_prompt
+//button to install PWA : https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/How_to/Trigger_install_prompt
 
 let installPrompt = null;
 const installButton = document.querySelector("#install");
@@ -677,7 +657,6 @@ window.addEventListener("beforeinstallprompt", async (event) => {
     // Update UI as appropriate
   }
 });
-
 
 /*
 // Generates SHA-1 hash of string
