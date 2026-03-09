@@ -241,11 +241,6 @@
   </div_menu_page>
 
 </div>
-
-<dialog id="copiedDialog">
-  <p>Code Copied to Clipboard.</p>
-  <p></p>
-</dialog>
   
     <script id="rendered-js" >
 //to do pop up copied to clipboard
@@ -601,19 +596,6 @@ function ExportAll() {
   alert("All your Alias, settings, and comments are on the clipboard!");
 }
 
-function openDialog(id) {
-  let el = document.getElementById(id);
-  el.showModal();
-}
-
-function closeDialog(id) {
-  if (id == "addEntryDialog") {
-    html5QrCodeStop();
-  }
-  let el = document.getElementById(id);
-  el.close();
-}
-
 function wrapPWA() {
   //button to install PWA : https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/How_to/Trigger_install_prompt
   const installButton = document.getElementById("installPWA");
@@ -648,7 +630,7 @@ function wrapPWA() {
 
     // Search for a specific installed platform-specific app
     const psApp = relatedApps.find(
-      (app) => app.id === "/AuthenticatorAnywhere/"
+      (app) => app.id === "/Forever_Passwords/"
     );
     if (psApp) {
       event.preventDefault();
