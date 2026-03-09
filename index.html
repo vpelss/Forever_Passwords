@@ -10,7 +10,7 @@
 
   <title>Forever Passwords</title>
 
-    <link rel="canonical" href="https://codepen.io/vpelss/pen/ZEWqgPj">
+    <link rel="canonical" href="https://codepen.io/vpelss/pen/EayRyLX">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="manifest" href="./manifest.json"> 
@@ -18,39 +18,32 @@
   <link rel='stylesheet' href='https://cdn.simplecss.org/simple.css'>
   
 <style>
-/*
-https://simplecss.org/
-https://cdn.simplecss.org/simple.css
-
-https://picocss.com/
-https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css
-
-https://milligram.io/
-https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css
-
-https://pure-css.github.io/
-https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css
-*/
-
-body{
-  padding: 1%
-  }
-
-#divHeader{
-  _display: flex;
-  _text-align: center;
+#Alias{
+  width: 80%;
 }
 
-#Secret { /*fix / block password managers forcing fields to fill*/
-    -webkit-text-security: disc;
+#Secret {
+  /*fix / block password managers forcing fields to fill*/
+  -webkit-text-security: disc;
+  width: 90%;
 }
 
-input[type=text] {
-  width: 100%;
+#Secret:active {
+  /*fix / block password managers forcing fields to fill*/
+  -webkit-text-security: none;
+  width: 90%;
 }
-  
-:root {
-  --accent: gray;
+
+#Answer{
+  width: 90%;
+}
+
+#character_modifications{
+    width: 80%;
+}
+
+#AliasComment{
+  width: 90%;
 }
 </style>
 
@@ -80,14 +73,14 @@ input[type=text] {
 
   <div_main_page id="main_page_component">
     <form>
-      <div style="display:flex">
+      <div>
         <span style="width: 90%">
           <datalist id="dataList" autocomplete="off"></datalist>
           <input type="text" id="Alias" autocomplete="off" list="dataList" placeholder="Site URL or Alias eg: mysite.com" onclick="this.select();this.value='';GeneratePW();" onkeyup="GeneratePW();" onchange="AliasChanged(this.value);">
         </span>
         &nbsp;&nbsp;&nbsp;
         <span>
-          <a class="button" onclick="if(confirm('This will delete ' + document.getElementById('Alias').value + ' from your list. Are you sure?')){Delete();}">X</a>
+          <button class="button" onclick="if(confirm('This will delete ' + document.getElementById('Alias').value + ' from your list. Are you sure?')){Delete();}">X</button>
         </span>
       </div>
 
@@ -99,16 +92,16 @@ input[type=text] {
         <input id="Answer" type="text" placeholder="Answer: A unique PW based on the Alias + Secret" readonly onclick="copytoclipboard('Answer');" title="This is your Answer to use.">
       </div>
 
-      <div style="display: flex">
-        <select id="character_modifications" name="character_modifications" title="Character Modifications" onchange="GeneratePW();" style="width: 90%">
+      <div>
+        <select id="character_modifications" title="Character Modifications" onchange="GeneratePW();">
           <option value="no_character_modifications" selected>No Character Replacements (default) </option>
           <option value="no_special_characters">No Special Characters</option>
           <option value="force_special_characters">Force Special Characters</option>
-        </select> &nbsp; &nbsp; &nbsp; <a href="#" class="button" onclick="alert('No Special Characters: Replaces base64 special characters + with X, / with Q, and = (base64 padding) with Z. \n\nForce Special Characters: If no special characters, replace last character with a =')">?</a>
+        </select> &nbsp; &nbsp; &nbsp; <button onclick="alert('No Special Characters: Replaces base64 special characters + with X, / with Q, and = (base64 padding) with Z. \n\nForce Special Characters: If no special characters, replace last character with a =')">?</button>
       </div>
 
       <div>
-        <input id="AliasComment" placeholder="Comments for Alias eg:13 characters,no special char" title="This is a field for a comment for the current Alias. For example, some sites may have special password requirements." size="50">
+        <input id="AliasComment" placeholder="Comments for Alias eg:13 characters,no special char" title="This is a field for a comment for the current Alias. For example, some sites may have special password requirements.">
       </div>
 
       <div style="display: flex">
@@ -190,11 +183,11 @@ input[type=text] {
       <center>
         <div>
           <span>
-            <input type="button" id="copybutton" value="Copy / Save" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick="GeneratePW(); addAliasToList(); copytoclipboard('Answer');">
+            <button id="copybutton" title="Copies Answer to clipboard. Saves Alias and Comment to local cookie." onclick="GeneratePW(); addAliasToList(); copytoclipboard('Answer');">Copy / Save</button>
           </span>
           &nbsp;&nbsp;&nbsp;
           <span>
-            <input type="button" id="clear_reset" value="Clear / Reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not changed. Clipboard set to 'cleared'." onclick="clear_reset_data();">
+            <button id="clear_reset" title="Clears Answer and Secret if any plus all settings to default. Saved Aliases are not changed. Clipboard set to 'cleared'." onclick="clear_reset_data();">Clear / Reset</button>
           </span>
         </div>
 
@@ -208,60 +201,55 @@ input[type=text] {
   </div_main_page>
 
   <div_menu_page id="menu_page_component" hidden>
-
     <form>
       <center>
         <div>
           <input type="button" value="Get Alias List" onclick="GetAliasList();">
         </div>
-
         <div>
           <input type="button" value="Save Alias List" onclick="if(confirm('This will change your list. Are you sure?')){SaveAliasList();}">
         </div>
-
         <div>
           <input type="button" value="Export Alias List to Clipboard" onclick="if(confirm('This will export all Alias, settings, and comments to clipboard. Are you sure?')){ ExportAll(); }">
         </div>
-
         <div>
           <textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup Alias List. Save the text generated in a safe location." title="You can import/export your current Alias list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup." class="u-full-width">
 </textarea>
         </div>
       </center>
     </form>
-
     <center>
       <div>
-        <a href="#" id="install" class="button">Install as PWA</a>
+        <button id="installPWA">Install as PWA</button>
       </div>
-
       <div>
         Links below will open in your default browser.
       </div>
-
       <div>
         <a href="https://vpelss.github.io/Forever_Passwords//README.md" class="button u-full-width" target="_blank">Help/Read Me</a>
       </div>
-
       <div>
         <a href="https://github.com/vpelss/Forever_Passwords" target="_blank" class="button u-full-width">Github</a>
       </div>
-
       <div>
         <a href="https://vpelss.github.io/Forever_Passwords/Licence.txt" target="_blank" class="button">Licence</a>
       </div>
-
       <div>
         <a href="https://www.emogic.com/cgi/fp/backup.php" target="blank" class="button u-full-width">Doesn't work?</a>
       </div>
-
     </center>
-
   </div_menu_page>
 
 </div>
+
+<dialog id="copiedDialog">
+  <p>Code Copied to Clipboard.</p>
+  <p></p>
+</dialog>
   
     <script id="rendered-js" >
+//to do pop up copied to clipboard
+
 let GlobalAssociativeArray = {}; //Alias list + comments and settings //use JSON associative array to squash duplicates
 let forever = new Date("October 17, 2050 03:24:00");
 let yesterday = new Date("October 17, 2000 03:24:00");
@@ -270,6 +258,8 @@ Cookie.day = 86400000;
 Cookie.week = Cookie.day * 7;
 Cookie.month = Cookie.day * 31;
 Cookie.year = Cookie.day * 365;
+
+wrapPWA();
 
 function openMenu() {
   document.getElementById("main_page_component").style.display = "none";
@@ -340,6 +330,15 @@ function stop_timers() {
   document.getElementById("timer_alert").innerHTML = "";
 }
 
+function clear_dialog() {
+  let clear_me = confirm(
+    "ERASE CLIPBOARD, ALIAS AND SECRET NOW ???\n\nYour password is saved on the clipboard.\nIt is suggested to paste your password now,\nthen click OK to clear all settings and the passwords from the clipboard (secure)\nOR\nCancel to leave it as is. (not secure)"
+  );
+  if (clear_me === true) {
+    clear_reset_data();
+  }
+}
+
 function clear_reset_data() {
   document.getElementById("Alias").value = "";
   document.getElementById("AliasComment").value = "";
@@ -356,21 +355,12 @@ function copytoclipboard(id) {
     "copy",
     false,
     null
-  ); /* Copy the text inside the text field */
+  ); //Copy the text inside the text field
 
   if (document.getElementById("clear_timer").checked) {
     start_timers();
   } else {
     clear_dialog();
-  }
-}
-
-function clear_dialog() {
-  let clear_me = confirm(
-    "ERASE CLIPBOARD, ALIAS AND SECRET NOW ???\n\nYour password is saved on the clipboard.\nIt is suggested to paste your password now,\nthen click OK to clear all settings and the passwords from the clipboard (secure)\nOR\nCancel to leave it as is. (not secure)"
-  );
-  if (clear_me === true) {
-    clear_reset_data();
   }
 }
 
@@ -611,46 +601,61 @@ function ExportAll() {
   alert("All your Alias, settings, and comments are on the clipboard!");
 }
 
-//button to install PWA : https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/How_to/Trigger_install_prompt
-
-let installPrompt = null;
-const installButton = document.querySelector("#install");
-
-window.addEventListener("beforeinstallprompt", (event) => {
-  event.preventDefault();
-  installPrompt = event;
-  installButton.removeAttribute("hidden");
-});
-
-installButton.addEventListener("click", async () => {
-  if (!installPrompt) {
-    return;
-  }
-  const result = await installPrompt.prompt();
-  console.log(`Install prompt was: ${result.outcome}`);
-  disableInAppInstallPrompt();
-});
-
-function disableInAppInstallPrompt() {
-  installPrompt = null;
-  installButton.setAttribute("hidden", "");
+function openDialog(id) {
+  let el = document.getElementById(id);
+  el.showModal();
 }
 
-window.addEventListener("appinstalled", () => {
-  disableInAppInstallPrompt();
-});
-
-window.addEventListener("beforeinstallprompt", async (event) => {
-  const relatedApps = await navigator.getInstalledRelatedApps();
-
-  // Search for a specific installed platform-specific app
-  const psApp = relatedApps.find((app) => app.id === "/Forever_Passwords/");
-
-  if (psApp) {
-    event.preventDefault();
-    // Update UI as appropriate
+function closeDialog(id) {
+  if (id == "addEntryDialog") {
+    html5QrCodeStop();
   }
-});
+  let el = document.getElementById(id);
+  el.close();
+}
+
+function wrapPWA() {
+  //button to install PWA : https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/How_to/Trigger_install_prompt
+  const installButton = document.getElementById("installPWA");
+  let installPrompt = null;
+
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    installPrompt = event;
+    installButton.removeAttribute("hidden");
+  });
+
+  installButton.addEventListener("click", async () => {
+    if (!installPrompt) {
+      return;
+    }
+    const result = await installPrompt.prompt();
+    console.log(`Install prompt was: ${result.outcome}`);
+    disableInAppInstallPrompt();
+  });
+
+  function disableInAppInstallPrompt() {
+    installPrompt = null;
+    installButton.setAttribute("hidden", "");
+  }
+
+  window.addEventListener("appinstalled", () => {
+    disableInAppInstallPrompt();
+  });
+
+  window.addEventListener("beforeinstallprompt", async (event) => {
+    const relatedApps = await navigator.getInstalledRelatedApps();
+
+    // Search for a specific installed platform-specific app
+    const psApp = relatedApps.find(
+      (app) => app.id === "/AuthenticatorAnywhere/"
+    );
+    if (psApp) {
+      event.preventDefault();
+      // Update UI as appropriate
+    }
+  });
+}
   </script>
 
   
