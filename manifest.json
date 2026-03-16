@@ -1,5 +1,4 @@
 {
-  "version": "1.0.0",
   "short_name": "fPw",
   "name": "Forever Passwords",
   "description": "Using one secret word or phrase, unique passwords are calculated using the SHA-1 hash function for each website or program. Your passwords are 'not stored' on your device or in the cloud",
