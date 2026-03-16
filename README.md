@@ -20,17 +20,17 @@ eg:
 
 - store a local copy of this program (Forever Passwords) in the case our emogic.com, github or the internet is temporarily down. Have a backup plan! Download a copy to your PC. File->Save as HTML
 - do not use your Secret anywhere else. eg as a password on a web site
-- your Secret should be long, complex, and imposible to guess
+- your Secret should be long, complex, and impossible to guess
 - Do not save your Secret in the browser cache or in a password manager
 - Clear your password in Forever Passwords after use. Click Clear/Reset
-- You should use a differnent password on every web service you use. This will happen automatically if you use the site URL as the Alias field. See: https://haveibeenpwned.com/
+- You should use a different password on every web service you use. This will happen automatically if you use the site URL as the Alias field. See: https://haveibeenpwned.com/
 
 # PWA
 
-You can now install Forever Passwords as a Proggressive Web App (PWA) if desired. 
+You can now install Forever Passwords as a Progressive Web App (PWA) if desired. 
 
 - From a PC usually there should be an install icon is just right of the url box
-- On a Android phone it is usually under the upper three verical dots, then 'Install App'
+- On a Android phone it is usually under the upper three vertical dots, then 'Install App'
 - On an IPhone using Chrome, use the share icon on the right of the url bar, then more, then 'Add to Home Screen'
 - https://vpelss.github.io/Forever_Passwords
 
@@ -69,13 +69,14 @@ https://extensions.gnome.org/extension/825/password-calculator/
 
 https://bixense.com/pwcalculator/
 
-The programs above, while excellent, are limited to where they can be used. So I wrote Forever_Passwords in HTML/Javascript to attempt to make it accessible to all platforms and browsers. It's single file design allows you to easily store the code locally for stand alone systems. Tested with newest Chrome, Firefox, and Edge.
+The programs above, while excellent, are limited to where they can be used. So I wrote Forever_Passwords in HTML/Javascript to attempt to make it accessible to all platforms and browsers. Its single file design allows you to easily store the code locally for stand alone systems. Tested with newest Chrome, Firefox, and Edge.
 
 # Technical
 
-We take an alias (web url) and join it to a Secret then feed that merged string to a SHA1 rourine. SHA1 gives us a 20 byte hash value (message digest) rendered as 40 hexadecimal digits. Then we convert the 40 hex didgets to binary. Then convert the binary data to Base64 which gives us a wider spectrum of characters. In escence we convert the SHA1 Hexadecimal message digest to Base64. This value is the password.
+We take an alias (web url) and join it to a Secret then feed that merged string to a SHA1 routine. SHA1 gives us a 20 byte hash value (message digest) rendered as 40 hexadecimal digits. Then we convert the 40 hex digits to binary. Then convert the binary data to Base64 which gives us a wider spectrum of characters. In essence, we convert the SHA1 Hexadecimal message digest to Base64. This value is the password.
 
 # Created By
 
 https://www.emogic.com/
+
 
