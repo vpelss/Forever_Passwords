@@ -1,5 +1,4 @@
 {
-  "manifest_version": 3,
   "version": "1.0.0",
   "short_name": "fPw",
   "name": "Forever Passwords",
@@ -22,7 +21,6 @@
   "display": "minimal-ui",
   "scope": "https://vpelss.github.io/Forever_Passwords/",
   "theme_color": "#3367D6",
-  "description": "Forever Passwords : Your passwords are not stored anywhere! Password Generator and Calculator using SHA1 Hash",
   "screenshots": [
     {
       "src": "./128.png",
