@@ -6,13 +6,13 @@
   "description": "Using one secret word or phrase, unique passwords are calculated using the SHA-1 hash function for each website or program. Your passwords are 'not stored' on your device or in the cloud",
   "icons": [
     {
-      "src": "./512.svg",
-      "type": "image/svg+xml",
+      "src": "./512.png",
+      "type": "image/png",
       "sizes": "512x512"
     },
     {
-      "src": "./192.svg",
-      "type": "image/svg+xml",
+      "src": "./192.png",
+      "type": "image/png",
       "sizes": "192x192"
     }
   ],
