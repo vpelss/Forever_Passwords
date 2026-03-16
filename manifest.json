@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "short_name": "fPw",
   "name": "Forever Passwords",
-  "description": "A Web Authenticator App that you can use on any modern browser (Chrome, Edge, Safari) and on any desktop or mobile device",
+  "description": "Using one secret word or phrase, unique passwords are calculated using the SHA-1 hash function for each website or program. Your passwords are 'not stored' on your device or in the cloud",
   "icons": [
     {
       "src": "./512.svg",
