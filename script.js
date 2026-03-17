@@ -1,26 +1,29 @@
 //to do pop up copied to clipboard asking to clear it after use!
-//remove cookies
 //test for browser functionality
 //set all elements at start elTimerAlert, etc
 //imprort/export to file
 
+//set element variables
+let elementMenuIcon = document.getElementById("menu_icon");
+let elementXIcon = document.getElementById("x_icon");
+let elementAlias = document.getElementById("Alias");
+let elementXdeleteAlias= document.getElementById("xDeleteAlias");
+
 //set events
-document.getElementById("menu_icon").addEventListener("click", openMenu);
-document.getElementById("x_icon").addEventListener("click", closeMenu);
-document.getElementById("Alias").addEventListener("click", function () {
+elementMenuIcon.addEventListener("click", openMenu);
+elementXIcon.addEventListener("click", closeMenu);
+elementAlias.addEventListener("click", function () {
   this.select();
   this.value = "";
   GeneratePW();
 });
-document.getElementById("Alias").addEventListener("keyup", GeneratePW);
-document
-  .getElementById("Alias")
-  .addEventListener("change", AliasChanged.bind(this.value));
-document.getElementById("xDeleteAlias").addEventListener("click", function () {
+elementAlias.addEventListener("keyup", GeneratePW);
+elementAlias.addEventListener("change", AliasChanged.bind(this.value));
+elementXdeleteAlias.addEventListener("click", function () {
   if (
     confirm(
       "This will delete " +
-        document.getElementById("Alias").value +
+        elementAlias.value +
         " from your list. Are you sure?"
     )
   ) {
@@ -69,34 +72,21 @@ document.getElementById("exportAll").addEventListener("click", function () {
 
 let GlobalAssociativeArray = {}; //Alias list + comments and settings //use JSON associative array to squash duplicates
 let errorArray = [];
-let forever = new Date("October 17, 2050 03:24:00");
-let yesterday = new Date("October 17, 2000 03:24:00");
-let Cookie = {};
-Cookie.day = 86400000;
-Cookie.week = Cookie.day * 7;
-Cookie.month = Cookie.day * 31;
-Cookie.year = Cookie.day * 365;
 
 wrapPWA();
 
 function openMenu() {
   document.getElementById("main_page_component").style.display = "none";
   document.getElementById("menu_page_component").style.display = "block";
-  document.getElementById("menu_icon").style.display = "none";
-  document.getElementById("x_icon").style.display = "inline";
+  elementMenuIcon.style.display = "none";
+  elementXIcon.style.display = "inline";
 }
 
 function closeMenu() {
   document.getElementById("main_page_component").style.display = "block";
   document.getElementById("menu_page_component").style.display = "none";
-  document.getElementById("menu_icon").style.display = "inline";
-  document.getElementById("x_icon").style.display = "none";
-}
-
-if (!supports_html5_storage()) {
-  alert(
-    "This browser does not support local storage. Limited Alias list size as we are using cookies."
-  );
+ elementMenuIcon.style.display = "inline";
+  elementXIcon.style.display = "none";
 }
 
 document.body.onload = function () {
@@ -149,7 +139,7 @@ function stopTimer() {
 }
 
 function clear_reset_data() {
-  document.getElementById("Alias").value = "";
+  elementAlias.value = "";
   document.getElementById("AliasComment").value = "";
   document.getElementById("Secret").value = "";
   document.getElementById("Answer").value = "";
@@ -188,7 +178,7 @@ async function copyToClipboardText(text) {
 async function GeneratePW() {
   try {
     stopTimer();
-    let Alias = document.getElementById("Alias").value;
+    let Alias = elementAlias.value;
     CheckForNoSpaces("Alias");
     let Secret = document.getElementById("Secret").value;
     if (Secret === "") {
@@ -255,7 +245,7 @@ function BuildAliasSelect() {
 }
 
 function addAliasToList() {
-  let Alias = document.getElementById("Alias").value;
+  let Alias = elementAlias.value;
 
   //find and set Character_Types radio input
   let character_modifications_element = document.getElementById(
@@ -274,56 +264,25 @@ function addAliasToList() {
 }
 
 function Delete() {
-  let SelectedName = document.getElementById("Alias").value; //get Selected name
+  let SelectedName = elementAlias.value; //get Selected name
   let x = document.getElementById(SelectedName);
   x.remove(x.selectedIndex);
   //delete item from associative array
   delete GlobalAssociativeArray[SelectedName];
   VarToLocalStorage();
-  document.getElementById("Alias").value = "";
+  elementAlias.value = "";
 }
 
 function VarToLocalStorage() {
   let AliasListString = JSON.stringify(GlobalAssociativeArray);
-  if (supports_html5_storage()) {
-    localStorage.FP = AliasListString;
-    setCookie("AliasList", "", yesterday, "", "", ""); //erase cookie as we want to use local storage now.
-  } else {
-    //save to cookie
-    setCookie("AliasList", AliasListString, forever, "", "", "");
+    localStorage.FP = AliasListString; 
   }
-}
 
 function LocalStorageToVar() {
-  if (supports_html5_storage()) {
     if (typeof localStorage.FP === "undefined") {
       return;
     } //nothing to restore
     GlobalAssociativeArray = JSON.parse(localStorage.FP);
-  } else {
-    let data = getCookie("AliasList") || "{}";
-    GlobalAssociativeArray = JSON.parse(data);
-  }
-}
-
-function getCookie(name) {
-  let cookies = document.cookie;
-  let start = cookies.indexOf(name + "=");
-  if (start == -1) return null;
-  let len = start + name.length + 1;
-  let end = cookies.indexOf(";", len);
-  if (end == -1) end = cookies.length;
-  return unescape(cookies.substring(len, end));
-}
-
-function setCookie(name, value, expires, path, domain, secure) {
-  value = escape(value);
-  expires = expires ? ";expires=" + expires.toGMTString() : "";
-  path = path ? ";path=" + path : "";
-  domain = domain ? ";domain=" + domain : "";
-  secure = secure ? ";secure" : "";
-
-  document.cookie = name + "=" + value + expires + path + domain + secure;
 }
 
 function AliasChanged(value) {
