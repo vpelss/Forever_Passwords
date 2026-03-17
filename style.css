@@ -1,0 +1,40 @@
+#Alias{
+  width: 80%;
+}
+
+#Secret {
+  /*fix / block password managers forcing fields to fill*/
+  -webkit-text-security: disc;
+  width: 90%;
+}
+
+#Secret:active {
+  /*fix / block password managers forcing fields to fill*/
+  -webkit-text-security: none;
+  width: 90%;
+}
+
+#Answer{
+  width: 90%;
+}
+
+#character_modifications{
+    width: 80%;
+}
+
+#AliasComment{
+  width: 90%;
+}
+
+#resizeWrapper{
+  display:grid;
+}
+
+#resizeLabel{
+  grid-column: 1;
+  text-align: right;
+}
+
+#resize{
+  grid-column: 2;
+}
