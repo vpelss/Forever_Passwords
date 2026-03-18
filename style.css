@@ -1,53 +1,54 @@
-body{
-min-width:350px;
+body {
+  min-width: 350px;
 }
 
-#aliasWrapper , #characterModificationsWrapper{
+#aliasWrapper,
+#characterModificationsWrapper {
   display: grid;
   grid-gap: 3px;
   grid-template-columns: auto 10%;
 }
 
-#Alias , #character_modifications{
+#Alias,
+#character_modifications {
   grid-column: 1;
 }
 
-#xDeleteAlias , #explainSpecialCharacters{
+#xDeleteAlias,
+#explainSpecialCharacters {
   grid-column: 2;
 }
 
 #Secret {
   /*fix / block password managers forcing fields to fill*/
   -webkit-text-security: disc;
-  width: 90%;
+  width: 100%;
 }
 
 #Secret:active {
   /*fix / block password managers forcing fields to fill*/
   -webkit-text-security: none;
-  width: 90%;
+  width: 100%;
 }
 
-#Answer{
-  width: 90%;
+#Answer {
+  width: 100%;
 }
 
-#AliasComment{
-  width: 90%;
+#AliasComment {
+  width: 100%;
 }
 
-#resizeWrapper{
-  display:grid;
+#resizeWrapper {
+  display: grid;
   grid-template-columns: auto auto;
   justify-content: center;
 }
 
-#resizeLabel{
+#resizeLabel {
   grid-column: 1;
-  
 }
 
-#resize{
+#resize {
   grid-column: 2;
-
 }

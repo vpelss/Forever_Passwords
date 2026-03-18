@@ -1,6 +1,6 @@
+//set all elements at start elTimerAlert, etc
 //to do pop up copied to clipboard asking to clear it after use!
 //test for browser functionality
-//set all elements at start elTimerAlert, etc
 //imprort/export to file
 
 //set element variables
@@ -8,8 +8,13 @@ let elementMenuIcon = document.getElementById("menu_icon");
 let elementXIcon = document.getElementById("x_icon");
 let elementAlias = document.getElementById("Alias");
 let elementXdeleteAlias= document.getElementById("xDeleteAlias");
+let elementSecret = document.getElementById("Secret");
+let elementAnswer = document.getElementById("Answer");
+let elementCharacterModifications = document.getElementById("character_modifications");
+let elementExplainSpecialCharacters = document.getElementById("explainSpecialCharacters");
+let elementResize = document.getElementById("resize");
 
-//set events
+window.addEventListener("load",BuildAliasSelect); //same as document.body.onload
 elementMenuIcon.addEventListener("click", openMenu);
 elementXIcon.addEventListener("click", closeMenu);
 elementAlias.addEventListener("click", function () {
@@ -30,21 +35,17 @@ elementXdeleteAlias.addEventListener("click", function () {
     Delete();
   }
 });
-document.getElementById("Secret").addEventListener("keyup", GeneratePW);
-document.getElementById("Answer").addEventListener("click", function () {
+elementSecret.addEventListener("keyup", GeneratePW);
+elementAnswer.addEventListener("click", function () {
   copyToClipboardId("Answer");
 });
-document
-  .getElementById("character_modifications")
-  .addEventListener("click", GeneratePW);
-document
-  .getElementById("explainSpecialCharacters")
-  .addEventListener("click", function () {
+elementCharacterModifications.addEventListener("click", GeneratePW);
+elementExplainSpecialCharacters.addEventListener("click", function () {
     alert(
       "No Special Characters: Replaces base64 special characters + with X, / with Q, and = (base64 padding) with Z. \n\nForce Special Characters: If no special characters, replace last character with a ="
     );
   });
-document.getElementById("resize").addEventListener("change", GeneratePW);
+elementResize.addEventListener("change", GeneratePW);
 document.getElementById("copyButton").addEventListener("click", function () {
   GeneratePW();
   addAliasToList();
@@ -52,7 +53,7 @@ document.getElementById("copyButton").addEventListener("click", function () {
 });
 document
   .getElementById("clearReset")
-  .addEventListener("click", clear_reset_data);
+  .addEventListener("click", resetAllData);
 document.getElementById("clearTimer").addEventListener("click", stopTimer);
 document.getElementById("getAliasList").addEventListener("click", getAliasList);
 document.getElementById("saveAliasList").addEventListener("click", function () {
@@ -71,6 +72,9 @@ document.getElementById("exportAll").addEventListener("click", function () {
 });
 
 let GlobalAssociativeArray = {}; //Alias list + comments and settings //use JSON associative array to squash duplicates
+let secondsToErase = 30;
+let countdown;
+let countdowninterval;
 let errorArray = [];
 
 wrapPWA();
@@ -89,10 +93,6 @@ function closeMenu() {
   elementXIcon.style.display = "none";
 }
 
-document.body.onload = function () {
-  BuildAliasSelect();
-};
-
 function CheckForNoSpaces(id) {
   let t = document.getElementById(id);
   if (t.value.match(/\s/g)) {
@@ -101,17 +101,6 @@ function CheckForNoSpaces(id) {
   }
 }
 
-document.addEventListener("dcopy", function (e) {
-  e.clipboardData.setData(
-    "text/plain",
-    document.getElementById("Answer").value
-  );
-});
-
-let secondsToErase = 30;
-let countdown;
-let countdowninterval;
-
 function tick() {
   //every second count down one
   countdown--;
@@ -119,7 +108,7 @@ function tick() {
     "Auto cleared in " + countdown + " seconds";
   if (countdown <= 0) {
     stopTimer();
-    clear_reset_data();
+    resetAllData();
     document.getElementById("timerAlert").innerHTML =
       "<font color=red>Important: Alias and Secret and clipboard were deleted</font>";
   }
@@ -138,12 +127,12 @@ function stopTimer() {
   document.getElementById("timerAlert").innerHTML = "";
 }
 
-function clear_reset_data() {
+function resetAllData() {
   elementAlias.value = "";
   document.getElementById("AliasComment").value = "";
-  document.getElementById("Secret").value = "";
-  document.getElementById("Answer").value = "";
-  document.getElementById("resize").value = 28;
+  elementSecret.value = "";
+ elementAnswer.value = "";
+  elementResize.value = 28;
   copyToClipboardText("cleared");
 }
 
@@ -162,7 +151,7 @@ function clearRequest() {
     "ERASE CLIPBOARD, ALIAS AND SECRET NOW ???\n\nYour password is saved on the clipboard.\nIt is suggested to paste your password now,\nthen click OK to clear all settings and the passwords from the clipboard (secure)\nOR\nCancel to leave it as is. (not secure)"
   );
   if (clearMe === true) {
-    clear_reset_data();
+    resetAllData();
   }
 }
 
@@ -174,15 +163,15 @@ async function copyToClipboardText(text) {
   }
 }
 
-//async as we use promise based window.crypto.subtle.digest in this function
 async function GeneratePW() {
+  //async as we use promise based window.crypto.subtle.digest in this function
   try {
     stopTimer();
     let Alias = elementAlias.value;
     CheckForNoSpaces("Alias");
-    let Secret = document.getElementById("Secret").value;
+    let Secret = elementSecret.value;
     if (Secret === "") {
-      document.getElementById("Answer").value = "";
+      elementAnswer.value = "";
       return;
     }
     let total = Secret + Alias;
@@ -195,14 +184,14 @@ async function GeneratePW() {
     PW = tempUint8Array.toBase64();
 
     //size adjust first!
-    let size = document.getElementById("resize").options[
-      document.getElementById("resize").selectedIndex
+    let size = elementResize.options[
+      elementResize.selectedIndex
     ].value;
     PW = PW.slice(0, size);
 
     let pattern;
     if (
-      document.getElementById("character_modifications").value ==
+     elementCharacterModifications.value ==
       "no_special_characters"
     ) {
       //use capital X , Q , Z least used letters
@@ -214,7 +203,7 @@ async function GeneratePW() {
       PW = PW.replace(pattern, "Z");
     }
     if (
-      document.getElementById("character_modifications").value ==
+      elementCharacterModifications.value ==
       "force_special_characters"
     ) {
       //check for + , / , = . If not, replace last char with =
@@ -223,7 +212,7 @@ async function GeneratePW() {
         PW = PW.replace(/.$/, "=");
       }
     }
-    document.getElementById("Answer").value = PW;
+    elementAnswer.value = PW;
   } catch (err) {
     postError(err);
   }
@@ -255,7 +244,7 @@ function addAliasToList() {
 
   GlobalAssociativeArray[Alias] = {
     comment: document.getElementById("AliasComment").value,
-    resize: document.getElementById("resize").value,
+    resize: elementResize.value,
     character_modifications: character_modifications
   }; //set as associative array
 
@@ -286,7 +275,7 @@ function LocalStorageToVar() {
 }
 
 function AliasChanged(value) {
-  document.getElementById("resize").value = 28; //for the case of Saved_Local_Aliases that has no possible length set. 28 is default
+  elementResize.value = 28; //for the case of Saved_Local_Aliases that has no possible length set. 28 is default
   let Alias = value; //get Selected Alias
   //exit if Alias does not exist. For 1st dummy option
   if (typeof GlobalAssociativeArray[Alias] == "undefined") {
@@ -302,9 +291,9 @@ function AliasChanged(value) {
     document.getElementById("AliasComment").value = "";
   }
   //get rezize
-  document.getElementById("resize").value = 28; //default
+ elementResize.value = 28; //default
   if (typeof GlobalAssociativeArray[Alias].resize != "undefined") {
-    document.getElementById("resize").value =
+    elementResize.value =
       GlobalAssociativeArray[Alias].resize;
   }
 
@@ -363,15 +352,6 @@ function exportAll() {
   LocalStorageToVar();
   copyToClipboardText(JSON.stringify(GlobalAssociativeArray));
   alert("All your Alias, settings, and comments are on the clipboard!");
-}
-
-function supports_html5_storage() {
-  try {
-    return "localStorage" in window && window.localStorage !== null;
-    //return false;
-  } catch (e) {
-    return false;
-  }
 }
 
 function wrapPWA() {
