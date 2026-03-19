@@ -33,7 +33,7 @@
     <form>
       <div id="aliasWrapper">      
           <datalist id="dataList" autocomplete="off"></datalist>
-          <input type="text" id="Alias" autocomplete="off" list="dataList" placeholder="Site URL or Alias eg: mysite.com">
+          <input type="text" id="Alias" autocomplete="off" list="dataList" placeholder="Website or Alias eg: mysite.com , teams(work)">
      <button type="button" id="xDeleteAlias">X</button>
       </div>
       <div>
@@ -163,7 +163,15 @@
         </div>
       </center>
     </form>
-    <center>
+    <center>    
+      <div>Import / Export encrypted JSON database : using file</div>
+      <div>
+        <label for="fileInput" class="button">Import From File</label>
+        <input type="file" id="fileInput" name="fileInput" class="button"/>
+      </div>
+      <div>
+        <a download="WebsiteList.txt" id="fileOutput" class="button">Export To File</a>
+      </div>
       <div>
         <button id="installPWA">Install as PWA</button>
       </div>
@@ -188,6 +196,9 @@
   <div id="error"></div>
 
 </div>
+
+<dialog id="tempDialog">
+</dialog>
     <script  src="./script.js"></script>
 
   </body>

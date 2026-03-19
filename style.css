@@ -52,3 +52,7 @@ body {
 #resize {
   grid-column: 2;
 }
+
+#fileInput {
+  display: none;
+}
