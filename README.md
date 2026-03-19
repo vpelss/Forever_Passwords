@@ -18,7 +18,7 @@ eg:
 
 # Recommendations
 
-- store a local copy of this program (Forever Passwords) in the case our emogic.com, github or the internet is temporarily down. Have a backup plan! Download a copy to your PC. File->Save as HTML
+- store a local copy of this program (Forever Passwords) in the case our emogic.com, github or the internet is temporarily down. Have a backup plan! Download a copy to your PC. File->Save Webpage Complete
 - do not use your Secret anywhere else. eg as a password on a web site
 - your Secret should be long, complex, and impossible to guess
 - Do not save your Secret in the browser cache or in a password manager
