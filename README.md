@@ -23,24 +23,23 @@ eg:
 - your Secret should be long, complex, and impossible to guess
 - Do not save your Secret in the browser cache or in a password manager
 - Clear your password in Forever Passwords after use. Click Clear/Reset
-- You should use a different password on every web service you use. This will happen automatically if you use the site URL as the Alias field. See: https://haveibeenpwned.com/
+- You should use a different password on every web service you use. This will happen automatically if you use the site URL as the Alias field. 
 
 # PWA
 
-You can now install Forever Passwords as a Progressive Web App (PWA) if desired. 
+You can now install Forever Passwords as a Progressive Web App (PWA) if desired from https://vpelss.github.io/Forever_Passwords/
 
 - From a PC usually there should be an install icon is just right of the url box
 - On a Android phone it is usually under the upper three vertical dots, then 'Install App'
 - On an IPhone using Chrome, use the share icon on the right of the url bar, then more, then 'Add to Home Screen'
-- https://vpelss.github.io/Forever_Passwords
 
 # Possible issues
 
-- Single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias, not just mysite.com
+-  A single url requires multiple passwords eg: wwww.mysite.com and cpanel.mysite.com : solution, add www or cpanel to the Alias, not just mysite.com
 - A website might not like the password generated. eg: too long, no special characters allowed
 - If your password is compromised (via shoulder surfing or malware), you need to decide how to generate a new one using your easy to remember rules. Eg: Add 'compromised' to the Alias (emogic.com.compromised) or (1.emogic.com)
 
-Notes: Spaces are not allowed in the Alias field. The reason is that trailing spaces are not visible, but may be present, and this will create a different password and potentially cause confusion.
+Notes: Spaces are not allowed in the Alias field or the Secret field. The reason is that trailing spaces are not visible, but may be present, and this will create a different password and potentially cause confusion.
 
 The following link is a good password policy resource. See how secure your password is.
 https://www.grc.com/haystack.htm
@@ -78,5 +77,6 @@ We take an alias (web url) and join it to a Secret then feed that merged string 
 # Created By
 
 https://www.emogic.com/
+
 
 
