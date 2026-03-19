@@ -148,30 +148,30 @@
   <div_menu_page id="menu_page_component" hidden>
     <form>
       <center>
-        <div>
-          <button type="button" id="getAliasList">Get Alias List</button>
+               <div>
+          <button type="button" id="getAliasList">Get Website List Text</button>
         </div>
         <div>
-          <button type="button" id="saveAliasList">Save Alias List</button>
+          <button type="button" id="saveAliasList">Save Website List Text</button>
         </div>
+        
         <div>
-          <button type="button" id="exportAll">Export Alias List to Clipboard</button>
-        </div>
-        <div>
-          <textarea id="JSONSave" rows="3" cols="50" placeholder="Import/Export/Backup Alias List. Save the text generated in a safe location." title="You can import/export your current Alias list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.">
+          <textarea id="JSONSave" rows="3" cols="50" placeholder="Text Box for Website Alias List import and export" title="You can import/export your current Alias list (which is saved in the local cookie). This is helful to move it to another computer or use it as a backup.">
 </textarea>
         </div>
       </center>
     </form>
     <center>    
-      <div>Import / Export encrypted JSON database : using file</div>
       <div>
-        <label for="fileInput" class="button">Import From File</label>
+        <label for="fileInput" class="button">Get Website List From File</label>
         <input type="file" id="fileInput" name="fileInput" class="button"/>
       </div>
       <div>
-        <a download="WebsiteList.txt" id="fileOutput" class="button">Export To File</a>
+        <a download="WebsiteList.txt" id="fileOutput" class="button">Save Website List To File</a>
       </div>
+      <div>
+          <button type="button" id="exportAll">Website List to Clipboard</button>
+        </div>
       <div>
         <button id="installPWA">Install as PWA</button>
       </div>
