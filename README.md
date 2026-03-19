@@ -2,7 +2,7 @@
 
 Using one secret word or phrase, unique passwords are calculated using the SHA-1 hash function for each website or program. Your passwords are 'not stored' on your device or in the cloud.
 
-# How to use Forever_Passwords
+# How to use Forever Passwords
 
 - https://vpelss.github.io/Forever_Passwords
 - Select an Alias: Usually based on a website url (eg: emogic,com)
