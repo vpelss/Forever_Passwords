@@ -5,6 +5,7 @@ Using one secret word or phrase, unique passwords are calculated using the SHA-1
 # How to use Forever Passwords
 
 - https://vpelss.github.io/Forever_Passwords
+- It is also availabe as a Chrome extension https://chromewebstore.google.com/detail/forever-passwords/aohkhcakomhokchkbbpnfpglllphpiep
 - Select an Alias: Usually based on a website url (eg: emogic,com)
 - Select a Secret: A long, complex, hard to guess word or phrase (eg: The Sound of Music). 
 - Your password is in the Answer box. The Secret and Alias are used together to calculate all your Answer/Passwords using the SHA-1 hash function
